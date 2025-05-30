@@ -1,0 +1,4305 @@
+openapi: 3.0.0
+info:
+  description: ''
+  title: standard public schema
+  version: 12.2.3 (519615d)
+host: example-server.com
+basePath: /
+schemes:
+  - https
+consumes:
+  - application/json
+  - application/vnd.pgrst.object+json;nulls=stripped
+  - application/vnd.pgrst.object+json
+  - text/csv
+produces:
+  - application/json
+  - application/vnd.pgrst.object+json;nulls=stripped
+  - application/vnd.pgrst.object+json
+  - text/csv
+paths:
+  /:
+    get:
+      produces:
+        - application/openapi+json
+        - application/json
+      responses:
+        '200':
+          description: OK
+      summary: OpenAPI description (this document)
+      tags:
+        - Introspection
+  /legal_structure:
+    get:
+      parameters:
+        - $ref: '#/parameters/rowFilter.legal_structure.id'
+        - $ref: '#/parameters/rowFilter.legal_structure.created_at'
+        - $ref: '#/parameters/rowFilter.legal_structure.title'
+        - $ref: '#/parameters/rowFilter.legal_structure.citation'
+        - $ref: '#/parameters/rowFilter.legal_structure.description'
+        - $ref: '#/parameters/rowFilter.legal_structure.context'
+        - $ref: '#/parameters/rowFilter.legal_structure.issuing_authority'
+        - $ref: '#/parameters/rowFilter.legal_structure.effective_date'
+        - $ref: '#/parameters/rowFilter.legal_structure.compliance_data'
+        - $ref: '#/parameters/rowFilter.legal_structure.url'
+        - $ref: '#/parameters/rowFilter.legal_structure.other'
+        - $ref: '#/parameters/select'
+        - $ref: '#/parameters/order'
+        - $ref: '#/parameters/range'
+        - $ref: '#/parameters/rangeUnit'
+        - $ref: '#/parameters/offset'
+        - $ref: '#/parameters/limit'
+        - $ref: '#/parameters/preferCount'
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/legal_structure'
+            type: array
+        '206':
+          description: Partial Content
+      summary: >-
+        Legal, policy, or process data guiding the NEPA process, including
+        thresholds and conditions for level of reviews or other decision
+        criteria.
+      tags:
+        - legal_structure
+    post:
+      parameters:
+        - $ref: '#/parameters/body.legal_structure'
+        - $ref: '#/parameters/select'
+        - $ref: '#/parameters/preferPost'
+      responses:
+        '201':
+          description: Created
+      summary: >-
+        Legal, policy, or process data guiding the NEPA process, including
+        thresholds and conditions for level of reviews or other decision
+        criteria.
+      tags:
+        - legal_structure
+    delete:
+      parameters:
+        - $ref: '#/parameters/rowFilter.legal_structure.id'
+        - $ref: '#/parameters/rowFilter.legal_structure.created_at'
+        - $ref: '#/parameters/rowFilter.legal_structure.title'
+        - $ref: '#/parameters/rowFilter.legal_structure.citation'
+        - $ref: '#/parameters/rowFilter.legal_structure.description'
+        - $ref: '#/parameters/rowFilter.legal_structure.context'
+        - $ref: '#/parameters/rowFilter.legal_structure.issuing_authority'
+        - $ref: '#/parameters/rowFilter.legal_structure.effective_date'
+        - $ref: '#/parameters/rowFilter.legal_structure.compliance_data'
+        - $ref: '#/parameters/rowFilter.legal_structure.url'
+        - $ref: '#/parameters/rowFilter.legal_structure.other'
+        - $ref: '#/parameters/preferReturn'
+      responses:
+        '204':
+          description: No Content
+      summary: >-
+        Legal, policy, or process data guiding the NEPA process, including
+        thresholds and conditions for level of reviews or other decision
+        criteria.
+      tags:
+        - legal_structure
+    patch:
+      parameters:
+        - $ref: '#/parameters/rowFilter.legal_structure.id'
+        - $ref: '#/parameters/rowFilter.legal_structure.created_at'
+        - $ref: '#/parameters/rowFilter.legal_structure.title'
+        - $ref: '#/parameters/rowFilter.legal_structure.citation'
+        - $ref: '#/parameters/rowFilter.legal_structure.description'
+        - $ref: '#/parameters/rowFilter.legal_structure.context'
+        - $ref: '#/parameters/rowFilter.legal_structure.issuing_authority'
+        - $ref: '#/parameters/rowFilter.legal_structure.effective_date'
+        - $ref: '#/parameters/rowFilter.legal_structure.compliance_data'
+        - $ref: '#/parameters/rowFilter.legal_structure.url'
+        - $ref: '#/parameters/rowFilter.legal_structure.other'
+        - $ref: '#/parameters/body.legal_structure'
+        - $ref: '#/parameters/preferReturn'
+      responses:
+        '204':
+          description: No Content
+      summary: >-
+        Legal, policy, or process data guiding the NEPA process, including
+        thresholds and conditions for level of reviews or other decision
+        criteria.
+      tags:
+        - legal_structure
+  /gis_data_element:
+    get:
+      parameters:
+        - $ref: '#/parameters/rowFilter.gis_data_element.id'
+        - $ref: '#/parameters/rowFilter.gis_data_element.created_at'
+        - $ref: '#/parameters/rowFilter.gis_data_element.parent_gis'
+        - $ref: '#/parameters/rowFilter.gis_data_element.container_reference'
+        - $ref: '#/parameters/rowFilter.gis_data_element.format'
+        - $ref: '#/parameters/rowFilter.gis_data_element.access_method'
+        - $ref: '#/parameters/rowFilter.gis_data_element.coordinate_system'
+        - $ref: '#/parameters/rowFilter.gis_data_element.top_left_lat'
+        - $ref: '#/parameters/rowFilter.gis_data_element.top_left_lon'
+        - $ref: '#/parameters/rowFilter.gis_data_element.bot_right_lat'
+        - $ref: '#/parameters/rowFilter.gis_data_element.bot_right_lon'
+        - $ref: '#/parameters/rowFilter.gis_data_element.purpose'
+        - $ref: '#/parameters/rowFilter.gis_data_element.data_match'
+        - $ref: '#/parameters/rowFilter.gis_data_element.access_info'
+        - $ref: '#/parameters/rowFilter.gis_data_element.other'
+        - $ref: '#/parameters/select'
+        - $ref: '#/parameters/order'
+        - $ref: '#/parameters/range'
+        - $ref: '#/parameters/rangeUnit'
+        - $ref: '#/parameters/offset'
+        - $ref: '#/parameters/limit'
+        - $ref: '#/parameters/preferCount'
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/gis_data_element'
+            type: array
+        '206':
+          description: Partial Content
+      summary: Inventory description for individual gis data elements.
+      tags:
+        - gis_data_element
+    post:
+      parameters:
+        - $ref: '#/parameters/body.gis_data_element'
+        - $ref: '#/parameters/select'
+        - $ref: '#/parameters/preferPost'
+      responses:
+        '201':
+          description: Created
+      summary: Inventory description for individual gis data elements.
+      tags:
+        - gis_data_element
+    delete:
+      parameters:
+        - $ref: '#/parameters/rowFilter.gis_data_element.id'
+        - $ref: '#/parameters/rowFilter.gis_data_element.created_at'
+        - $ref: '#/parameters/rowFilter.gis_data_element.parent_gis'
+        - $ref: '#/parameters/rowFilter.gis_data_element.container_reference'
+        - $ref: '#/parameters/rowFilter.gis_data_element.format'
+        - $ref: '#/parameters/rowFilter.gis_data_element.access_method'
+        - $ref: '#/parameters/rowFilter.gis_data_element.coordinate_system'
+        - $ref: '#/parameters/rowFilter.gis_data_element.top_left_lat'
+        - $ref: '#/parameters/rowFilter.gis_data_element.top_left_lon'
+        - $ref: '#/parameters/rowFilter.gis_data_element.bot_right_lat'
+        - $ref: '#/parameters/rowFilter.gis_data_element.bot_right_lon'
+        - $ref: '#/parameters/rowFilter.gis_data_element.purpose'
+        - $ref: '#/parameters/rowFilter.gis_data_element.data_match'
+        - $ref: '#/parameters/rowFilter.gis_data_element.access_info'
+        - $ref: '#/parameters/rowFilter.gis_data_element.other'
+        - $ref: '#/parameters/preferReturn'
+      responses:
+        '204':
+          description: No Content
+      summary: Inventory description for individual gis data elements.
+      tags:
+        - gis_data_element
+    patch:
+      parameters:
+        - $ref: '#/parameters/rowFilter.gis_data_element.id'
+        - $ref: '#/parameters/rowFilter.gis_data_element.created_at'
+        - $ref: '#/parameters/rowFilter.gis_data_element.parent_gis'
+        - $ref: '#/parameters/rowFilter.gis_data_element.container_reference'
+        - $ref: '#/parameters/rowFilter.gis_data_element.format'
+        - $ref: '#/parameters/rowFilter.gis_data_element.access_method'
+        - $ref: '#/parameters/rowFilter.gis_data_element.coordinate_system'
+        - $ref: '#/parameters/rowFilter.gis_data_element.top_left_lat'
+        - $ref: '#/parameters/rowFilter.gis_data_element.top_left_lon'
+        - $ref: '#/parameters/rowFilter.gis_data_element.bot_right_lat'
+        - $ref: '#/parameters/rowFilter.gis_data_element.bot_right_lon'
+        - $ref: '#/parameters/rowFilter.gis_data_element.purpose'
+        - $ref: '#/parameters/rowFilter.gis_data_element.data_match'
+        - $ref: '#/parameters/rowFilter.gis_data_element.access_info'
+        - $ref: '#/parameters/rowFilter.gis_data_element.other'
+        - $ref: '#/parameters/body.gis_data_element'
+        - $ref: '#/parameters/preferReturn'
+      responses:
+        '204':
+          description: No Content
+      summary: Inventory description for individual gis data elements.
+      tags:
+        - gis_data_element
+  /comment:
+    get:
+      parameters:
+        - $ref: '#/parameters/rowFilter.comment.id'
+        - $ref: '#/parameters/rowFilter.comment.created_at'
+        - $ref: '#/parameters/rowFilter.comment.parent_document_id'
+        - $ref: '#/parameters/rowFilter.comment.commenter_entity'
+        - $ref: '#/parameters/rowFilter.comment.date_submitted'
+        - $ref: '#/parameters/rowFilter.comment.submission_method'
+        - $ref: '#/parameters/rowFilter.comment.content_text'
+        - $ref: '#/parameters/rowFilter.comment.content_json'
+        - $ref: '#/parameters/rowFilter.comment.response_text'
+        - $ref: '#/parameters/rowFilter.comment.response_json'
+        - $ref: '#/parameters/rowFilter.comment.public_source'
+        - $ref: '#/parameters/rowFilter.comment.public_acess'
+        - $ref: '#/parameters/rowFilter.comment.other'
+        - $ref: '#/parameters/select'
+        - $ref: '#/parameters/order'
+        - $ref: '#/parameters/range'
+        - $ref: '#/parameters/rangeUnit'
+        - $ref: '#/parameters/offset'
+        - $ref: '#/parameters/limit'
+        - $ref: '#/parameters/preferCount'
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/comment'
+            type: array
+        '206':
+          description: Partial Content
+      summary: Feedback submitted by individuals or organizations.
+      tags:
+        - comment
+    post:
+      parameters:
+        - $ref: '#/parameters/body.comment'
+        - $ref: '#/parameters/select'
+        - $ref: '#/parameters/preferPost'
+      responses:
+        '201':
+          description: Created
+      summary: Feedback submitted by individuals or organizations.
+      tags:
+        - comment
+    delete:
+      parameters:
+        - $ref: '#/parameters/rowFilter.comment.id'
+        - $ref: '#/parameters/rowFilter.comment.created_at'
+        - $ref: '#/parameters/rowFilter.comment.parent_document_id'
+        - $ref: '#/parameters/rowFilter.comment.commenter_entity'
+        - $ref: '#/parameters/rowFilter.comment.date_submitted'
+        - $ref: '#/parameters/rowFilter.comment.submission_method'
+        - $ref: '#/parameters/rowFilter.comment.content_text'
+        - $ref: '#/parameters/rowFilter.comment.content_json'
+        - $ref: '#/parameters/rowFilter.comment.response_text'
+        - $ref: '#/parameters/rowFilter.comment.response_json'
+        - $ref: '#/parameters/rowFilter.comment.public_source'
+        - $ref: '#/parameters/rowFilter.comment.public_acess'
+        - $ref: '#/parameters/rowFilter.comment.other'
+        - $ref: '#/parameters/preferReturn'
+      responses:
+        '204':
+          description: No Content
+      summary: Feedback submitted by individuals or organizations.
+      tags:
+        - comment
+    patch:
+      parameters:
+        - $ref: '#/parameters/rowFilter.comment.id'
+        - $ref: '#/parameters/rowFilter.comment.created_at'
+        - $ref: '#/parameters/rowFilter.comment.parent_document_id'
+        - $ref: '#/parameters/rowFilter.comment.commenter_entity'
+        - $ref: '#/parameters/rowFilter.comment.date_submitted'
+        - $ref: '#/parameters/rowFilter.comment.submission_method'
+        - $ref: '#/parameters/rowFilter.comment.content_text'
+        - $ref: '#/parameters/rowFilter.comment.content_json'
+        - $ref: '#/parameters/rowFilter.comment.response_text'
+        - $ref: '#/parameters/rowFilter.comment.response_json'
+        - $ref: '#/parameters/rowFilter.comment.public_source'
+        - $ref: '#/parameters/rowFilter.comment.public_acess'
+        - $ref: '#/parameters/rowFilter.comment.other'
+        - $ref: '#/parameters/body.comment'
+        - $ref: '#/parameters/preferReturn'
+      responses:
+        '204':
+          description: No Content
+      summary: Feedback submitted by individuals or organizations.
+      tags:
+        - comment
+  /engagement:
+    get:
+      parameters:
+        - $ref: '#/parameters/rowFilter.engagement.id'
+        - $ref: '#/parameters/rowFilter.engagement.created_at'
+        - $ref: '#/parameters/rowFilter.engagement.parent_process_id'
+        - $ref: '#/parameters/rowFilter.engagement.type'
+        - $ref: '#/parameters/rowFilter.engagement.location'
+        - $ref: '#/parameters/rowFilter.engagement.related_document_id'
+        - $ref: '#/parameters/rowFilter.engagement.attendance'
+        - $ref: '#/parameters/rowFilter.engagement.participation'
+        - $ref: '#/parameters/rowFilter.engagement.notes'
+        - $ref: '#/parameters/rowFilter.engagement.start_datetime'
+        - $ref: '#/parameters/rowFilter.engagement.end_datetime'
+        - $ref: '#/parameters/rowFilter.engagement.other'
+        - $ref: '#/parameters/select'
+        - $ref: '#/parameters/order'
+        - $ref: '#/parameters/range'
+        - $ref: '#/parameters/rangeUnit'
+        - $ref: '#/parameters/offset'
+        - $ref: '#/parameters/limit'
+        - $ref: '#/parameters/preferCount'
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/engagement'
+            type: array
+        '206':
+          description: Partial Content
+      summary: >-
+        Opportunities for interaction in the NEPA process, including formal
+        consultation.
+      tags:
+        - engagement
+    post:
+      parameters:
+        - $ref: '#/parameters/body.engagement'
+        - $ref: '#/parameters/select'
+        - $ref: '#/parameters/preferPost'
+      responses:
+        '201':
+          description: Created
+      summary: >-
+        Opportunities for interaction in the NEPA process, including formal
+        consultation.
+      tags:
+        - engagement
+    delete:
+      parameters:
+        - $ref: '#/parameters/rowFilter.engagement.id'
+        - $ref: '#/parameters/rowFilter.engagement.created_at'
+        - $ref: '#/parameters/rowFilter.engagement.parent_process_id'
+        - $ref: '#/parameters/rowFilter.engagement.type'
+        - $ref: '#/parameters/rowFilter.engagement.location'
+        - $ref: '#/parameters/rowFilter.engagement.related_document_id'
+        - $ref: '#/parameters/rowFilter.engagement.attendance'
+        - $ref: '#/parameters/rowFilter.engagement.participation'
+        - $ref: '#/parameters/rowFilter.engagement.notes'
+        - $ref: '#/parameters/rowFilter.engagement.start_datetime'
+        - $ref: '#/parameters/rowFilter.engagement.end_datetime'
+        - $ref: '#/parameters/rowFilter.engagement.other'
+        - $ref: '#/parameters/preferReturn'
+      responses:
+        '204':
+          description: No Content
+      summary: >-
+        Opportunities for interaction in the NEPA process, including formal
+        consultation.
+      tags:
+        - engagement
+    patch:
+      parameters:
+        - $ref: '#/parameters/rowFilter.engagement.id'
+        - $ref: '#/parameters/rowFilter.engagement.created_at'
+        - $ref: '#/parameters/rowFilter.engagement.parent_process_id'
+        - $ref: '#/parameters/rowFilter.engagement.type'
+        - $ref: '#/parameters/rowFilter.engagement.location'
+        - $ref: '#/parameters/rowFilter.engagement.related_document_id'
+        - $ref: '#/parameters/rowFilter.engagement.attendance'
+        - $ref: '#/parameters/rowFilter.engagement.participation'
+        - $ref: '#/parameters/rowFilter.engagement.notes'
+        - $ref: '#/parameters/rowFilter.engagement.start_datetime'
+        - $ref: '#/parameters/rowFilter.engagement.end_datetime'
+        - $ref: '#/parameters/rowFilter.engagement.other'
+        - $ref: '#/parameters/body.engagement'
+        - $ref: '#/parameters/preferReturn'
+      responses:
+        '204':
+          description: No Content
+      summary: >-
+        Opportunities for interaction in the NEPA process, including formal
+        consultation.
+      tags:
+        - engagement
+  /process_model:
+    get:
+      parameters:
+        - $ref: '#/parameters/rowFilter.process_model.id'
+        - $ref: '#/parameters/rowFilter.process_model.created_at'
+        - $ref: '#/parameters/rowFilter.process_model.title'
+        - $ref: '#/parameters/rowFilter.process_model.description'
+        - $ref: '#/parameters/rowFilter.process_model.notes'
+        - $ref: '#/parameters/rowFilter.process_model.bpmn_model'
+        - $ref: '#/parameters/rowFilter.process_model.legal_structure_id'
+        - $ref: '#/parameters/rowFilter.process_model.legal_structure_text'
+        - $ref: '#/parameters/rowFilter.process_model.screening_description'
+        - $ref: '#/parameters/rowFilter.process_model.screening_desc_json'
+        - $ref: '#/parameters/rowFilter.process_model.agency'
+        - $ref: '#/parameters/rowFilter.process_model.parent_model'
+        - $ref: '#/parameters/rowFilter.process_model.DMN_model'
+        - $ref: '#/parameters/rowFilter.process_model.other'
+        - $ref: '#/parameters/select'
+        - $ref: '#/parameters/order'
+        - $ref: '#/parameters/range'
+        - $ref: '#/parameters/rangeUnit'
+        - $ref: '#/parameters/offset'
+        - $ref: '#/parameters/limit'
+        - $ref: '#/parameters/preferCount'
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/process_model'
+            type: array
+        '206':
+          description: Partial Content
+      summary: >-
+        A process model is a coded representation of a generic process, ideally
+        in business process model notation, and/or screening criteria that
+        define when or if the process is relevant to a project
+      tags:
+        - process_model
+    post:
+      parameters:
+        - $ref: '#/parameters/body.process_model'
+        - $ref: '#/parameters/select'
+        - $ref: '#/parameters/preferPost'
+      responses:
+        '201':
+          description: Created
+      summary: >-
+        A process model is a coded representation of a generic process, ideally
+        in business process model notation, and/or screening criteria that
+        define when or if the process is relevant to a project
+      tags:
+        - process_model
+    delete:
+      parameters:
+        - $ref: '#/parameters/rowFilter.process_model.id'
+        - $ref: '#/parameters/rowFilter.process_model.created_at'
+        - $ref: '#/parameters/rowFilter.process_model.title'
+        - $ref: '#/parameters/rowFilter.process_model.description'
+        - $ref: '#/parameters/rowFilter.process_model.notes'
+        - $ref: '#/parameters/rowFilter.process_model.bpmn_model'
+        - $ref: '#/parameters/rowFilter.process_model.legal_structure_id'
+        - $ref: '#/parameters/rowFilter.process_model.legal_structure_text'
+        - $ref: '#/parameters/rowFilter.process_model.screening_description'
+        - $ref: '#/parameters/rowFilter.process_model.screening_desc_json'
+        - $ref: '#/parameters/rowFilter.process_model.agency'
+        - $ref: '#/parameters/rowFilter.process_model.parent_model'
+        - $ref: '#/parameters/rowFilter.process_model.DMN_model'
+        - $ref: '#/parameters/rowFilter.process_model.other'
+        - $ref: '#/parameters/preferReturn'
+      responses:
+        '204':
+          description: No Content
+      summary: >-
+        A process model is a coded representation of a generic process, ideally
+        in business process model notation, and/or screening criteria that
+        define when or if the process is relevant to a project
+      tags:
+        - process_model
+    patch:
+      parameters:
+        - $ref: '#/parameters/rowFilter.process_model.id'
+        - $ref: '#/parameters/rowFilter.process_model.created_at'
+        - $ref: '#/parameters/rowFilter.process_model.title'
+        - $ref: '#/parameters/rowFilter.process_model.description'
+        - $ref: '#/parameters/rowFilter.process_model.notes'
+        - $ref: '#/parameters/rowFilter.process_model.bpmn_model'
+        - $ref: '#/parameters/rowFilter.process_model.legal_structure_id'
+        - $ref: '#/parameters/rowFilter.process_model.legal_structure_text'
+        - $ref: '#/parameters/rowFilter.process_model.screening_description'
+        - $ref: '#/parameters/rowFilter.process_model.screening_desc_json'
+        - $ref: '#/parameters/rowFilter.process_model.agency'
+        - $ref: '#/parameters/rowFilter.process_model.parent_model'
+        - $ref: '#/parameters/rowFilter.process_model.DMN_model'
+        - $ref: '#/parameters/rowFilter.process_model.other'
+        - $ref: '#/parameters/body.process_model'
+        - $ref: '#/parameters/preferReturn'
+      responses:
+        '204':
+          description: No Content
+      summary: >-
+        A process model is a coded representation of a generic process, ideally
+        in business process model notation, and/or screening criteria that
+        define when or if the process is relevant to a project
+      tags:
+        - process_model
+  /gis_data:
+    get:
+      parameters:
+        - $ref: '#/parameters/rowFilter.gis_data.id'
+        - $ref: '#/parameters/rowFilter.gis_data.created_at'
+        - $ref: '#/parameters/rowFilter.gis_data.parent_project_id'
+        - $ref: '#/parameters/rowFilter.gis_data.parent_process_id'
+        - $ref: '#/parameters/rowFilter.gis_data.parent_document_id'
+        - $ref: '#/parameters/rowFilter.gis_data.parent_case_event_id'
+        - $ref: '#/parameters/rowFilter.gis_data.parent_comment_id'
+        - $ref: '#/parameters/rowFilter.gis_data.parent_engagement_id'
+        - $ref: '#/parameters/rowFilter.gis_data.description'
+        - $ref: '#/parameters/rowFilter.gis_data.extent'
+        - $ref: '#/parameters/rowFilter.gis_data.centroid_lat'
+        - $ref: '#/parameters/rowFilter.gis_data.centroid_lon'
+        - $ref: '#/parameters/rowFilter.gis_data.creator'
+        - $ref: '#/parameters/rowFilter.gis_data.creator_contact'
+        - $ref: '#/parameters/rowFilter.gis_data.notes'
+        - $ref: '#/parameters/rowFilter.gis_data.container_inventory'
+        - $ref: '#/parameters/rowFilter.gis_data.map_image'
+        - $ref: '#/parameters/rowFilter.gis_data.data_container'
+        - $ref: '#/parameters/rowFilter.gis_data.address'
+        - $ref: '#/parameters/rowFilter.gis_data.updated_last'
+        - $ref: '#/parameters/rowFilter.gis_data.other'
+        - $ref: '#/parameters/select'
+        - $ref: '#/parameters/order'
+        - $ref: '#/parameters/range'
+        - $ref: '#/parameters/rangeUnit'
+        - $ref: '#/parameters/offset'
+        - $ref: '#/parameters/limit'
+        - $ref: '#/parameters/preferCount'
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/gis_data'
+            type: array
+        '206':
+          description: Partial Content
+      summary: >-
+        A container for location-based information, ranging from simple points
+        to complex polygons, as well as maps and “collapsed” geospatial
+        information
+      tags:
+        - gis_data
+    post:
+      parameters:
+        - $ref: '#/parameters/body.gis_data'
+        - $ref: '#/parameters/select'
+        - $ref: '#/parameters/preferPost'
+      responses:
+        '201':
+          description: Created
+      summary: >-
+        A container for location-based information, ranging from simple points
+        to complex polygons, as well as maps and “collapsed” geospatial
+        information
+      tags:
+        - gis_data
+    delete:
+      parameters:
+        - $ref: '#/parameters/rowFilter.gis_data.id'
+        - $ref: '#/parameters/rowFilter.gis_data.created_at'
+        - $ref: '#/parameters/rowFilter.gis_data.parent_project_id'
+        - $ref: '#/parameters/rowFilter.gis_data.parent_process_id'
+        - $ref: '#/parameters/rowFilter.gis_data.parent_document_id'
+        - $ref: '#/parameters/rowFilter.gis_data.parent_case_event_id'
+        - $ref: '#/parameters/rowFilter.gis_data.parent_comment_id'
+        - $ref: '#/parameters/rowFilter.gis_data.parent_engagement_id'
+        - $ref: '#/parameters/rowFilter.gis_data.description'
+        - $ref: '#/parameters/rowFilter.gis_data.extent'
+        - $ref: '#/parameters/rowFilter.gis_data.centroid_lat'
+        - $ref: '#/parameters/rowFilter.gis_data.centroid_lon'
+        - $ref: '#/parameters/rowFilter.gis_data.creator'
+        - $ref: '#/parameters/rowFilter.gis_data.creator_contact'
+        - $ref: '#/parameters/rowFilter.gis_data.notes'
+        - $ref: '#/parameters/rowFilter.gis_data.container_inventory'
+        - $ref: '#/parameters/rowFilter.gis_data.map_image'
+        - $ref: '#/parameters/rowFilter.gis_data.data_container'
+        - $ref: '#/parameters/rowFilter.gis_data.address'
+        - $ref: '#/parameters/rowFilter.gis_data.updated_last'
+        - $ref: '#/parameters/rowFilter.gis_data.other'
+        - $ref: '#/parameters/preferReturn'
+      responses:
+        '204':
+          description: No Content
+      summary: >-
+        A container for location-based information, ranging from simple points
+        to complex polygons, as well as maps and “collapsed” geospatial
+        information
+      tags:
+        - gis_data
+    patch:
+      parameters:
+        - $ref: '#/parameters/rowFilter.gis_data.id'
+        - $ref: '#/parameters/rowFilter.gis_data.created_at'
+        - $ref: '#/parameters/rowFilter.gis_data.parent_project_id'
+        - $ref: '#/parameters/rowFilter.gis_data.parent_process_id'
+        - $ref: '#/parameters/rowFilter.gis_data.parent_document_id'
+        - $ref: '#/parameters/rowFilter.gis_data.parent_case_event_id'
+        - $ref: '#/parameters/rowFilter.gis_data.parent_comment_id'
+        - $ref: '#/parameters/rowFilter.gis_data.parent_engagement_id'
+        - $ref: '#/parameters/rowFilter.gis_data.description'
+        - $ref: '#/parameters/rowFilter.gis_data.extent'
+        - $ref: '#/parameters/rowFilter.gis_data.centroid_lat'
+        - $ref: '#/parameters/rowFilter.gis_data.centroid_lon'
+        - $ref: '#/parameters/rowFilter.gis_data.creator'
+        - $ref: '#/parameters/rowFilter.gis_data.creator_contact'
+        - $ref: '#/parameters/rowFilter.gis_data.notes'
+        - $ref: '#/parameters/rowFilter.gis_data.container_inventory'
+        - $ref: '#/parameters/rowFilter.gis_data.map_image'
+        - $ref: '#/parameters/rowFilter.gis_data.data_container'
+        - $ref: '#/parameters/rowFilter.gis_data.address'
+        - $ref: '#/parameters/rowFilter.gis_data.updated_last'
+        - $ref: '#/parameters/rowFilter.gis_data.other'
+        - $ref: '#/parameters/body.gis_data'
+        - $ref: '#/parameters/preferReturn'
+      responses:
+        '204':
+          description: No Content
+      summary: >-
+        A container for location-based information, ranging from simple points
+        to complex polygons, as well as maps and “collapsed” geospatial
+        information
+      tags:
+        - gis_data
+  /process_instance:
+    get:
+      parameters:
+        - $ref: '#/parameters/rowFilter.process_instance.id'
+        - $ref: '#/parameters/rowFilter.process_instance.parent_project_id'
+        - $ref: '#/parameters/rowFilter.process_instance.created_at'
+        - $ref: '#/parameters/rowFilter.process_instance.parent_process_id'
+        - $ref: '#/parameters/rowFilter.process_instance.agency_id'
+        - $ref: '#/parameters/rowFilter.process_instance.federal_id'
+        - $ref: '#/parameters/rowFilter.process_instance.type'
+        - $ref: '#/parameters/rowFilter.process_instance.status'
+        - $ref: '#/parameters/rowFilter.process_instance.stage'
+        - $ref: '#/parameters/rowFilter.process_instance.start_date'
+        - $ref: '#/parameters/rowFilter.process_instance.complete_date'
+        - $ref: '#/parameters/rowFilter.process_instance.outcome'
+        - $ref: '#/parameters/rowFilter.process_instance.comment_start'
+        - $ref: '#/parameters/rowFilter.process_instance.comment_end'
+        - $ref: '#/parameters/rowFilter.process_instance.lead_agency'
+        - $ref: '#/parameters/rowFilter.process_instance.joint_lead_agency'
+        - $ref: '#/parameters/rowFilter.process_instance.cooperating_agencies'
+        - $ref: '#/parameters/rowFilter.process_instance.participating_agencies'
+        - $ref: '#/parameters/rowFilter.process_instance.notes'
+        - $ref: '#/parameters/rowFilter.process_instance.process_model'
+        - $ref: '#/parameters/rowFilter.process_instance.other'
+        - $ref: '#/parameters/rowFilter.process_instance.purpose_need'
+        - $ref: '#/parameters/rowFilter.process_instance.description'
+        - $ref: '#/parameters/select'
+        - $ref: '#/parameters/order'
+        - $ref: '#/parameters/range'
+        - $ref: '#/parameters/rangeUnit'
+        - $ref: '#/parameters/offset'
+        - $ref: '#/parameters/limit'
+        - $ref: '#/parameters/preferCount'
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/process_instance'
+            type: array
+        '206':
+          description: Partial Content
+      summary: >-
+        The Process refers to the specific type of environmental review, permit,
+        or authorization. A process is associated with or nested beneath a
+        project. A process will also have documents associated and nested
+        beneath it.
+      tags:
+        - process_instance
+    post:
+      parameters:
+        - $ref: '#/parameters/body.process_instance'
+        - $ref: '#/parameters/select'
+        - $ref: '#/parameters/preferPost'
+      responses:
+        '201':
+          description: Created
+      summary: >-
+        The Process refers to the specific type of environmental review, permit,
+        or authorization. A process is associated with or nested beneath a
+        project. A process will also have documents associated and nested
+        beneath it.
+      tags:
+        - process_instance
+    delete:
+      parameters:
+        - $ref: '#/parameters/rowFilter.process_instance.id'
+        - $ref: '#/parameters/rowFilter.process_instance.parent_project_id'
+        - $ref: '#/parameters/rowFilter.process_instance.created_at'
+        - $ref: '#/parameters/rowFilter.process_instance.parent_process_id'
+        - $ref: '#/parameters/rowFilter.process_instance.agency_id'
+        - $ref: '#/parameters/rowFilter.process_instance.federal_id'
+        - $ref: '#/parameters/rowFilter.process_instance.type'
+        - $ref: '#/parameters/rowFilter.process_instance.status'
+        - $ref: '#/parameters/rowFilter.process_instance.stage'
+        - $ref: '#/parameters/rowFilter.process_instance.start_date'
+        - $ref: '#/parameters/rowFilter.process_instance.complete_date'
+        - $ref: '#/parameters/rowFilter.process_instance.outcome'
+        - $ref: '#/parameters/rowFilter.process_instance.comment_start'
+        - $ref: '#/parameters/rowFilter.process_instance.comment_end'
+        - $ref: '#/parameters/rowFilter.process_instance.lead_agency'
+        - $ref: '#/parameters/rowFilter.process_instance.joint_lead_agency'
+        - $ref: '#/parameters/rowFilter.process_instance.cooperating_agencies'
+        - $ref: '#/parameters/rowFilter.process_instance.participating_agencies'
+        - $ref: '#/parameters/rowFilter.process_instance.notes'
+        - $ref: '#/parameters/rowFilter.process_instance.process_model'
+        - $ref: '#/parameters/rowFilter.process_instance.other'
+        - $ref: '#/parameters/rowFilter.process_instance.purpose_need'
+        - $ref: '#/parameters/rowFilter.process_instance.description'
+        - $ref: '#/parameters/preferReturn'
+      responses:
+        '204':
+          description: No Content
+      summary: >-
+        The Process refers to the specific type of environmental review, permit,
+        or authorization. A process is associated with or nested beneath a
+        project. A process will also have documents associated and nested
+        beneath it.
+      tags:
+        - process_instance
+    patch:
+      parameters:
+        - $ref: '#/parameters/rowFilter.process_instance.id'
+        - $ref: '#/parameters/rowFilter.process_instance.parent_project_id'
+        - $ref: '#/parameters/rowFilter.process_instance.created_at'
+        - $ref: '#/parameters/rowFilter.process_instance.parent_process_id'
+        - $ref: '#/parameters/rowFilter.process_instance.agency_id'
+        - $ref: '#/parameters/rowFilter.process_instance.federal_id'
+        - $ref: '#/parameters/rowFilter.process_instance.type'
+        - $ref: '#/parameters/rowFilter.process_instance.status'
+        - $ref: '#/parameters/rowFilter.process_instance.stage'
+        - $ref: '#/parameters/rowFilter.process_instance.start_date'
+        - $ref: '#/parameters/rowFilter.process_instance.complete_date'
+        - $ref: '#/parameters/rowFilter.process_instance.outcome'
+        - $ref: '#/parameters/rowFilter.process_instance.comment_start'
+        - $ref: '#/parameters/rowFilter.process_instance.comment_end'
+        - $ref: '#/parameters/rowFilter.process_instance.lead_agency'
+        - $ref: '#/parameters/rowFilter.process_instance.joint_lead_agency'
+        - $ref: '#/parameters/rowFilter.process_instance.cooperating_agencies'
+        - $ref: '#/parameters/rowFilter.process_instance.participating_agencies'
+        - $ref: '#/parameters/rowFilter.process_instance.notes'
+        - $ref: '#/parameters/rowFilter.process_instance.process_model'
+        - $ref: '#/parameters/rowFilter.process_instance.other'
+        - $ref: '#/parameters/rowFilter.process_instance.purpose_need'
+        - $ref: '#/parameters/rowFilter.process_instance.description'
+        - $ref: '#/parameters/body.process_instance'
+        - $ref: '#/parameters/preferReturn'
+      responses:
+        '204':
+          description: No Content
+      summary: >-
+        The Process refers to the specific type of environmental review, permit,
+        or authorization. A process is associated with or nested beneath a
+        project. A process will also have documents associated and nested
+        beneath it.
+      tags:
+        - process_instance
+  /document:
+    get:
+      description: >-
+        Documents are also likely to have many GIS objects associated with them,
+        usually in the past flattened to images but potentially represented as
+        data in future systems.
+      parameters:
+        - $ref: '#/parameters/rowFilter.document.id'
+        - $ref: '#/parameters/rowFilter.document.created_at'
+        - $ref: '#/parameters/rowFilter.document.parent_process_id'
+        - $ref: '#/parameters/rowFilter.document.related_document_id'
+        - $ref: '#/parameters/rowFilter.document.title'
+        - $ref: '#/parameters/rowFilter.document.volume_title'
+        - $ref: '#/parameters/rowFilter.document.document_revision'
+        - $ref: '#/parameters/rowFilter.document.revision_no'
+        - $ref: '#/parameters/rowFilter.document.supplement_no'
+        - $ref: '#/parameters/rowFilter.document.publish_date'
+        - $ref: '#/parameters/rowFilter.document.prepared_by'
+        - $ref: '#/parameters/rowFilter.document.status'
+        - $ref: '#/parameters/rowFilter.document.public_access'
+        - $ref: '#/parameters/rowFilter.document.url'
+        - $ref: '#/parameters/rowFilter.document.notes'
+        - $ref: '#/parameters/rowFilter.document.document_summary'
+        - $ref: '#/parameters/rowFilter.document.document_toc'
+        - $ref: '#/parameters/rowFilter.document.document_type'
+        - $ref: '#/parameters/rowFilter.document.other'
+        - $ref: '#/parameters/select'
+        - $ref: '#/parameters/order'
+        - $ref: '#/parameters/range'
+        - $ref: '#/parameters/rangeUnit'
+        - $ref: '#/parameters/offset'
+        - $ref: '#/parameters/limit'
+        - $ref: '#/parameters/preferCount'
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/document'
+            type: array
+        '206':
+          description: Partial Content
+      summary: >-
+        The document object includes both metadata identifying the document and
+        its context (below) and a container for summary information that lays
+        out, at a minimum, the table of contents (or heading structure) of the
+        document. See Document Structure section below.  
+      tags:
+        - document
+    post:
+      description: >-
+        Documents are also likely to have many GIS objects associated with them,
+        usually in the past flattened to images but potentially represented as
+        data in future systems.
+      parameters:
+        - $ref: '#/parameters/body.document'
+        - $ref: '#/parameters/select'
+        - $ref: '#/parameters/preferPost'
+      responses:
+        '201':
+          description: Created
+      summary: >-
+        The document object includes both metadata identifying the document and
+        its context (below) and a container for summary information that lays
+        out, at a minimum, the table of contents (or heading structure) of the
+        document. See Document Structure section below.  
+      tags:
+        - document
+    delete:
+      description: >-
+        Documents are also likely to have many GIS objects associated with them,
+        usually in the past flattened to images but potentially represented as
+        data in future systems.
+      parameters:
+        - $ref: '#/parameters/rowFilter.document.id'
+        - $ref: '#/parameters/rowFilter.document.created_at'
+        - $ref: '#/parameters/rowFilter.document.parent_process_id'
+        - $ref: '#/parameters/rowFilter.document.related_document_id'
+        - $ref: '#/parameters/rowFilter.document.title'
+        - $ref: '#/parameters/rowFilter.document.volume_title'
+        - $ref: '#/parameters/rowFilter.document.document_revision'
+        - $ref: '#/parameters/rowFilter.document.revision_no'
+        - $ref: '#/parameters/rowFilter.document.supplement_no'
+        - $ref: '#/parameters/rowFilter.document.publish_date'
+        - $ref: '#/parameters/rowFilter.document.prepared_by'
+        - $ref: '#/parameters/rowFilter.document.status'
+        - $ref: '#/parameters/rowFilter.document.public_access'
+        - $ref: '#/parameters/rowFilter.document.url'
+        - $ref: '#/parameters/rowFilter.document.notes'
+        - $ref: '#/parameters/rowFilter.document.document_summary'
+        - $ref: '#/parameters/rowFilter.document.document_toc'
+        - $ref: '#/parameters/rowFilter.document.document_type'
+        - $ref: '#/parameters/rowFilter.document.other'
+        - $ref: '#/parameters/preferReturn'
+      responses:
+        '204':
+          description: No Content
+      summary: >-
+        The document object includes both metadata identifying the document and
+        its context (below) and a container for summary information that lays
+        out, at a minimum, the table of contents (or heading structure) of the
+        document. See Document Structure section below.  
+      tags:
+        - document
+    patch:
+      description: >-
+        Documents are also likely to have many GIS objects associated with them,
+        usually in the past flattened to images but potentially represented as
+        data in future systems.
+      parameters:
+        - $ref: '#/parameters/rowFilter.document.id'
+        - $ref: '#/parameters/rowFilter.document.created_at'
+        - $ref: '#/parameters/rowFilter.document.parent_process_id'
+        - $ref: '#/parameters/rowFilter.document.related_document_id'
+        - $ref: '#/parameters/rowFilter.document.title'
+        - $ref: '#/parameters/rowFilter.document.volume_title'
+        - $ref: '#/parameters/rowFilter.document.document_revision'
+        - $ref: '#/parameters/rowFilter.document.revision_no'
+        - $ref: '#/parameters/rowFilter.document.supplement_no'
+        - $ref: '#/parameters/rowFilter.document.publish_date'
+        - $ref: '#/parameters/rowFilter.document.prepared_by'
+        - $ref: '#/parameters/rowFilter.document.status'
+        - $ref: '#/parameters/rowFilter.document.public_access'
+        - $ref: '#/parameters/rowFilter.document.url'
+        - $ref: '#/parameters/rowFilter.document.notes'
+        - $ref: '#/parameters/rowFilter.document.document_summary'
+        - $ref: '#/parameters/rowFilter.document.document_toc'
+        - $ref: '#/parameters/rowFilter.document.document_type'
+        - $ref: '#/parameters/rowFilter.document.other'
+        - $ref: '#/parameters/body.document'
+        - $ref: '#/parameters/preferReturn'
+      responses:
+        '204':
+          description: No Content
+      summary: >-
+        The document object includes both metadata identifying the document and
+        its context (below) and a container for summary information that lays
+        out, at a minimum, the table of contents (or heading structure) of the
+        document. See Document Structure section below.  
+      tags:
+        - document
+  /process_decision_payload:
+    get:
+      parameters:
+        - $ref: '#/parameters/rowFilter.process_decision_payload.id'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.created_at'
+        - $ref: >-
+            #/parameters/rowFilter.process_decision_payload.process_decision_element
+        - $ref: '#/parameters/rowFilter.process_decision_payload.process'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.project'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.data_description'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.evaluation_data'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.response'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.result'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.result_bool'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.result_notes'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.result_data'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.result_source'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.parent_payload'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.other'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.data_annotation'
+        - $ref: >-
+            #/parameters/rowFilter.process_decision_payload.evaluation_data_annotation
+        - $ref: '#/parameters/select'
+        - $ref: '#/parameters/order'
+        - $ref: '#/parameters/range'
+        - $ref: '#/parameters/rangeUnit'
+        - $ref: '#/parameters/offset'
+        - $ref: '#/parameters/limit'
+        - $ref: '#/parameters/preferCount'
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/process_decision_payload'
+            type: array
+        '206':
+          description: Partial Content
+      summary: >-
+        Objects that deliver responses and/or results of the evaluation criteria
+        in the process decision elements.
+      tags:
+        - process_decision_payload
+    post:
+      parameters:
+        - $ref: '#/parameters/body.process_decision_payload'
+        - $ref: '#/parameters/select'
+        - $ref: '#/parameters/preferPost'
+      responses:
+        '201':
+          description: Created
+      summary: >-
+        Objects that deliver responses and/or results of the evaluation criteria
+        in the process decision elements.
+      tags:
+        - process_decision_payload
+    delete:
+      parameters:
+        - $ref: '#/parameters/rowFilter.process_decision_payload.id'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.created_at'
+        - $ref: >-
+            #/parameters/rowFilter.process_decision_payload.process_decision_element
+        - $ref: '#/parameters/rowFilter.process_decision_payload.process'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.project'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.data_description'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.evaluation_data'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.response'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.result'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.result_bool'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.result_notes'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.result_data'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.result_source'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.parent_payload'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.other'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.data_annotation'
+        - $ref: >-
+            #/parameters/rowFilter.process_decision_payload.evaluation_data_annotation
+        - $ref: '#/parameters/preferReturn'
+      responses:
+        '204':
+          description: No Content
+      summary: >-
+        Objects that deliver responses and/or results of the evaluation criteria
+        in the process decision elements.
+      tags:
+        - process_decision_payload
+    patch:
+      parameters:
+        - $ref: '#/parameters/rowFilter.process_decision_payload.id'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.created_at'
+        - $ref: >-
+            #/parameters/rowFilter.process_decision_payload.process_decision_element
+        - $ref: '#/parameters/rowFilter.process_decision_payload.process'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.project'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.data_description'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.evaluation_data'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.response'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.result'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.result_bool'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.result_notes'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.result_data'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.result_source'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.parent_payload'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.other'
+        - $ref: '#/parameters/rowFilter.process_decision_payload.data_annotation'
+        - $ref: >-
+            #/parameters/rowFilter.process_decision_payload.evaluation_data_annotation
+        - $ref: '#/parameters/body.process_decision_payload'
+        - $ref: '#/parameters/preferReturn'
+      responses:
+        '204':
+          description: No Content
+      summary: >-
+        Objects that deliver responses and/or results of the evaluation criteria
+        in the process decision elements.
+      tags:
+        - process_decision_payload
+  /user_role:
+    get:
+      parameters:
+        - $ref: '#/parameters/rowFilter.user_role.id'
+        - $ref: '#/parameters/rowFilter.user_role.created_at'
+        - $ref: '#/parameters/rowFilter.user_role.name'
+        - $ref: '#/parameters/rowFilter.user_role.description'
+        - $ref: '#/parameters/rowFilter.user_role.access_policy'
+        - $ref: '#/parameters/rowFilter.user_role.permission_descriptions'
+        - $ref: '#/parameters/rowFilter.user_role.public'
+        - $ref: '#/parameters/rowFilter.user_role.other'
+        - $ref: '#/parameters/select'
+        - $ref: '#/parameters/order'
+        - $ref: '#/parameters/range'
+        - $ref: '#/parameters/rangeUnit'
+        - $ref: '#/parameters/offset'
+        - $ref: '#/parameters/limit'
+        - $ref: '#/parameters/preferCount'
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/user_role'
+            type: array
+        '206':
+          description: Partial Content
+      summary: Defines stakeholders interacting with the NEPA IT system.
+      tags:
+        - user_role
+    post:
+      parameters:
+        - $ref: '#/parameters/body.user_role'
+        - $ref: '#/parameters/select'
+        - $ref: '#/parameters/preferPost'
+      responses:
+        '201':
+          description: Created
+      summary: Defines stakeholders interacting with the NEPA IT system.
+      tags:
+        - user_role
+    delete:
+      parameters:
+        - $ref: '#/parameters/rowFilter.user_role.id'
+        - $ref: '#/parameters/rowFilter.user_role.created_at'
+        - $ref: '#/parameters/rowFilter.user_role.name'
+        - $ref: '#/parameters/rowFilter.user_role.description'
+        - $ref: '#/parameters/rowFilter.user_role.access_policy'
+        - $ref: '#/parameters/rowFilter.user_role.permission_descriptions'
+        - $ref: '#/parameters/rowFilter.user_role.public'
+        - $ref: '#/parameters/rowFilter.user_role.other'
+        - $ref: '#/parameters/preferReturn'
+      responses:
+        '204':
+          description: No Content
+      summary: Defines stakeholders interacting with the NEPA IT system.
+      tags:
+        - user_role
+    patch:
+      parameters:
+        - $ref: '#/parameters/rowFilter.user_role.id'
+        - $ref: '#/parameters/rowFilter.user_role.created_at'
+        - $ref: '#/parameters/rowFilter.user_role.name'
+        - $ref: '#/parameters/rowFilter.user_role.description'
+        - $ref: '#/parameters/rowFilter.user_role.access_policy'
+        - $ref: '#/parameters/rowFilter.user_role.permission_descriptions'
+        - $ref: '#/parameters/rowFilter.user_role.public'
+        - $ref: '#/parameters/rowFilter.user_role.other'
+        - $ref: '#/parameters/body.user_role'
+        - $ref: '#/parameters/preferReturn'
+      responses:
+        '204':
+          description: No Content
+      summary: Defines stakeholders interacting with the NEPA IT system.
+      tags:
+        - user_role
+  /case_event:
+    get:
+      parameters:
+        - $ref: '#/parameters/rowFilter.case_event.id'
+        - $ref: '#/parameters/rowFilter.case_event.created_at'
+        - $ref: '#/parameters/rowFilter.case_event.parent_process_id'
+        - $ref: '#/parameters/rowFilter.case_event.parent_event_id'
+        - $ref: '#/parameters/rowFilter.case_event.related_document_id'
+        - $ref: '#/parameters/rowFilter.case_event.name'
+        - $ref: '#/parameters/rowFilter.case_event.description'
+        - $ref: '#/parameters/rowFilter.case_event.source'
+        - $ref: '#/parameters/rowFilter.case_event.type'
+        - $ref: '#/parameters/rowFilter.case_event.public_access'
+        - $ref: '#/parameters/rowFilter.case_event.tier'
+        - $ref: '#/parameters/rowFilter.case_event.status'
+        - $ref: '#/parameters/rowFilter.case_event.outcome'
+        - $ref: '#/parameters/rowFilter.case_event.assigned_entity'
+        - $ref: '#/parameters/rowFilter.case_event.datetime'
+        - $ref: '#/parameters/rowFilter.case_event.following_segment_name'
+        - $ref: '#/parameters/rowFilter.case_event.related_engagement_id'
+        - $ref: '#/parameters/rowFilter.case_event.other'
+        - $ref: '#/parameters/select'
+        - $ref: '#/parameters/order'
+        - $ref: '#/parameters/range'
+        - $ref: '#/parameters/rangeUnit'
+        - $ref: '#/parameters/offset'
+        - $ref: '#/parameters/limit'
+        - $ref: '#/parameters/preferCount'
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/case_event'
+            type: array
+        '206':
+          description: Partial Content
+      summary: >-
+        Milestones or steps within the NEPA review, tracked in a case management
+        system or other system, such as task management tools or reporting
+        dashboards.
+      tags:
+        - case_event
+    post:
+      parameters:
+        - $ref: '#/parameters/body.case_event'
+        - $ref: '#/parameters/select'
+        - $ref: '#/parameters/preferPost'
+      responses:
+        '201':
+          description: Created
+      summary: >-
+        Milestones or steps within the NEPA review, tracked in a case management
+        system or other system, such as task management tools or reporting
+        dashboards.
+      tags:
+        - case_event
+    delete:
+      parameters:
+        - $ref: '#/parameters/rowFilter.case_event.id'
+        - $ref: '#/parameters/rowFilter.case_event.created_at'
+        - $ref: '#/parameters/rowFilter.case_event.parent_process_id'
+        - $ref: '#/parameters/rowFilter.case_event.parent_event_id'
+        - $ref: '#/parameters/rowFilter.case_event.related_document_id'
+        - $ref: '#/parameters/rowFilter.case_event.name'
+        - $ref: '#/parameters/rowFilter.case_event.description'
+        - $ref: '#/parameters/rowFilter.case_event.source'
+        - $ref: '#/parameters/rowFilter.case_event.type'
+        - $ref: '#/parameters/rowFilter.case_event.public_access'
+        - $ref: '#/parameters/rowFilter.case_event.tier'
+        - $ref: '#/parameters/rowFilter.case_event.status'
+        - $ref: '#/parameters/rowFilter.case_event.outcome'
+        - $ref: '#/parameters/rowFilter.case_event.assigned_entity'
+        - $ref: '#/parameters/rowFilter.case_event.datetime'
+        - $ref: '#/parameters/rowFilter.case_event.following_segment_name'
+        - $ref: '#/parameters/rowFilter.case_event.related_engagement_id'
+        - $ref: '#/parameters/rowFilter.case_event.other'
+        - $ref: '#/parameters/preferReturn'
+      responses:
+        '204':
+          description: No Content
+      summary: >-
+        Milestones or steps within the NEPA review, tracked in a case management
+        system or other system, such as task management tools or reporting
+        dashboards.
+      tags:
+        - case_event
+    patch:
+      parameters:
+        - $ref: '#/parameters/rowFilter.case_event.id'
+        - $ref: '#/parameters/rowFilter.case_event.created_at'
+        - $ref: '#/parameters/rowFilter.case_event.parent_process_id'
+        - $ref: '#/parameters/rowFilter.case_event.parent_event_id'
+        - $ref: '#/parameters/rowFilter.case_event.related_document_id'
+        - $ref: '#/parameters/rowFilter.case_event.name'
+        - $ref: '#/parameters/rowFilter.case_event.description'
+        - $ref: '#/parameters/rowFilter.case_event.source'
+        - $ref: '#/parameters/rowFilter.case_event.type'
+        - $ref: '#/parameters/rowFilter.case_event.public_access'
+        - $ref: '#/parameters/rowFilter.case_event.tier'
+        - $ref: '#/parameters/rowFilter.case_event.status'
+        - $ref: '#/parameters/rowFilter.case_event.outcome'
+        - $ref: '#/parameters/rowFilter.case_event.assigned_entity'
+        - $ref: '#/parameters/rowFilter.case_event.datetime'
+        - $ref: '#/parameters/rowFilter.case_event.following_segment_name'
+        - $ref: '#/parameters/rowFilter.case_event.related_engagement_id'
+        - $ref: '#/parameters/rowFilter.case_event.other'
+        - $ref: '#/parameters/body.case_event'
+        - $ref: '#/parameters/preferReturn'
+      responses:
+        '204':
+          description: No Content
+      summary: >-
+        Milestones or steps within the NEPA review, tracked in a case management
+        system or other system, such as task management tools or reporting
+        dashboards.
+      tags:
+        - case_event
+  /decision_element:
+    get:
+      parameters:
+        - $ref: '#/parameters/rowFilter.decision_element.id'
+        - $ref: '#/parameters/rowFilter.decision_element.created_at'
+        - $ref: '#/parameters/rowFilter.decision_element.process_model'
+        - $ref: '#/parameters/rowFilter.decision_element.legal_structure_id'
+        - $ref: '#/parameters/rowFilter.decision_element.title'
+        - $ref: '#/parameters/rowFilter.decision_element.description'
+        - $ref: '#/parameters/rowFilter.decision_element.measure'
+        - $ref: '#/parameters/rowFilter.decision_element.threshold'
+        - $ref: '#/parameters/rowFilter.decision_element.spatial'
+        - $ref: '#/parameters/rowFilter.decision_element.intersect'
+        - $ref: '#/parameters/rowFilter.decision_element.spatial_reference'
+        - $ref: '#/parameters/rowFilter.decision_element.form_text'
+        - $ref: '#/parameters/rowFilter.decision_element.form_response_desc'
+        - $ref: '#/parameters/rowFilter.decision_element.form_data'
+        - $ref: '#/parameters/rowFilter.decision_element.evaluation_method'
+        - $ref: '#/parameters/rowFilter.decision_element.evaluation_dmn'
+        - $ref: '#/parameters/rowFilter.decision_element.category'
+        - $ref: >-
+            #/parameters/rowFilter.decision_element.process_model_internal_reference_id
+        - $ref: '#/parameters/rowFilter.decision_element.parent_decision_element_id'
+        - $ref: '#/parameters/rowFilter.decision_element.other'
+        - $ref: '#/parameters/select'
+        - $ref: '#/parameters/order'
+        - $ref: '#/parameters/range'
+        - $ref: '#/parameters/rangeUnit'
+        - $ref: '#/parameters/offset'
+        - $ref: '#/parameters/limit'
+        - $ref: '#/parameters/preferCount'
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/decision_element'
+            type: array
+        '206':
+          description: Partial Content
+      summary: >-
+        Objects that describe conditions for starting a process or resolving a
+        decision tree within a process, including GIS screening.
+      tags:
+        - decision_element
+    post:
+      parameters:
+        - $ref: '#/parameters/body.decision_element'
+        - $ref: '#/parameters/select'
+        - $ref: '#/parameters/preferPost'
+      responses:
+        '201':
+          description: Created
+      summary: >-
+        Objects that describe conditions for starting a process or resolving a
+        decision tree within a process, including GIS screening.
+      tags:
+        - decision_element
+    delete:
+      parameters:
+        - $ref: '#/parameters/rowFilter.decision_element.id'
+        - $ref: '#/parameters/rowFilter.decision_element.created_at'
+        - $ref: '#/parameters/rowFilter.decision_element.process_model'
+        - $ref: '#/parameters/rowFilter.decision_element.legal_structure_id'
+        - $ref: '#/parameters/rowFilter.decision_element.title'
+        - $ref: '#/parameters/rowFilter.decision_element.description'
+        - $ref: '#/parameters/rowFilter.decision_element.measure'
+        - $ref: '#/parameters/rowFilter.decision_element.threshold'
+        - $ref: '#/parameters/rowFilter.decision_element.spatial'
+        - $ref: '#/parameters/rowFilter.decision_element.intersect'
+        - $ref: '#/parameters/rowFilter.decision_element.spatial_reference'
+        - $ref: '#/parameters/rowFilter.decision_element.form_text'
+        - $ref: '#/parameters/rowFilter.decision_element.form_response_desc'
+        - $ref: '#/parameters/rowFilter.decision_element.form_data'
+        - $ref: '#/parameters/rowFilter.decision_element.evaluation_method'
+        - $ref: '#/parameters/rowFilter.decision_element.evaluation_dmn'
+        - $ref: '#/parameters/rowFilter.decision_element.category'
+        - $ref: >-
+            #/parameters/rowFilter.decision_element.process_model_internal_reference_id
+        - $ref: '#/parameters/rowFilter.decision_element.parent_decision_element_id'
+        - $ref: '#/parameters/rowFilter.decision_element.other'
+        - $ref: '#/parameters/preferReturn'
+      responses:
+        '204':
+          description: No Content
+      summary: >-
+        Objects that describe conditions for starting a process or resolving a
+        decision tree within a process, including GIS screening.
+      tags:
+        - decision_element
+    patch:
+      parameters:
+        - $ref: '#/parameters/rowFilter.decision_element.id'
+        - $ref: '#/parameters/rowFilter.decision_element.created_at'
+        - $ref: '#/parameters/rowFilter.decision_element.process_model'
+        - $ref: '#/parameters/rowFilter.decision_element.legal_structure_id'
+        - $ref: '#/parameters/rowFilter.decision_element.title'
+        - $ref: '#/parameters/rowFilter.decision_element.description'
+        - $ref: '#/parameters/rowFilter.decision_element.measure'
+        - $ref: '#/parameters/rowFilter.decision_element.threshold'
+        - $ref: '#/parameters/rowFilter.decision_element.spatial'
+        - $ref: '#/parameters/rowFilter.decision_element.intersect'
+        - $ref: '#/parameters/rowFilter.decision_element.spatial_reference'
+        - $ref: '#/parameters/rowFilter.decision_element.form_text'
+        - $ref: '#/parameters/rowFilter.decision_element.form_response_desc'
+        - $ref: '#/parameters/rowFilter.decision_element.form_data'
+        - $ref: '#/parameters/rowFilter.decision_element.evaluation_method'
+        - $ref: '#/parameters/rowFilter.decision_element.evaluation_dmn'
+        - $ref: '#/parameters/rowFilter.decision_element.category'
+        - $ref: >-
+            #/parameters/rowFilter.decision_element.process_model_internal_reference_id
+        - $ref: '#/parameters/rowFilter.decision_element.parent_decision_element_id'
+        - $ref: '#/parameters/rowFilter.decision_element.other'
+        - $ref: '#/parameters/body.decision_element'
+        - $ref: '#/parameters/preferReturn'
+      responses:
+        '204':
+          description: No Content
+      summary: >-
+        Objects that describe conditions for starting a process or resolving a
+        decision tree within a process, including GIS screening.
+      tags:
+        - decision_element
+  /project:
+    get:
+      parameters:
+        - $ref: '#/parameters/rowFilter.project.id'
+        - $ref: '#/parameters/rowFilter.project.created_at'
+        - $ref: '#/parameters/rowFilter.project.title'
+        - $ref: '#/parameters/rowFilter.project.description'
+        - $ref: '#/parameters/rowFilter.project.sector'
+        - $ref: '#/parameters/rowFilter.project.lead_agency'
+        - $ref: '#/parameters/rowFilter.project.participating_agencies'
+        - $ref: '#/parameters/rowFilter.project.location_lat'
+        - $ref: '#/parameters/rowFilter.project.location_lon'
+        - $ref: '#/parameters/rowFilter.project.location_object'
+        - $ref: '#/parameters/rowFilter.project.type'
+        - $ref: '#/parameters/rowFilter.project.funding'
+        - $ref: '#/parameters/rowFilter.project.start_date'
+        - $ref: '#/parameters/rowFilter.project.current_status'
+        - $ref: '#/parameters/rowFilter.project.sponsor'
+        - $ref: '#/parameters/rowFilter.project.sponsor_contact'
+        - $ref: '#/parameters/rowFilter.project.parent_project_id'
+        - $ref: '#/parameters/rowFilter.project.location_text'
+        - $ref: '#/parameters/rowFilter.project.other'
+        - $ref: '#/parameters/select'
+        - $ref: '#/parameters/order'
+        - $ref: '#/parameters/range'
+        - $ref: '#/parameters/rangeUnit'
+        - $ref: '#/parameters/offset'
+        - $ref: '#/parameters/limit'
+        - $ref: '#/parameters/preferCount'
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/project'
+            type: array
+        '206':
+          description: Partial Content
+      summary: >-
+        A Project represents the activity or decision requiring a NEPA review
+        process. A project generally has a relationship with a GIS object
+        defining its location, which is not contained in the properties below
+        but establishes the physical footprint of the action.
+      tags:
+        - project
+    post:
+      parameters:
+        - $ref: '#/parameters/body.project'
+        - $ref: '#/parameters/select'
+        - $ref: '#/parameters/preferPost'
+      responses:
+        '201':
+          description: Created
+      summary: >-
+        A Project represents the activity or decision requiring a NEPA review
+        process. A project generally has a relationship with a GIS object
+        defining its location, which is not contained in the properties below
+        but establishes the physical footprint of the action.
+      tags:
+        - project
+    delete:
+      parameters:
+        - $ref: '#/parameters/rowFilter.project.id'
+        - $ref: '#/parameters/rowFilter.project.created_at'
+        - $ref: '#/parameters/rowFilter.project.title'
+        - $ref: '#/parameters/rowFilter.project.description'
+        - $ref: '#/parameters/rowFilter.project.sector'
+        - $ref: '#/parameters/rowFilter.project.lead_agency'
+        - $ref: '#/parameters/rowFilter.project.participating_agencies'
+        - $ref: '#/parameters/rowFilter.project.location_lat'
+        - $ref: '#/parameters/rowFilter.project.location_lon'
+        - $ref: '#/parameters/rowFilter.project.location_object'
+        - $ref: '#/parameters/rowFilter.project.type'
+        - $ref: '#/parameters/rowFilter.project.funding'
+        - $ref: '#/parameters/rowFilter.project.start_date'
+        - $ref: '#/parameters/rowFilter.project.current_status'
+        - $ref: '#/parameters/rowFilter.project.sponsor'
+        - $ref: '#/parameters/rowFilter.project.sponsor_contact'
+        - $ref: '#/parameters/rowFilter.project.parent_project_id'
+        - $ref: '#/parameters/rowFilter.project.location_text'
+        - $ref: '#/parameters/rowFilter.project.other'
+        - $ref: '#/parameters/preferReturn'
+      responses:
+        '204':
+          description: No Content
+      summary: >-
+        A Project represents the activity or decision requiring a NEPA review
+        process. A project generally has a relationship with a GIS object
+        defining its location, which is not contained in the properties below
+        but establishes the physical footprint of the action.
+      tags:
+        - project
+    patch:
+      parameters:
+        - $ref: '#/parameters/rowFilter.project.id'
+        - $ref: '#/parameters/rowFilter.project.created_at'
+        - $ref: '#/parameters/rowFilter.project.title'
+        - $ref: '#/parameters/rowFilter.project.description'
+        - $ref: '#/parameters/rowFilter.project.sector'
+        - $ref: '#/parameters/rowFilter.project.lead_agency'
+        - $ref: '#/parameters/rowFilter.project.participating_agencies'
+        - $ref: '#/parameters/rowFilter.project.location_lat'
+        - $ref: '#/parameters/rowFilter.project.location_lon'
+        - $ref: '#/parameters/rowFilter.project.location_object'
+        - $ref: '#/parameters/rowFilter.project.type'
+        - $ref: '#/parameters/rowFilter.project.funding'
+        - $ref: '#/parameters/rowFilter.project.start_date'
+        - $ref: '#/parameters/rowFilter.project.current_status'
+        - $ref: '#/parameters/rowFilter.project.sponsor'
+        - $ref: '#/parameters/rowFilter.project.sponsor_contact'
+        - $ref: '#/parameters/rowFilter.project.parent_project_id'
+        - $ref: '#/parameters/rowFilter.project.location_text'
+        - $ref: '#/parameters/rowFilter.project.other'
+        - $ref: '#/parameters/body.project'
+        - $ref: '#/parameters/preferReturn'
+      responses:
+        '204':
+          description: No Content
+      summary: >-
+        A Project represents the activity or decision requiring a NEPA review
+        process. A project generally has a relationship with a GIS object
+        defining its location, which is not contained in the properties below
+        but establishes the physical footprint of the action.
+      tags:
+        - project
+  /rpc/export_all_tables_as_jsonb:
+    get:
+      produces:
+        - application/json
+        - application/vnd.pgrst.object+json;nulls=stripped
+        - application/vnd.pgrst.object+json
+      responses:
+        '200':
+          description: OK
+      tags:
+        - (rpc) export_all_tables_as_jsonb
+    post:
+      parameters:
+        - in: body
+          name: args
+          required: true
+          schema:
+            type: object
+        - $ref: '#/parameters/preferParams'
+      produces:
+        - application/json
+        - application/vnd.pgrst.object+json;nulls=stripped
+        - application/vnd.pgrst.object+json
+      responses:
+        '200':
+          description: OK
+      tags:
+        - (rpc) export_all_tables_as_jsonb
+definitions:
+  legal_structure:
+    description: >-
+      Legal, policy, or process data guiding the NEPA process, including
+      thresholds and conditions for level of reviews or other decision criteria.
+    required:
+      - id
+      - created_at
+    properties:
+      id:
+        description: |-
+          database id
+
+          Note:
+          This is a Primary Key.<pk/>
+        format: bigint
+        type: integer
+      created_at:
+        default: now()
+        description: 'created '
+        format: timestamp with time zone
+        type: string
+      title:
+        description: Official name.
+        format: text
+        type: string
+      citation:
+        description: Legal reference.
+        format: text
+        type: string
+      description:
+        description: Summary and relevance.
+        format: text
+        type: string
+      context:
+        description: Full text or excerpt.
+        format: text
+        type: string
+      issuing_authority:
+        description: Government body.
+        format: text
+        type: string
+      effective_date:
+        description: Implementation date.
+        format: date
+        type: string
+      compliance_data:
+        description: >-
+          Procedural mandates, ideally structured as data using an ontology that
+          includes facts (such as thresholds triggering processes), duties, and
+          actors (e.g., FLINT frames). 
+        format: json
+      url:
+        description: URL of legal reference (e.g. eCFR)
+        format: text
+        type: string
+      other:
+        description: >-
+          This jsonb field should be used for additional data structures as
+          needed. 
+        format: jsonb
+    type: object
+  gis_data_element:
+    description: Inventory description for individual gis data elements.
+    required:
+      - id
+      - created_at
+    properties:
+      id:
+        description: |-
+          database id
+
+          Note:
+          This is a Primary Key.<pk/>
+        format: bigint
+        type: integer
+      created_at:
+        default: now()
+        description: created date
+        format: timestamp with time zone
+        type: string
+      parent_gis:
+        description: >-
+          Parent GIS data entity
+
+
+          Note:
+
+          This is a Foreign Key to `gis_data.id`.<fk table='gis_data'
+          column='id'/>
+        format: bigint
+        type: integer
+      container_reference:
+        description: >-
+          Reference to header or other information in GIS data container to
+          locate this particular data element
+        format: text
+        type: string
+      format:
+        description: GeoJSON, Shapefile, KML.
+        format: text
+        type: string
+      access_method:
+        description: URL, API, direct upload.
+        format: text
+        type: string
+      coordinate_system:
+        description: Spatial reference system.
+        format: text
+        type: string
+      top_left_lat:
+        description: Geographic extent.
+        format: double precision
+        type: number
+      top_left_lon:
+        description: Geographic extent.
+        format: double precision
+        type: number
+      bot_right_lat:
+        description: Geographic extent.
+        format: double precision
+        type: number
+      bot_right_lon:
+        description: Geographic extent.
+        format: double precision
+        type: number
+      purpose:
+        description: "1.\tBespoke GIS Data: Project-specific (boundaries, analysis areas).\n2.\tAnalysis GIS Data: Data layers used for analysis (e.g., wetlands inventory).\n3.\tBase Map Data: Foundational layers (streets, elevation).\n"
+        format: text
+        type: string
+      data_match:
+        description: >-
+          Whether this object references an identified GIS analysis in an
+          official inventory.
+        format: text
+        type: string
+      access_info:
+        description: instructions for access to data
+        format: json
+      other:
+        description: >-
+          This jsonb field should be used for additional data structures as
+          needed. 
+        format: jsonb
+    type: object
+  comment:
+    description: Feedback submitted by individuals or organizations.
+    required:
+      - id
+      - created_at
+    properties:
+      id:
+        description: |-
+          database id
+
+          Note:
+          This is a Primary Key.<pk/>
+        format: bigint
+        type: integer
+      created_at:
+        default: now()
+        description: created
+        format: timestamp with time zone
+        type: string
+      parent_document_id:
+        description: >-
+          Reference to Document ID of the document to which the comment is
+          related.
+
+
+          Note:
+
+          This is a Foreign Key to `document.id`.<fk table='document'
+          column='id'/>
+        format: bigint
+        type: integer
+      commenter_entity:
+        description: Individual or organization.
+        format: text
+        type: string
+      date_submitted:
+        description: Submission date.
+        format: date
+        type: string
+      submission_method:
+        description: Online, email, mail, in-person.
+        format: text
+        type: string
+      content_text:
+        description: Text of the comment.
+        format: text
+        type: string
+      content_json:
+        description: Text of the comment (json object if applicable)
+        format: json
+      response_text:
+        description: Formal reply, if applicable.
+        format: text
+        type: string
+      response_json:
+        description: Formal reply, if applicable. (json object if applicable)
+        format: json
+      public_source:
+        description: Whether comment came from member of the public
+        format: boolean
+        type: boolean
+      public_acess:
+        description: Whether comment should be viewed by public
+        format: boolean
+        type: boolean
+      other:
+        description: >-
+          This jsonb field should be used for additional data structures as
+          needed. 
+        format: jsonb
+    type: object
+  engagement:
+    description: >-
+      Opportunities for interaction in the NEPA process, including formal
+      consultation.
+    required:
+      - id
+      - created_at
+    properties:
+      id:
+        description: |-
+          database id
+
+          Note:
+          This is a Primary Key.<pk/>
+        format: bigint
+        type: integer
+      created_at:
+        default: now()
+        description: created
+        format: timestamp with time zone
+        type: string
+      parent_process_id:
+        description: >-
+          If associated with a process, the related process ID
+
+
+          Note:
+
+          This is a Foreign Key to `process_instance.id`.<fk
+          table='process_instance' column='id'/>
+        format: bigint
+        type: integer
+      type:
+        description: >-
+          Optional category or other classification for the type of event (e.g.
+          public meeting, comment period, consultation period)
+        format: text
+        type: string
+      location:
+        description: >-
+          Physical, virtual, hybrid. (Note that this may also be attached as a
+          relationship with a GIS object). 
+        format: text
+        type: string
+      related_document_id:
+        description: >-
+          Reference to Document ID of the documents released or referenced for
+          this event.
+
+
+          Note:
+
+          This is a Foreign Key to `document.id`.<fk table='document'
+          column='id'/>
+        format: bigint
+        type: integer
+      attendance:
+        description: Participant count.
+        format: bigint
+        type: integer
+      participation:
+        description: Container for participation data
+        format: json
+      notes:
+        description: 'additional notes. '
+        format: text
+        type: string
+      start_datetime:
+        description: Engagement start date/time
+        format: timestamp with time zone
+        type: string
+      end_datetime:
+        description: Engagement end date/time
+        format: timestamp with time zone
+        type: string
+      other:
+        description: >-
+          This jsonb field should be used for additional data structures as
+          needed. 
+        format: jsonb
+    type: object
+  process_model:
+    description: >-
+      A process model is a coded representation of a generic process, ideally in
+      business process model notation, and/or screening criteria that define
+      when or if the process is relevant to a project
+    required:
+      - id
+      - created_at
+    properties:
+      id:
+        description: |-
+          database id
+
+          Note:
+          This is a Primary Key.<pk/>
+        format: bigint
+        type: integer
+      created_at:
+        default: now()
+        description: created
+        format: timestamp with time zone
+        type: string
+      title:
+        description: 'Name of process model '
+        format: text
+        type: string
+      description:
+        description: 'Plain language description of the process model '
+        format: text
+        type: string
+      notes:
+        description: Miscellaneous notes on process model
+        format: text
+        type: string
+      bpmn_model:
+        description: Object containing the BPMN representation of the process
+        format: json
+      legal_structure_id:
+        description: >-
+          Reference to legal structure entity that defines the process
+
+
+          Note:
+
+          This is a Foreign Key to `legal_structure.id`.<fk
+          table='legal_structure' column='id'/>
+        format: bigint
+        type: integer
+      legal_structure_text:
+        description: >-
+          Reference to legal structure that defines the process (text, cfr
+          reference, etc)
+        format: text
+        type: string
+      screening_description:
+        description: >-
+          Plain language description of the screening criteria that would lead
+          to starting the process for an individual project. 
+        format: text
+        type: string
+      screening_desc_json:
+        description: >-
+          Plain language description of the screening criteria that would lead
+          to starting the process for an individual project.  (json object
+          option - this should not replace the decision element relationships)
+        format: json
+      agency:
+        description: Agency responsible for carrying out this process
+        format: text
+        type: string
+      parent_model:
+        description: >-
+          Reference to parent model, if applicable (i.e. if this is a subprocess
+          or flows from a previous process)
+        format: bigint
+        type: integer
+      DMN_model:
+        description: >-
+          Decision model notation (in json wrapper) to structure logic for how
+          to evaluate responses to decision elements. Optionally, each decision
+          element may have individual DMN models.  
+        format: jsonb
+      other:
+        description: >-
+          This jsonb field should be used for additional data structures as
+          needed. 
+        format: jsonb
+    type: object
+  gis_data:
+    description: >-
+      A container for location-based information, ranging from simple points to
+      complex polygons, as well as maps and “collapsed” geospatial information
+    required:
+      - id
+      - created_at
+    properties:
+      id:
+        description: |-
+          database id
+
+          Note:
+          This is a Primary Key.<pk/>
+        format: bigint
+        type: integer
+      created_at:
+        default: now()
+        description: created date
+        format: timestamp with time zone
+        type: string
+      parent_project_id:
+        description: >-
+          Reference to Foreign object attached to GIS object (one for each other
+          entity table - expected architecture is that there is one foreign key
+          among all these, not all possible relationships filled in)
+
+
+          Note:
+
+          This is a Foreign Key to `project.id`.<fk table='project'
+          column='id'/>
+        format: bigint
+        type: integer
+      parent_process_id:
+        description: >-
+          Reference to Foreign object attached to GIS object (one for each other
+          entity table - expected architecture is that there is one foreign key
+          among all these, not all possible relationships filled in)
+
+
+          Note:
+
+          This is a Foreign Key to `process_instance.id`.<fk
+          table='process_instance' column='id'/>
+        format: bigint
+        type: integer
+      parent_document_id:
+        description: >-
+          Reference to Foreign object attached to GIS object (one for each other
+          entity table - expected architecture is that there is one foreign key
+          among all these, not all possible relationships filled in)
+
+
+          Note:
+
+          This is a Foreign Key to `document.id`.<fk table='document'
+          column='id'/>
+        format: bigint
+        type: integer
+      parent_case_event_id:
+        description: >-
+          Reference to Foreign object attached to GIS object (one for each other
+          entity table - expected architecture is that there is one foreign key
+          among all these, not all possible relationships filled in)
+
+
+          Note:
+
+          This is a Foreign Key to `case_event.id`.<fk table='case_event'
+          column='id'/>
+        format: bigint
+        type: integer
+      parent_comment_id:
+        description: >-
+          Reference to Foreign object attached to GIS object (one for each other
+          entity table - expected architecture is that there is one foreign key
+          among all these, not all possible relationships filled in)
+
+
+          Note:
+
+          This is a Foreign Key to `comment.id`.<fk table='comment'
+          column='id'/>
+        format: bigint
+        type: integer
+      parent_engagement_id:
+        description: >-
+          Reference to Foreign object attached to GIS object (one for each other
+          entity table - expected architecture is that there is one foreign key
+          among all these, not all possible relationships filled in)
+
+
+          Note:
+
+          This is a Foreign Key to `engagement.id`.<fk table='engagement'
+          column='id'/>
+        format: bigint
+        type: integer
+      description:
+        description: Optional description
+        format: text
+        type: string
+      extent:
+        description: 'Optional. '
+        format: text
+        type: string
+      centroid_lat:
+        description: Option to specify single point or centroid for rapid plotting
+        format: double precision
+        type: number
+      centroid_lon:
+        description: Option to specify single point or centroid for rapid plotting
+        format: double precision
+        type: number
+      creator:
+        description: Organization or individual.
+        format: text
+        type: string
+      creator_contact:
+        description: Contact card-type data for creator.
+        format: jsonb
+      notes:
+        description: Miscellaneous notes.
+        format: text
+        type: string
+      container_inventory:
+        description: "Inventory of map image container and GIS data container in json format (note inventory should be attached through gis_data_element objects, which may include a list of:\n-\tFormat: GeoJSON, Shapefile, KML.\n-\tAccess Method: URL, API, direct upload.\n-\tCoordinate System: Spatial reference system.\n-\tBounding Box: Geographic extent.\n-\tPurpose: Bespoke, analysis, or base map.\n-\tReference to database: Whether this object references an identified GIS analysis in an official inventory."
+        format: jsonb
+      map_image:
+        description: 'map image data '
+        format: jsonb
+      data_container:
+        description: json container for any attached GIS data
+        format: jsonb
+      address:
+        description: address of centroid (if applicable)
+        format: text
+        type: string
+      updated_last:
+        description: Timestamp of last update to this dataset
+        format: timestamp with time zone
+        type: string
+      other:
+        description: >-
+          This jsonb field should be used for additional data structures as
+          needed. 
+        format: jsonb
+    type: object
+  process_instance:
+    description: >-
+      The Process refers to the specific type of environmental review, permit,
+      or authorization. A process is associated with or nested beneath a
+      project. A process will also have documents associated and nested beneath
+      it.
+    required:
+      - id
+      - created_at
+    properties:
+      id:
+        description: |-
+          database id
+
+          Note:
+          This is a Primary Key.<pk/>
+        format: bigint
+        type: integer
+      parent_project_id:
+        description: >-
+          Reference to Project ID of parent project. 
+
+
+          Note:
+
+          This is a Foreign Key to `project.id`.<fk table='project'
+          column='id'/>
+        format: bigint
+        type: integer
+      created_at:
+        default: now()
+        description: created
+        format: timestamp with time zone
+        type: string
+      parent_process_id:
+        description: If applicable, reference to Process ID of parent process
+        format: bigint
+        type: integer
+      agency_id:
+        description: Process-specific ID assigned by agency, if assigned.
+        format: text
+        type: string
+      federal_id:
+        description: Unique identification number (*not* database ID)
+        format: text
+        type: string
+      type:
+        description: >-
+          Level of NEPA review or other permit or authorization (see Permitting
+          Council Federal Environmental Review and Authorization Inventory).
+        format: text
+        type: string
+      status:
+        description: Indicates status of process (planned, underway, paused, completed).
+        format: text
+        type: string
+      stage:
+        description: >-
+          Current state of process, may be derived from the last case event with
+          this Process ID.
+        format: text
+        type: string
+      start_date:
+        description: Initiation date.
+        format: date
+        type: string
+      complete_date:
+        description: Conclusion date.
+        format: date
+        type: string
+      outcome:
+        description: Result (e.g., Record of Decision, permit issuance).
+        format: text
+        type: string
+      comment_start:
+        description: Time frame for public input.
+        format: date
+        type: string
+      comment_end:
+        description: Time frame for public input.
+        format: date
+        type: string
+      lead_agency:
+        description: >-
+          Federal agency that supervises preparation of the environmental
+          documents for the project
+        format: text
+        type: string
+      joint_lead_agency:
+        description: If applicable.
+        format: text
+        type: string
+      cooperating_agencies:
+        description: 'Cooperating agencies. '
+        format: text
+        type: string
+      participating_agencies:
+        description: Other involved agencies.
+        format: text
+        type: string
+      notes:
+        description: Miscellaneous notes.
+        format: text
+        type: string
+      process_model:
+        description: >-
+          Relationship with process model data that describes the process (if
+          available/applicable)
+
+
+          Note:
+
+          This is a Foreign Key to `process_model.id`.<fk table='process_model'
+          column='id'/>
+        format: bigint
+        type: integer
+      other:
+        description: >-
+          This jsonb field should be used for additional data structures as
+          needed. 
+        format: jsonb
+      purpose_need:
+        format: text
+        type: string
+      description:
+        format: text
+        type: string
+    type: object
+  document:
+    description: >-
+      The document object includes both metadata identifying the document and
+      its context (below) and a container for summary information that lays out,
+      at a minimum, the table of contents (or heading structure) of the
+      document. See Document Structure section below.  
+
+      Documents are also likely to have many GIS objects associated with them,
+      usually in the past flattened to images but potentially represented as
+      data in future systems.
+    required:
+      - id
+      - created_at
+    properties:
+      id:
+        description: |-
+          database id
+
+          Note:
+          This is a Primary Key.<pk/>
+        format: bigint
+        type: integer
+      created_at:
+        default: now()
+        description: creation date
+        format: timestamp with time zone
+        type: string
+      parent_process_id:
+        description: >-
+          Reference to Process ID of parent process for the document
+
+
+          Note:
+
+          This is a Foreign Key to `process_instance.id`.<fk
+          table='process_instance' column='id'/>
+        format: bigint
+        type: integer
+      related_document_id:
+        description: Unique identification number for related document (if applicable)
+        format: bigint
+        type: integer
+      title:
+        description: Document title.
+        format: text
+        type: string
+      volume_title:
+        description: Volume title (e.g., Appendix)
+        format: text
+        type: string
+      document_revision:
+        description: >-
+          Indicates which revision of the document (e.g., first revised Draft
+          EIS).
+        format: text
+        type: string
+      revision_no:
+        description: >-
+          Indicates which revision of the document (e.g., first revised Draft
+          EIS) - numeric form
+        format: bigint
+        type: integer
+      supplement_no:
+        description: Indicates supplement number
+        format: bigint
+        type: integer
+      publish_date:
+        description: Publication or submission date.
+        format: date
+        type: string
+      prepared_by:
+        description: Responsible entity.
+        format: text
+        type: string
+      status:
+        description: 'Document production phase. '
+        format: text
+        type: string
+      public_access:
+        description: Public or restricted.
+        format: boolean
+        type: boolean
+      url:
+        description: Online link if available.
+        format: text
+        type: string
+      notes:
+        description: Miscellaneous notes.
+        format: text
+        type: string
+      document_summary:
+        description: container for summary information
+        format: json
+      document_toc:
+        description: the table of contents (or heading structure) of the document.
+        format: json
+      document_type:
+        description: 'Document category, such as EIS, EA, etc. '
+        format: text
+        type: string
+      other:
+        description: >-
+          This jsonb field should be used for additional data structures as
+          needed. 
+        format: jsonb
+    type: object
+  process_decision_payload:
+    description: >-
+      Objects that deliver responses and/or results of the evaluation criteria
+      in the process decision elements.
+    required:
+      - id
+      - created_at
+    properties:
+      id:
+        description: |-
+          database id
+
+          Note:
+          This is a Primary Key.<pk/>
+        format: bigint
+        type: integer
+      created_at:
+        default: now()
+        description: created
+        format: timestamp with time zone
+        type: string
+      process_decision_element:
+        description: >-
+          Relationship with process decision element 
+
+
+          Note:
+
+          This is a Foreign Key to `decision_element.id`.<fk
+          table='decision_element' column='id'/>
+        format: bigint
+        type: integer
+      process:
+        description: >-
+          Identifier of related process (if applicable)
+
+
+          Note:
+
+          This is a Foreign Key to `process_instance.id`.<fk
+          table='process_instance' column='id'/>
+        format: bigint
+        type: integer
+      project:
+        description: >-
+          Identifier of project the data is associated with. 
+
+
+          Note:
+
+          This is a Foreign Key to `project.id`.<fk table='project'
+          column='id'/>
+        format: bigint
+        type: integer
+      data_description:
+        description: >-
+          Text of the data about the project in response to the evaluation
+          condition
+        format: text
+        type: string
+      evaluation_data:
+        description: >-
+          Text of the data about the project in response to the evaluation
+          condition (json object)
+        format: jsonb
+      response:
+        description: Text of the response of the evaluation (if applicable)
+        format: text
+        type: string
+      result:
+        description: Text of the response of the evaluation (if applicable)
+        format: text
+        type: string
+      result_bool:
+        description: Whether response is included in this payload
+        format: boolean
+        type: boolean
+      result_notes:
+        description: Miscellaneous notes on response
+        format: text
+        type: string
+      result_data:
+        description: Text of the response of the evaluation (if applicable - json object)
+        format: json
+      result_source:
+        description: Origin of the response
+        format: text
+        type: string
+      parent_payload:
+        description: >-
+          Parent payload ID (e.g. if this is a response to a submission, this
+          would be the submission ID)
+        format: bigint
+        type: integer
+      other:
+        description: >-
+          This jsonb field should be used for additional data structures as
+          needed. 
+        format: jsonb
+      data_annotation:
+        format: text
+        type: string
+      evaluation_data_annotation:
+        description: >-
+          Jsonb field for additional data annotations (e.g. if the response is
+          "yes," may contain additional context or notes. 
+        format: jsonb
+    type: object
+  user_role:
+    description: Defines stakeholders interacting with the NEPA IT system.
+    required:
+      - id
+      - created_at
+    properties:
+      id:
+        description: |-
+          database id
+
+          Note:
+          This is a Primary Key.<pk/>
+        format: bigint
+        type: integer
+      created_at:
+        default: now()
+        description: created
+        format: timestamp with time zone
+        type: string
+      name:
+        description: Title of the role (Agency Staff, Public Commenter).
+        format: text
+        type: string
+      description:
+        description: Responsibilities and access rights.
+        format: text
+        type: string
+      access_policy:
+        description: access policy json object
+        format: json
+      permission_descriptions:
+        description: System access levels description
+        format: text
+        type: string
+      public:
+        description: role is a member of the broader class of public users/stakeholders
+        format: boolean
+        type: boolean
+      other:
+        description: >-
+          This jsonb field should be used for additional data structures as
+          needed. 
+        format: jsonb
+    type: object
+  case_event:
+    description: >-
+      Milestones or steps within the NEPA review, tracked in a case management
+      system or other system, such as task management tools or reporting
+      dashboards.
+    required:
+      - id
+      - created_at
+    properties:
+      id:
+        description: |-
+          database id
+
+          Note:
+          This is a Primary Key.<pk/>
+        format: bigint
+        type: integer
+      created_at:
+        default: now()
+        description: created
+        format: timestamp with time zone
+        type: string
+      parent_process_id:
+        description: >-
+          Reference to Process ID of the associated NEPA process for this event.
+
+
+          Note:
+
+          This is a Foreign Key to `process_instance.id`.<fk
+          table='process_instance' column='id'/>
+        format: bigint
+        type: integer
+      parent_event_id:
+        description: 'If applicable, the parent ID of the event. '
+        format: bigint
+        type: integer
+      related_document_id:
+        description: >2-
+           Reference to Document ID of the document related to the event. Optional.
+
+          Note:
+
+          This is a Foreign Key to `document.id`.<fk table='document'
+          column='id'/>
+        format: bigint
+        type: integer
+      name:
+        description: Name of event
+        format: text
+        type: string
+      description:
+        description: 'Description of event. '
+        format: text
+        type: string
+      source:
+        description: Link to information about the event.
+        format: text
+        type: string
+      type:
+        description: Event class (e.g., NOI, ROD)
+        format: text
+        type: string
+      public_access:
+        description: Indicates whether events can be displayed publicly. (Binary Y/N)
+        format: boolean
+        type: boolean
+      tier:
+        description: >-
+          Optional event hierarchy (e.g., Tier 1 NOI, Tier 2 Scoping Complete,
+          Tier 3 Task assigned to Jane Doe). 
+        format: bigint
+        type: integer
+      status:
+        description: Pending, completed, in progress.
+        format: text
+        type: string
+      outcome:
+        description: Result or action taken.
+        format: text
+        type: string
+      assigned_entity:
+        description: Responsible individuals or agencies.
+        format: text
+        type: string
+      datetime:
+        description: Date and time of event
+        format: timestamp with time zone
+        type: string
+      following_segment_name:
+        description: >-
+          Name of segment following this event (e.g. if this is "start of
+          scoping" the next segment is "scoping").
+        format: text
+        type: string
+      related_engagement_id:
+        description: >-
+          Related engagement event if applicable
+
+
+          Note:
+
+          This is a Foreign Key to `engagement.id`.<fk table='engagement'
+          column='id'/>
+        format: bigint
+        type: integer
+      other:
+        description: >-
+          This jsonb field should be used for additional data structures as
+          needed. 
+        format: jsonb
+    type: object
+  decision_element:
+    description: >-
+      Objects that describe conditions for starting a process or resolving a
+      decision tree within a process, including GIS screening.
+    required:
+      - id
+      - created_at
+    properties:
+      id:
+        description: |-
+          database id
+
+          Note:
+          This is a Primary Key.<pk/>
+        format: bigint
+        type: integer
+      created_at:
+        default: now()
+        description: created
+        format: timestamp with time zone
+        type: string
+      process_model:
+        description: >-
+          Parent process model
+
+
+          Note:
+
+          This is a Foreign Key to `process_model.id`.<fk table='process_model'
+          column='id'/>
+        format: bigint
+        type: integer
+      legal_structure_id:
+        description: >-
+          If applicable, legal structure related to specific criteria
+
+
+          Note:
+
+          This is a Foreign Key to `legal_structure.id`.<fk
+          table='legal_structure' column='id'/>
+        format: bigint
+        type: integer
+      title:
+        description: Name of element
+        format: text
+        type: string
+      description:
+        description: Plain language description of the criterion
+        format: text
+        type: string
+      measure:
+        description: >-
+          A description of the type of thing being measured in the criteria
+          (e.g. threshold of contamination)
+        format: text
+        type: string
+      threshold:
+        description: numeric value of the triggering measure (if applicable)
+        format: double precision
+        type: number
+      spatial:
+        description: Whether the criterion is a spatial relationship
+        format: boolean
+        type: boolean
+      intersect:
+        description: If the spatial relationship is a simple intersection (e.g. floodplain)
+        format: boolean
+        type: boolean
+      spatial_reference:
+        description: ' A container for reference to the screening criteria (e.g. api call for wetland data)'
+        format: json
+      form_text:
+        description: Text data to display on a screening form for a user to input data
+        format: text
+        type: string
+      form_response_desc:
+        description: >-
+          A description of the type of response expected on the form (e.g. text,
+          select from list, number)
+        format: text
+        type: string
+      form_data:
+        description: >-
+          Formatted response for a formbuilder application (e.g. likert scale,
+          number, etc)
+        format: json
+      evaluation_method:
+        description: >-
+          A description of how the response is matched against the condition and
+          what the results could be. 
+        format: text
+        type: string
+      evaluation_dmn:
+        description: Decision Model Notation description of evaluation of decision element.
+        format: json
+      category:
+        description: >-
+          The category of the process decision element, such as limitation,
+          condition, core, or extraordinary circumstances.
+        format: text
+        type: string
+      process_model_internal_reference_id:
+        description: >-
+          Process models may have complex decision trees - this string can
+          reference the specific piece of the process model that this decision
+          element applies to. 
+        format: text
+        type: string
+      parent_decision_element_id:
+        description: >-
+          If this decision element depends on another decision element (e.g. if
+          answer a is yes, ask question b), this field can be used to reference
+          the parent decision element. 
+        format: bigint
+        type: integer
+      other:
+        description: >-
+          This jsonb field should be used for additional data structures as
+          needed. 
+        format: jsonb
+    type: object
+  project:
+    description: >-
+      A Project represents the activity or decision requiring a NEPA review
+      process. A project generally has a relationship with a GIS object defining
+      its location, which is not contained in the properties below but
+      establishes the physical footprint of the action.
+    required:
+      - id
+      - created_at
+    properties:
+      id:
+        description: |-
+          database id
+
+          Note:
+          This is a Primary Key.<pk/>
+        format: bigint
+        type: integer
+      created_at:
+        default: now()
+        description: created
+        format: timestamp with time zone
+        type: string
+      title:
+        description: Descriptive name of the project.
+        format: text
+        type: string
+      description:
+        description: Summary of the project’s goals and scope.
+        format: text
+        type: string
+      sector:
+        description: >-
+          High-level project category (e.g., energy, transportation, land
+          management).
+        format: text
+        type: string
+      lead_agency:
+        description: >-
+          Federal agency that supervises preparation of the environmental
+          documents for the project.
+        format: text
+        type: string
+      participating_agencies:
+        description: Other involved agencies.
+        format: text
+        type: string
+      location_lat:
+        description: >-
+          Center/centroid of project (shortcut for plotting on a map - should
+          attach GIS data object as well)
+        format: double precision
+        type: number
+      location_lon:
+        description: >-
+          Center/centroid of project (shortcut for plotting on a map - should
+          attach GIS data object as well)
+        format: double precision
+        type: number
+      location_object:
+        description: >-
+          Container for more advanced location object if applicable or if this
+          improves performance (should not replace gis data entity relationship)
+        format: json
+      type:
+        description: >-
+          Classification, a sub-type of sector (pipeline, highway, habitat
+          restoration).
+        format: text
+        type: string
+      funding:
+        description: >-
+          Link to federal, state, local or other funding by reference (e.g.,
+          grant program, loan guarantee, appropriated funds)
+        format: text
+        type: string
+      start_date:
+        description: Environmental review initiation date (aggregated from process status)
+        format: date
+        type: string
+      current_status:
+        description: >-
+          Current phase (pre-application, underway, paused, completed) of the
+          NEPA, permitting, or other authorization process (aggregated from
+          process status).
+        format: text
+        type: string
+      sponsor:
+        description: Name of responsible entity, organization, or person.
+        format: text
+        type: string
+      sponsor_contact:
+        description: >-
+          Name of responsible entity, organization, or person (contact
+          information json object)
+        format: json
+      parent_project_id:
+        description: 'If nesting projects, reference to the parent project''s ID. '
+        format: bigint
+        type: integer
+      location_text:
+        description: 'Text field to specify location, eg. address. '
+        format: text
+        type: string
+      other:
+        description: >-
+          This jsonb field should be used for additional data structures as
+          needed. 
+        format: jsonb
+    type: object
+parameters:
+  preferParams:
+    name: Prefer
+    description: Preference
+    required: false
+    enum:
+      - params=single-object
+    in: header
+    type: string
+  preferReturn:
+    name: Prefer
+    description: Preference
+    required: false
+    enum:
+      - return=representation
+      - return=minimal
+      - return=none
+    in: header
+    type: string
+  preferCount:
+    name: Prefer
+    description: Preference
+    required: false
+    enum:
+      - count=none
+    in: header
+    type: string
+  preferPost:
+    name: Prefer
+    description: Preference
+    required: false
+    enum:
+      - return=representation
+      - return=minimal
+      - return=none
+      - resolution=ignore-duplicates
+      - resolution=merge-duplicates
+    in: header
+    type: string
+  select:
+    name: select
+    description: Filtering Columns
+    required: false
+    in: query
+    type: string
+  on_conflict:
+    name: on_conflict
+    description: On Conflict
+    required: false
+    in: query
+    type: string
+  order:
+    name: order
+    description: Ordering
+    required: false
+    in: query
+    type: string
+  range:
+    name: Range
+    description: Limiting and Pagination
+    required: false
+    in: header
+    type: string
+  rangeUnit:
+    name: Range-Unit
+    description: Limiting and Pagination
+    required: false
+    default: items
+    in: header
+    type: string
+  offset:
+    name: offset
+    description: Limiting and Pagination
+    required: false
+    in: query
+    type: string
+  limit:
+    name: limit
+    description: Limiting and Pagination
+    required: false
+    in: query
+    type: string
+  body.legal_structure:
+    name: legal_structure
+    description: legal_structure
+    required: false
+    in: body
+    schema:
+      $ref: '#/definitions/legal_structure'
+  rowFilter.legal_structure.id:
+    name: id
+    description: database id
+    required: false
+    in: query
+    type: string
+  rowFilter.legal_structure.created_at:
+    name: created_at
+    description: 'created '
+    required: false
+    in: query
+    type: string
+  rowFilter.legal_structure.title:
+    name: title
+    description: Official name.
+    required: false
+    in: query
+    type: string
+  rowFilter.legal_structure.citation:
+    name: citation
+    description: Legal reference.
+    required: false
+    in: query
+    type: string
+  rowFilter.legal_structure.description:
+    name: description
+    description: Summary and relevance.
+    required: false
+    in: query
+    type: string
+  rowFilter.legal_structure.context:
+    name: context
+    description: Full text or excerpt.
+    required: false
+    in: query
+    type: string
+  rowFilter.legal_structure.issuing_authority:
+    name: issuing_authority
+    description: Government body.
+    required: false
+    in: query
+    type: string
+  rowFilter.legal_structure.effective_date:
+    name: effective_date
+    description: Implementation date.
+    required: false
+    in: query
+    type: string
+  rowFilter.legal_structure.compliance_data:
+    name: compliance_data
+    description: >-
+      Procedural mandates, ideally structured as data using an ontology that
+      includes facts (such as thresholds triggering processes), duties, and
+      actors (e.g., FLINT frames). 
+    required: false
+    in: query
+    type: string
+  rowFilter.legal_structure.url:
+    name: url
+    description: URL of legal reference (e.g. eCFR)
+    required: false
+    in: query
+    type: string
+  rowFilter.legal_structure.other:
+    name: other
+    description: 'This jsonb field should be used for additional data structures as needed. '
+    required: false
+    in: query
+    type: string
+  body.gis_data_element:
+    name: gis_data_element
+    description: gis_data_element
+    required: false
+    in: body
+    schema:
+      $ref: '#/definitions/gis_data_element'
+  rowFilter.gis_data_element.id:
+    name: id
+    description: database id
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data_element.created_at:
+    name: created_at
+    description: created date
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data_element.parent_gis:
+    name: parent_gis
+    description: Parent GIS data entity
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data_element.container_reference:
+    name: container_reference
+    description: >-
+      Reference to header or other information in GIS data container to locate
+      this particular data element
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data_element.format:
+    name: format
+    description: GeoJSON, Shapefile, KML.
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data_element.access_method:
+    name: access_method
+    description: URL, API, direct upload.
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data_element.coordinate_system:
+    name: coordinate_system
+    description: Spatial reference system.
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data_element.top_left_lat:
+    name: top_left_lat
+    description: Geographic extent.
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data_element.top_left_lon:
+    name: top_left_lon
+    description: Geographic extent.
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data_element.bot_right_lat:
+    name: bot_right_lat
+    description: Geographic extent.
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data_element.bot_right_lon:
+    name: bot_right_lon
+    description: Geographic extent.
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data_element.purpose:
+    name: purpose
+    description: "1.\tBespoke GIS Data: Project-specific (boundaries, analysis areas).\n2.\tAnalysis GIS Data: Data layers used for analysis (e.g., wetlands inventory).\n3.\tBase Map Data: Foundational layers (streets, elevation).\n"
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data_element.data_match:
+    name: data_match
+    description: >-
+      Whether this object references an identified GIS analysis in an official
+      inventory.
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data_element.access_info:
+    name: access_info
+    description: instructions for access to data
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data_element.other:
+    name: other
+    description: 'This jsonb field should be used for additional data structures as needed. '
+    required: false
+    in: query
+    type: string
+  body.comment:
+    name: comment
+    description: comment
+    required: false
+    in: body
+    schema:
+      $ref: '#/definitions/comment'
+  rowFilter.comment.id:
+    name: id
+    description: database id
+    required: false
+    in: query
+    type: string
+  rowFilter.comment.created_at:
+    name: created_at
+    description: created
+    required: false
+    in: query
+    type: string
+  rowFilter.comment.parent_document_id:
+    name: parent_document_id
+    description: Reference to Document ID of the document to which the comment is related.
+    required: false
+    in: query
+    type: string
+  rowFilter.comment.commenter_entity:
+    name: commenter_entity
+    description: Individual or organization.
+    required: false
+    in: query
+    type: string
+  rowFilter.comment.date_submitted:
+    name: date_submitted
+    description: Submission date.
+    required: false
+    in: query
+    type: string
+  rowFilter.comment.submission_method:
+    name: submission_method
+    description: Online, email, mail, in-person.
+    required: false
+    in: query
+    type: string
+  rowFilter.comment.content_text:
+    name: content_text
+    description: Text of the comment.
+    required: false
+    in: query
+    type: string
+  rowFilter.comment.content_json:
+    name: content_json
+    description: Text of the comment (json object if applicable)
+    required: false
+    in: query
+    type: string
+  rowFilter.comment.response_text:
+    name: response_text
+    description: Formal reply, if applicable.
+    required: false
+    in: query
+    type: string
+  rowFilter.comment.response_json:
+    name: response_json
+    description: Formal reply, if applicable. (json object if applicable)
+    required: false
+    in: query
+    type: string
+  rowFilter.comment.public_source:
+    name: public_source
+    description: Whether comment came from member of the public
+    required: false
+    in: query
+    type: string
+  rowFilter.comment.public_acess:
+    name: public_acess
+    description: Whether comment should be viewed by public
+    required: false
+    in: query
+    type: string
+  rowFilter.comment.other:
+    name: other
+    description: 'This jsonb field should be used for additional data structures as needed. '
+    required: false
+    in: query
+    type: string
+  body.engagement:
+    name: engagement
+    description: engagement
+    required: false
+    in: body
+    schema:
+      $ref: '#/definitions/engagement'
+  rowFilter.engagement.id:
+    name: id
+    description: database id
+    required: false
+    in: query
+    type: string
+  rowFilter.engagement.created_at:
+    name: created_at
+    description: created
+    required: false
+    in: query
+    type: string
+  rowFilter.engagement.parent_process_id:
+    name: parent_process_id
+    description: If associated with a process, the related process ID
+    required: false
+    in: query
+    type: string
+  rowFilter.engagement.type:
+    name: type
+    description: >-
+      Optional category or other classification for the type of event (e.g.
+      public meeting, comment period, consultation period)
+    required: false
+    in: query
+    type: string
+  rowFilter.engagement.location:
+    name: location
+    description: >-
+      Physical, virtual, hybrid. (Note that this may also be attached as a
+      relationship with a GIS object). 
+    required: false
+    in: query
+    type: string
+  rowFilter.engagement.related_document_id:
+    name: related_document_id
+    description: >-
+      Reference to Document ID of the documents released or referenced for this
+      event.
+    required: false
+    in: query
+    type: string
+  rowFilter.engagement.attendance:
+    name: attendance
+    description: Participant count.
+    required: false
+    in: query
+    type: string
+  rowFilter.engagement.participation:
+    name: participation
+    description: Container for participation data
+    required: false
+    in: query
+    type: string
+  rowFilter.engagement.notes:
+    name: notes
+    description: 'additional notes. '
+    required: false
+    in: query
+    type: string
+  rowFilter.engagement.start_datetime:
+    name: start_datetime
+    description: Engagement start date/time
+    required: false
+    in: query
+    type: string
+  rowFilter.engagement.end_datetime:
+    name: end_datetime
+    description: Engagement end date/time
+    required: false
+    in: query
+    type: string
+  rowFilter.engagement.other:
+    name: other
+    description: 'This jsonb field should be used for additional data structures as needed. '
+    required: false
+    in: query
+    type: string
+  body.process_model:
+    name: process_model
+    description: process_model
+    required: false
+    in: body
+    schema:
+      $ref: '#/definitions/process_model'
+  rowFilter.process_model.id:
+    name: id
+    description: database id
+    required: false
+    in: query
+    type: string
+  rowFilter.process_model.created_at:
+    name: created_at
+    description: created
+    required: false
+    in: query
+    type: string
+  rowFilter.process_model.title:
+    name: title
+    description: 'Name of process model '
+    required: false
+    in: query
+    type: string
+  rowFilter.process_model.description:
+    name: description
+    description: 'Plain language description of the process model '
+    required: false
+    in: query
+    type: string
+  rowFilter.process_model.notes:
+    name: notes
+    description: Miscellaneous notes on process model
+    required: false
+    in: query
+    type: string
+  rowFilter.process_model.bpmn_model:
+    name: bpmn_model
+    description: Object containing the BPMN representation of the process
+    required: false
+    in: query
+    type: string
+  rowFilter.process_model.legal_structure_id:
+    name: legal_structure_id
+    description: Reference to legal structure entity that defines the process
+    required: false
+    in: query
+    type: string
+  rowFilter.process_model.legal_structure_text:
+    name: legal_structure_text
+    description: >-
+      Reference to legal structure that defines the process (text, cfr
+      reference, etc)
+    required: false
+    in: query
+    type: string
+  rowFilter.process_model.screening_description:
+    name: screening_description
+    description: >-
+      Plain language description of the screening criteria that would lead to
+      starting the process for an individual project. 
+    required: false
+    in: query
+    type: string
+  rowFilter.process_model.screening_desc_json:
+    name: screening_desc_json
+    description: >-
+      Plain language description of the screening criteria that would lead to
+      starting the process for an individual project.  (json object option -
+      this should not replace the decision element relationships)
+    required: false
+    in: query
+    type: string
+  rowFilter.process_model.agency:
+    name: agency
+    description: Agency responsible for carrying out this process
+    required: false
+    in: query
+    type: string
+  rowFilter.process_model.parent_model:
+    name: parent_model
+    description: >-
+      Reference to parent model, if applicable (i.e. if this is a subprocess or
+      flows from a previous process)
+    required: false
+    in: query
+    type: string
+  rowFilter.process_model.DMN_model:
+    name: DMN_model
+    description: >-
+      Decision model notation (in json wrapper) to structure logic for how to
+      evaluate responses to decision elements. Optionally, each decision element
+      may have individual DMN models.  
+    required: false
+    in: query
+    type: string
+  rowFilter.process_model.other:
+    name: other
+    description: 'This jsonb field should be used for additional data structures as needed. '
+    required: false
+    in: query
+    type: string
+  body.gis_data:
+    name: gis_data
+    description: gis_data
+    required: false
+    in: body
+    schema:
+      $ref: '#/definitions/gis_data'
+  rowFilter.gis_data.id:
+    name: id
+    description: database id
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data.created_at:
+    name: created_at
+    description: created date
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data.parent_project_id:
+    name: parent_project_id
+    description: >-
+      Reference to Foreign object attached to GIS object (one for each other
+      entity table - expected architecture is that there is one foreign key
+      among all these, not all possible relationships filled in)
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data.parent_process_id:
+    name: parent_process_id
+    description: >-
+      Reference to Foreign object attached to GIS object (one for each other
+      entity table - expected architecture is that there is one foreign key
+      among all these, not all possible relationships filled in)
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data.parent_document_id:
+    name: parent_document_id
+    description: >-
+      Reference to Foreign object attached to GIS object (one for each other
+      entity table - expected architecture is that there is one foreign key
+      among all these, not all possible relationships filled in)
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data.parent_case_event_id:
+    name: parent_case_event_id
+    description: >-
+      Reference to Foreign object attached to GIS object (one for each other
+      entity table - expected architecture is that there is one foreign key
+      among all these, not all possible relationships filled in)
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data.parent_comment_id:
+    name: parent_comment_id
+    description: >-
+      Reference to Foreign object attached to GIS object (one for each other
+      entity table - expected architecture is that there is one foreign key
+      among all these, not all possible relationships filled in)
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data.parent_engagement_id:
+    name: parent_engagement_id
+    description: >-
+      Reference to Foreign object attached to GIS object (one for each other
+      entity table - expected architecture is that there is one foreign key
+      among all these, not all possible relationships filled in)
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data.description:
+    name: description
+    description: Optional description
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data.extent:
+    name: extent
+    description: 'Optional. '
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data.centroid_lat:
+    name: centroid_lat
+    description: Option to specify single point or centroid for rapid plotting
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data.centroid_lon:
+    name: centroid_lon
+    description: Option to specify single point or centroid for rapid plotting
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data.creator:
+    name: creator
+    description: Organization or individual.
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data.creator_contact:
+    name: creator_contact
+    description: Contact card-type data for creator.
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data.notes:
+    name: notes
+    description: Miscellaneous notes.
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data.container_inventory:
+    name: container_inventory
+    description: "Inventory of map image container and GIS data container in json format (note inventory should be attached through gis_data_element objects, which may include a list of:\n-\tFormat: GeoJSON, Shapefile, KML.\n-\tAccess Method: URL, API, direct upload.\n-\tCoordinate System: Spatial reference system.\n-\tBounding Box: Geographic extent.\n-\tPurpose: Bespoke, analysis, or base map.\n-\tReference to database: Whether this object references an identified GIS analysis in an official inventory."
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data.map_image:
+    name: map_image
+    description: 'map image data '
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data.data_container:
+    name: data_container
+    description: json container for any attached GIS data
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data.address:
+    name: address
+    description: address of centroid (if applicable)
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data.updated_last:
+    name: updated_last
+    description: Timestamp of last update to this dataset
+    required: false
+    in: query
+    type: string
+  rowFilter.gis_data.other:
+    name: other
+    description: 'This jsonb field should be used for additional data structures as needed. '
+    required: false
+    in: query
+    type: string
+  body.process_instance:
+    name: process_instance
+    description: process_instance
+    required: false
+    in: body
+    schema:
+      $ref: '#/definitions/process_instance'
+  rowFilter.process_instance.id:
+    name: id
+    description: database id
+    required: false
+    in: query
+    type: string
+  rowFilter.process_instance.parent_project_id:
+    name: parent_project_id
+    description: 'Reference to Project ID of parent project. '
+    required: false
+    in: query
+    type: string
+  rowFilter.process_instance.created_at:
+    name: created_at
+    description: created
+    required: false
+    in: query
+    type: string
+  rowFilter.process_instance.parent_process_id:
+    name: parent_process_id
+    description: If applicable, reference to Process ID of parent process
+    required: false
+    in: query
+    type: string
+  rowFilter.process_instance.agency_id:
+    name: agency_id
+    description: Process-specific ID assigned by agency, if assigned.
+    required: false
+    in: query
+    type: string
+  rowFilter.process_instance.federal_id:
+    name: federal_id
+    description: Unique identification number (*not* database ID)
+    required: false
+    in: query
+    type: string
+  rowFilter.process_instance.type:
+    name: type
+    description: >-
+      Level of NEPA review or other permit or authorization (see Permitting
+      Council Federal Environmental Review and Authorization Inventory).
+    required: false
+    in: query
+    type: string
+  rowFilter.process_instance.status:
+    name: status
+    description: Indicates status of process (planned, underway, paused, completed).
+    required: false
+    in: query
+    type: string
+  rowFilter.process_instance.stage:
+    name: stage
+    description: >-
+      Current state of process, may be derived from the last case event with
+      this Process ID.
+    required: false
+    in: query
+    type: string
+  rowFilter.process_instance.start_date:
+    name: start_date
+    description: Initiation date.
+    required: false
+    in: query
+    type: string
+  rowFilter.process_instance.complete_date:
+    name: complete_date
+    description: Conclusion date.
+    required: false
+    in: query
+    type: string
+  rowFilter.process_instance.outcome:
+    name: outcome
+    description: Result (e.g., Record of Decision, permit issuance).
+    required: false
+    in: query
+    type: string
+  rowFilter.process_instance.comment_start:
+    name: comment_start
+    description: Time frame for public input.
+    required: false
+    in: query
+    type: string
+  rowFilter.process_instance.comment_end:
+    name: comment_end
+    description: Time frame for public input.
+    required: false
+    in: query
+    type: string
+  rowFilter.process_instance.lead_agency:
+    name: lead_agency
+    description: >-
+      Federal agency that supervises preparation of the environmental documents
+      for the project
+    required: false
+    in: query
+    type: string
+  rowFilter.process_instance.joint_lead_agency:
+    name: joint_lead_agency
+    description: If applicable.
+    required: false
+    in: query
+    type: string
+  rowFilter.process_instance.cooperating_agencies:
+    name: cooperating_agencies
+    description: 'Cooperating agencies. '
+    required: false
+    in: query
+    type: string
+  rowFilter.process_instance.participating_agencies:
+    name: participating_agencies
+    description: Other involved agencies.
+    required: false
+    in: query
+    type: string
+  rowFilter.process_instance.notes:
+    name: notes
+    description: Miscellaneous notes.
+    required: false
+    in: query
+    type: string
+  rowFilter.process_instance.process_model:
+    name: process_model
+    description: >-
+      Relationship with process model data that describes the process (if
+      available/applicable)
+    required: false
+    in: query
+    type: string
+  rowFilter.process_instance.other:
+    name: other
+    description: 'This jsonb field should be used for additional data structures as needed. '
+    required: false
+    in: query
+    type: string
+  rowFilter.process_instance.purpose_need:
+    name: purpose_need
+    required: false
+    in: query
+    type: string
+  rowFilter.process_instance.description:
+    name: description
+    required: false
+    in: query
+    type: string
+  body.document:
+    name: document
+    description: document
+    required: false
+    in: body
+    schema:
+      $ref: '#/definitions/document'
+  rowFilter.document.id:
+    name: id
+    description: database id
+    required: false
+    in: query
+    type: string
+  rowFilter.document.created_at:
+    name: created_at
+    description: creation date
+    required: false
+    in: query
+    type: string
+  rowFilter.document.parent_process_id:
+    name: parent_process_id
+    description: Reference to Process ID of parent process for the document
+    required: false
+    in: query
+    type: string
+  rowFilter.document.related_document_id:
+    name: related_document_id
+    description: Unique identification number for related document (if applicable)
+    required: false
+    in: query
+    type: string
+  rowFilter.document.title:
+    name: title
+    description: Document title.
+    required: false
+    in: query
+    type: string
+  rowFilter.document.volume_title:
+    name: volume_title
+    description: Volume title (e.g., Appendix)
+    required: false
+    in: query
+    type: string
+  rowFilter.document.document_revision:
+    name: document_revision
+    description: Indicates which revision of the document (e.g., first revised Draft EIS).
+    required: false
+    in: query
+    type: string
+  rowFilter.document.revision_no:
+    name: revision_no
+    description: >-
+      Indicates which revision of the document (e.g., first revised Draft EIS) -
+      numeric form
+    required: false
+    in: query
+    type: string
+  rowFilter.document.supplement_no:
+    name: supplement_no
+    description: Indicates supplement number
+    required: false
+    in: query
+    type: string
+  rowFilter.document.publish_date:
+    name: publish_date
+    description: Publication or submission date.
+    required: false
+    in: query
+    type: string
+  rowFilter.document.prepared_by:
+    name: prepared_by
+    description: Responsible entity.
+    required: false
+    in: query
+    type: string
+  rowFilter.document.status:
+    name: status
+    description: 'Document production phase. '
+    required: false
+    in: query
+    type: string
+  rowFilter.document.public_access:
+    name: public_access
+    description: Public or restricted.
+    required: false
+    in: query
+    type: string
+  rowFilter.document.url:
+    name: url
+    description: Online link if available.
+    required: false
+    in: query
+    type: string
+  rowFilter.document.notes:
+    name: notes
+    description: Miscellaneous notes.
+    required: false
+    in: query
+    type: string
+  rowFilter.document.document_summary:
+    name: document_summary
+    description: container for summary information
+    required: false
+    in: query
+    type: string
+  rowFilter.document.document_toc:
+    name: document_toc
+    description: the table of contents (or heading structure) of the document.
+    required: false
+    in: query
+    type: string
+  rowFilter.document.document_type:
+    name: document_type
+    description: 'Document category, such as EIS, EA, etc. '
+    required: false
+    in: query
+    type: string
+  rowFilter.document.other:
+    name: other
+    description: 'This jsonb field should be used for additional data structures as needed. '
+    required: false
+    in: query
+    type: string
+  body.process_decision_payload:
+    name: process_decision_payload
+    description: process_decision_payload
+    required: false
+    in: body
+    schema:
+      $ref: '#/definitions/process_decision_payload'
+  rowFilter.process_decision_payload.id:
+    name: id
+    description: database id
+    required: false
+    in: query
+    type: string
+  rowFilter.process_decision_payload.created_at:
+    name: created_at
+    description: created
+    required: false
+    in: query
+    type: string
+  rowFilter.process_decision_payload.process_decision_element:
+    name: process_decision_element
+    description: 'Relationship with process decision element '
+    required: false
+    in: query
+    type: string
+  rowFilter.process_decision_payload.process:
+    name: process
+    description: Identifier of related process (if applicable)
+    required: false
+    in: query
+    type: string
+  rowFilter.process_decision_payload.project:
+    name: project
+    description: 'Identifier of project the data is associated with. '
+    required: false
+    in: query
+    type: string
+  rowFilter.process_decision_payload.data_description:
+    name: data_description
+    description: Text of the data about the project in response to the evaluation condition
+    required: false
+    in: query
+    type: string
+  rowFilter.process_decision_payload.evaluation_data:
+    name: evaluation_data
+    description: >-
+      Text of the data about the project in response to the evaluation condition
+      (json object)
+    required: false
+    in: query
+    type: string
+  rowFilter.process_decision_payload.response:
+    name: response
+    description: Text of the response of the evaluation (if applicable)
+    required: false
+    in: query
+    type: string
+  rowFilter.process_decision_payload.result:
+    name: result
+    description: Text of the response of the evaluation (if applicable)
+    required: false
+    in: query
+    type: string
+  rowFilter.process_decision_payload.result_bool:
+    name: result_bool
+    description: Whether response is included in this payload
+    required: false
+    in: query
+    type: string
+  rowFilter.process_decision_payload.result_notes:
+    name: result_notes
+    description: Miscellaneous notes on response
+    required: false
+    in: query
+    type: string
+  rowFilter.process_decision_payload.result_data:
+    name: result_data
+    description: Text of the response of the evaluation (if applicable - json object)
+    required: false
+    in: query
+    type: string
+  rowFilter.process_decision_payload.result_source:
+    name: result_source
+    description: Origin of the response
+    required: false
+    in: query
+    type: string
+  rowFilter.process_decision_payload.parent_payload:
+    name: parent_payload
+    description: >-
+      Parent payload ID (e.g. if this is a response to a submission, this would
+      be the submission ID)
+    required: false
+    in: query
+    type: string
+  rowFilter.process_decision_payload.other:
+    name: other
+    description: 'This jsonb field should be used for additional data structures as needed. '
+    required: false
+    in: query
+    type: string
+  rowFilter.process_decision_payload.data_annotation:
+    name: data_annotation
+    required: false
+    in: query
+    type: string
+  rowFilter.process_decision_payload.evaluation_data_annotation:
+    name: evaluation_data_annotation
+    description: >-
+      Jsonb field for additional data annotations (e.g. if the response is
+      "yes," may contain additional context or notes. 
+    required: false
+    in: query
+    type: string
+  body.user_role:
+    name: user_role
+    description: user_role
+    required: false
+    in: body
+    schema:
+      $ref: '#/definitions/user_role'
+  rowFilter.user_role.id:
+    name: id
+    description: database id
+    required: false
+    in: query
+    type: string
+  rowFilter.user_role.created_at:
+    name: created_at
+    description: created
+    required: false
+    in: query
+    type: string
+  rowFilter.user_role.name:
+    name: name
+    description: Title of the role (Agency Staff, Public Commenter).
+    required: false
+    in: query
+    type: string
+  rowFilter.user_role.description:
+    name: description
+    description: Responsibilities and access rights.
+    required: false
+    in: query
+    type: string
+  rowFilter.user_role.access_policy:
+    name: access_policy
+    description: access policy json object
+    required: false
+    in: query
+    type: string
+  rowFilter.user_role.permission_descriptions:
+    name: permission_descriptions
+    description: System access levels description
+    required: false
+    in: query
+    type: string
+  rowFilter.user_role.public:
+    name: public
+    description: role is a member of the broader class of public users/stakeholders
+    required: false
+    in: query
+    type: string
+  rowFilter.user_role.other:
+    name: other
+    description: 'This jsonb field should be used for additional data structures as needed. '
+    required: false
+    in: query
+    type: string
+  body.case_event:
+    name: case_event
+    description: case_event
+    required: false
+    in: body
+    schema:
+      $ref: '#/definitions/case_event'
+  rowFilter.case_event.id:
+    name: id
+    description: database id
+    required: false
+    in: query
+    type: string
+  rowFilter.case_event.created_at:
+    name: created_at
+    description: created
+    required: false
+    in: query
+    type: string
+  rowFilter.case_event.parent_process_id:
+    name: parent_process_id
+    description: Reference to Process ID of the associated NEPA process for this event.
+    required: false
+    in: query
+    type: string
+  rowFilter.case_event.parent_event_id:
+    name: parent_event_id
+    description: 'If applicable, the parent ID of the event. '
+    required: false
+    in: query
+    type: string
+  rowFilter.case_event.related_document_id:
+    name: related_document_id
+    description: ' Reference to Document ID of the document related to the event. Optional.'
+    required: false
+    in: query
+    type: string
+  rowFilter.case_event.name:
+    name: name
+    description: Name of event
+    required: false
+    in: query
+    type: string
+  rowFilter.case_event.description:
+    name: description
+    description: 'Description of event. '
+    required: false
+    in: query
+    type: string
+  rowFilter.case_event.source:
+    name: source
+    description: Link to information about the event.
+    required: false
+    in: query
+    type: string
+  rowFilter.case_event.type:
+    name: type
+    description: Event class (e.g., NOI, ROD)
+    required: false
+    in: query
+    type: string
+  rowFilter.case_event.public_access:
+    name: public_access
+    description: Indicates whether events can be displayed publicly. (Binary Y/N)
+    required: false
+    in: query
+    type: string
+  rowFilter.case_event.tier:
+    name: tier
+    description: >-
+      Optional event hierarchy (e.g., Tier 1 NOI, Tier 2 Scoping Complete, Tier
+      3 Task assigned to Jane Doe). 
+    required: false
+    in: query
+    type: string
+  rowFilter.case_event.status:
+    name: status
+    description: Pending, completed, in progress.
+    required: false
+    in: query
+    type: string
+  rowFilter.case_event.outcome:
+    name: outcome
+    description: Result or action taken.
+    required: false
+    in: query
+    type: string
+  rowFilter.case_event.assigned_entity:
+    name: assigned_entity
+    description: Responsible individuals or agencies.
+    required: false
+    in: query
+    type: string
+  rowFilter.case_event.datetime:
+    name: datetime
+    description: Date and time of event
+    required: false
+    in: query
+    type: string
+  rowFilter.case_event.following_segment_name:
+    name: following_segment_name
+    description: >-
+      Name of segment following this event (e.g. if this is "start of scoping"
+      the next segment is "scoping").
+    required: false
+    in: query
+    type: string
+  rowFilter.case_event.related_engagement_id:
+    name: related_engagement_id
+    description: Related engagement event if applicable
+    required: false
+    in: query
+    type: string
+  rowFilter.case_event.other:
+    name: other
+    description: 'This jsonb field should be used for additional data structures as needed. '
+    required: false
+    in: query
+    type: string
+  body.decision_element:
+    name: decision_element
+    description: decision_element
+    required: false
+    in: body
+    schema:
+      $ref: '#/definitions/decision_element'
+  rowFilter.decision_element.id:
+    name: id
+    description: database id
+    required: false
+    in: query
+    type: string
+  rowFilter.decision_element.created_at:
+    name: created_at
+    description: created
+    required: false
+    in: query
+    type: string
+  rowFilter.decision_element.process_model:
+    name: process_model
+    description: Parent process model
+    required: false
+    in: query
+    type: string
+  rowFilter.decision_element.legal_structure_id:
+    name: legal_structure_id
+    description: If applicable, legal structure related to specific criteria
+    required: false
+    in: query
+    type: string
+  rowFilter.decision_element.title:
+    name: title
+    description: Name of element
+    required: false
+    in: query
+    type: string
+  rowFilter.decision_element.description:
+    name: description
+    description: Plain language description of the criterion
+    required: false
+    in: query
+    type: string
+  rowFilter.decision_element.measure:
+    name: measure
+    description: >-
+      A description of the type of thing being measured in the criteria (e.g.
+      threshold of contamination)
+    required: false
+    in: query
+    type: string
+  rowFilter.decision_element.threshold:
+    name: threshold
+    description: numeric value of the triggering measure (if applicable)
+    required: false
+    in: query
+    type: string
+  rowFilter.decision_element.spatial:
+    name: spatial
+    description: Whether the criterion is a spatial relationship
+    required: false
+    in: query
+    type: string
+  rowFilter.decision_element.intersect:
+    name: intersect
+    description: If the spatial relationship is a simple intersection (e.g. floodplain)
+    required: false
+    in: query
+    type: string
+  rowFilter.decision_element.spatial_reference:
+    name: spatial_reference
+    description: ' A container for reference to the screening criteria (e.g. api call for wetland data)'
+    required: false
+    in: query
+    type: string
+  rowFilter.decision_element.form_text:
+    name: form_text
+    description: Text data to display on a screening form for a user to input data
+    required: false
+    in: query
+    type: string
+  rowFilter.decision_element.form_response_desc:
+    name: form_response_desc
+    description: >-
+      A description of the type of response expected on the form (e.g. text,
+      select from list, number)
+    required: false
+    in: query
+    type: string
+  rowFilter.decision_element.form_data:
+    name: form_data
+    description: >-
+      Formatted response for a formbuilder application (e.g. likert scale,
+      number, etc)
+    required: false
+    in: query
+    type: string
+  rowFilter.decision_element.evaluation_method:
+    name: evaluation_method
+    description: >-
+      A description of how the response is matched against the condition and
+      what the results could be. 
+    required: false
+    in: query
+    type: string
+  rowFilter.decision_element.evaluation_dmn:
+    name: evaluation_dmn
+    description: Decision Model Notation description of evaluation of decision element.
+    required: false
+    in: query
+    type: string
+  rowFilter.decision_element.category:
+    name: category
+    description: >-
+      The category of the process decision element, such as limitation,
+      condition, core, or extraordinary circumstances.
+    required: false
+    in: query
+    type: string
+  rowFilter.decision_element.process_model_internal_reference_id:
+    name: process_model_internal_reference_id
+    description: >-
+      Process models may have complex decision trees - this string can reference
+      the specific piece of the process model that this decision element applies
+      to. 
+    required: false
+    in: query
+    type: string
+  rowFilter.decision_element.parent_decision_element_id:
+    name: parent_decision_element_id
+    description: >-
+      If this decision element depends on another decision element (e.g. if
+      answer a is yes, ask question b), this field can be used to reference the
+      parent decision element. 
+    required: false
+    in: query
+    type: string
+  rowFilter.decision_element.other:
+    name: other
+    description: 'This jsonb field should be used for additional data structures as needed. '
+    required: false
+    in: query
+    type: string
+  body.project:
+    name: project
+    description: project
+    required: false
+    in: body
+    schema:
+      $ref: '#/definitions/project'
+  rowFilter.project.id:
+    name: id
+    description: database id
+    required: false
+    in: query
+    type: string
+  rowFilter.project.created_at:
+    name: created_at
+    description: created
+    required: false
+    in: query
+    type: string
+  rowFilter.project.title:
+    name: title
+    description: Descriptive name of the project.
+    required: false
+    in: query
+    type: string
+  rowFilter.project.description:
+    name: description
+    description: Summary of the project’s goals and scope.
+    required: false
+    in: query
+    type: string
+  rowFilter.project.sector:
+    name: sector
+    description: >-
+      High-level project category (e.g., energy, transportation, land
+      management).
+    required: false
+    in: query
+    type: string
+  rowFilter.project.lead_agency:
+    name: lead_agency
+    description: >-
+      Federal agency that supervises preparation of the environmental documents
+      for the project.
+    required: false
+    in: query
+    type: string
+  rowFilter.project.participating_agencies:
+    name: participating_agencies
+    description: Other involved agencies.
+    required: false
+    in: query
+    type: string
+  rowFilter.project.location_lat:
+    name: location_lat
+    description: >-
+      Center/centroid of project (shortcut for plotting on a map - should attach
+      GIS data object as well)
+    required: false
+    in: query
+    type: string
+  rowFilter.project.location_lon:
+    name: location_lon
+    description: >-
+      Center/centroid of project (shortcut for plotting on a map - should attach
+      GIS data object as well)
+    required: false
+    in: query
+    type: string
+  rowFilter.project.location_object:
+    name: location_object
+    description: >-
+      Container for more advanced location object if applicable or if this
+      improves performance (should not replace gis data entity relationship)
+    required: false
+    in: query
+    type: string
+  rowFilter.project.type:
+    name: type
+    description: >-
+      Classification, a sub-type of sector (pipeline, highway, habitat
+      restoration).
+    required: false
+    in: query
+    type: string
+  rowFilter.project.funding:
+    name: funding
+    description: >-
+      Link to federal, state, local or other funding by reference (e.g., grant
+      program, loan guarantee, appropriated funds)
+    required: false
+    in: query
+    type: string
+  rowFilter.project.start_date:
+    name: start_date
+    description: Environmental review initiation date (aggregated from process status)
+    required: false
+    in: query
+    type: string
+  rowFilter.project.current_status:
+    name: current_status
+    description: >-
+      Current phase (pre-application, underway, paused, completed) of the NEPA,
+      permitting, or other authorization process (aggregated from process
+      status).
+    required: false
+    in: query
+    type: string
+  rowFilter.project.sponsor:
+    name: sponsor
+    description: Name of responsible entity, organization, or person.
+    required: false
+    in: query
+    type: string
+  rowFilter.project.sponsor_contact:
+    name: sponsor_contact
+    description: >-
+      Name of responsible entity, organization, or person (contact information
+      json object)
+    required: false
+    in: query
+    type: string
+  rowFilter.project.parent_project_id:
+    name: parent_project_id
+    description: 'If nesting projects, reference to the parent project''s ID. '
+    required: false
+    in: query
+    type: string
+  rowFilter.project.location_text:
+    name: location_text
+    description: 'Text field to specify location, eg. address. '
+    required: false
+    in: query
+    type: string
+  rowFilter.project.other:
+    name: other
+    description: 'This jsonb field should be used for additional data structures as needed. '
+    required: false
+    in: query
+    type: string
+externalDocs:
+  description: PostgREST Documentation
+  url: https://postgrest.org/en/v12/references/api.html

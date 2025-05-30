@@ -1,0 +1,3756 @@
+$schema: http://json-schema.org/draft-07/schema#
+definitions:
+  Database:
+    additionalProperties: false
+    properties:
+      graphql_public:
+        additionalProperties: false
+        properties:
+          CompositeTypes:
+            additionalProperties: false
+            type: object
+          Enums:
+            additionalProperties: false
+            type: object
+          Functions:
+            additionalProperties: false
+            properties:
+              graphql:
+                additionalProperties: false
+                properties:
+                  Args:
+                    additionalProperties: false
+                    properties:
+                      extensions:
+                        $ref: '#/definitions/Json'
+                      operationName:
+                        type: string
+                      query:
+                        type: string
+                      variables:
+                        $ref: '#/definitions/Json'
+                    type: object
+                  Returns:
+                    $ref: '#/definitions/Json'
+                required:
+                  - Args
+                  - Returns
+                type: object
+            required:
+              - graphql
+            type: object
+          Tables:
+            additionalProperties: false
+            type: object
+          Views:
+            additionalProperties: false
+            type: object
+        required:
+          - Tables
+          - Views
+          - Functions
+          - Enums
+          - CompositeTypes
+        type: object
+      public:
+        additionalProperties: false
+        properties:
+          CompositeTypes:
+            additionalProperties: false
+            type: object
+          Enums:
+            additionalProperties: false
+            type: object
+          Functions:
+            additionalProperties: false
+            properties:
+              export_all_tables_as_jsonb:
+                additionalProperties: false
+                properties:
+                  Args:
+                    additionalProperties:
+                      not: {}
+                    type: object
+                  Returns:
+                    $ref: '#/definitions/Json'
+                required:
+                  - Args
+                  - Returns
+                type: object
+            required:
+              - export_all_tables_as_jsonb
+            type: object
+          Tables:
+            additionalProperties: false
+            properties:
+              case_event:
+                additionalProperties: false
+                properties:
+                  Insert:
+                    additionalProperties: false
+                    properties:
+                      assigned_entity:
+                        type:
+                          - string
+                          - 'null'
+                      created_at:
+                        type: string
+                      datetime:
+                        type:
+                          - string
+                          - 'null'
+                      description:
+                        type:
+                          - string
+                          - 'null'
+                      following_segment_name:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      name:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      outcome:
+                        type:
+                          - string
+                          - 'null'
+                      parent_event_id:
+                        type:
+                          - number
+                          - 'null'
+                      parent_process_id:
+                        type:
+                          - number
+                          - 'null'
+                      public_access:
+                        type:
+                          - boolean
+                          - 'null'
+                      related_document_id:
+                        type:
+                          - number
+                          - 'null'
+                      related_engagement_id:
+                        type:
+                          - number
+                          - 'null'
+                      source:
+                        type:
+                          - string
+                          - 'null'
+                      status:
+                        type:
+                          - string
+                          - 'null'
+                      tier:
+                        type:
+                          - number
+                          - 'null'
+                      type:
+                        type:
+                          - string
+                          - 'null'
+                    type: object
+                  Relationships:
+                    items:
+                      - additionalProperties: false
+                        properties:
+                          columns:
+                            items:
+                              const: parent_process_id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          foreignKeyName:
+                            const: case_event_parent_process_id_fkey
+                            type: string
+                          isOneToOne:
+                            const: false
+                            type: boolean
+                          referencedColumns:
+                            items:
+                              const: id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          referencedRelation:
+                            const: process_instance
+                            type: string
+                        required:
+                          - foreignKeyName
+                          - columns
+                          - isOneToOne
+                          - referencedRelation
+                          - referencedColumns
+                        type: object
+                      - additionalProperties: false
+                        properties:
+                          columns:
+                            items:
+                              const: related_document_id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          foreignKeyName:
+                            const: case_event_related_document_fkey
+                            type: string
+                          isOneToOne:
+                            const: false
+                            type: boolean
+                          referencedColumns:
+                            items:
+                              const: id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          referencedRelation:
+                            const: document
+                            type: string
+                        required:
+                          - foreignKeyName
+                          - columns
+                          - isOneToOne
+                          - referencedRelation
+                          - referencedColumns
+                        type: object
+                      - additionalProperties: false
+                        properties:
+                          columns:
+                            items:
+                              const: related_engagement_id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          foreignKeyName:
+                            const: case_event_related_engagement_id_fkey
+                            type: string
+                          isOneToOne:
+                            const: false
+                            type: boolean
+                          referencedColumns:
+                            items:
+                              const: id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          referencedRelation:
+                            const: engagement
+                            type: string
+                        required:
+                          - foreignKeyName
+                          - columns
+                          - isOneToOne
+                          - referencedRelation
+                          - referencedColumns
+                        type: object
+                    maxItems: 3
+                    minItems: 3
+                    type: array
+                  Row:
+                    additionalProperties: false
+                    properties:
+                      assigned_entity:
+                        type:
+                          - string
+                          - 'null'
+                      created_at:
+                        type: string
+                      datetime:
+                        type:
+                          - string
+                          - 'null'
+                      description:
+                        type:
+                          - string
+                          - 'null'
+                      following_segment_name:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      name:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      outcome:
+                        type:
+                          - string
+                          - 'null'
+                      parent_event_id:
+                        type:
+                          - number
+                          - 'null'
+                      parent_process_id:
+                        type:
+                          - number
+                          - 'null'
+                      public_access:
+                        type:
+                          - boolean
+                          - 'null'
+                      related_document_id:
+                        type:
+                          - number
+                          - 'null'
+                      related_engagement_id:
+                        type:
+                          - number
+                          - 'null'
+                      source:
+                        type:
+                          - string
+                          - 'null'
+                      status:
+                        type:
+                          - string
+                          - 'null'
+                      tier:
+                        type:
+                          - number
+                          - 'null'
+                      type:
+                        type:
+                          - string
+                          - 'null'
+                    required:
+                      - assigned_entity
+                      - created_at
+                      - datetime
+                      - description
+                      - following_segment_name
+                      - id
+                      - name
+                      - other
+                      - outcome
+                      - parent_event_id
+                      - parent_process_id
+                      - public_access
+                      - related_document_id
+                      - related_engagement_id
+                      - source
+                      - status
+                      - tier
+                      - type
+                    type: object
+                  Update:
+                    additionalProperties: false
+                    properties:
+                      assigned_entity:
+                        type:
+                          - string
+                          - 'null'
+                      created_at:
+                        type: string
+                      datetime:
+                        type:
+                          - string
+                          - 'null'
+                      description:
+                        type:
+                          - string
+                          - 'null'
+                      following_segment_name:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      name:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      outcome:
+                        type:
+                          - string
+                          - 'null'
+                      parent_event_id:
+                        type:
+                          - number
+                          - 'null'
+                      parent_process_id:
+                        type:
+                          - number
+                          - 'null'
+                      public_access:
+                        type:
+                          - boolean
+                          - 'null'
+                      related_document_id:
+                        type:
+                          - number
+                          - 'null'
+                      related_engagement_id:
+                        type:
+                          - number
+                          - 'null'
+                      source:
+                        type:
+                          - string
+                          - 'null'
+                      status:
+                        type:
+                          - string
+                          - 'null'
+                      tier:
+                        type:
+                          - number
+                          - 'null'
+                      type:
+                        type:
+                          - string
+                          - 'null'
+                    type: object
+                required:
+                  - Row
+                  - Insert
+                  - Update
+                  - Relationships
+                type: object
+              comment:
+                additionalProperties: false
+                properties:
+                  Insert:
+                    additionalProperties: false
+                    properties:
+                      commenter_entity:
+                        type:
+                          - string
+                          - 'null'
+                      content_json:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      content_text:
+                        type:
+                          - string
+                          - 'null'
+                      created_at:
+                        type: string
+                      date_submitted:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      parent_document_id:
+                        type:
+                          - number
+                          - 'null'
+                      public_acess:
+                        type:
+                          - boolean
+                          - 'null'
+                      public_source:
+                        type:
+                          - boolean
+                          - 'null'
+                      response_json:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      response_text:
+                        type:
+                          - string
+                          - 'null'
+                      submission_method:
+                        type:
+                          - string
+                          - 'null'
+                    type: object
+                  Relationships:
+                    items:
+                      additionalProperties: false
+                      properties:
+                        columns:
+                          items:
+                            const: parent_document_id
+                            type: string
+                          maxItems: 1
+                          minItems: 1
+                          type: array
+                        foreignKeyName:
+                          const: comment_parent_document_id_fkey
+                          type: string
+                        isOneToOne:
+                          const: false
+                          type: boolean
+                        referencedColumns:
+                          items:
+                            const: id
+                            type: string
+                          maxItems: 1
+                          minItems: 1
+                          type: array
+                        referencedRelation:
+                          const: document
+                          type: string
+                      required:
+                        - foreignKeyName
+                        - columns
+                        - isOneToOne
+                        - referencedRelation
+                        - referencedColumns
+                      type: object
+                    maxItems: 1
+                    minItems: 1
+                    type: array
+                  Row:
+                    additionalProperties: false
+                    properties:
+                      commenter_entity:
+                        type:
+                          - string
+                          - 'null'
+                      content_json:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      content_text:
+                        type:
+                          - string
+                          - 'null'
+                      created_at:
+                        type: string
+                      date_submitted:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      parent_document_id:
+                        type:
+                          - number
+                          - 'null'
+                      public_acess:
+                        type:
+                          - boolean
+                          - 'null'
+                      public_source:
+                        type:
+                          - boolean
+                          - 'null'
+                      response_json:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      response_text:
+                        type:
+                          - string
+                          - 'null'
+                      submission_method:
+                        type:
+                          - string
+                          - 'null'
+                    required:
+                      - commenter_entity
+                      - content_json
+                      - content_text
+                      - created_at
+                      - date_submitted
+                      - id
+                      - other
+                      - parent_document_id
+                      - public_acess
+                      - public_source
+                      - response_json
+                      - response_text
+                      - submission_method
+                    type: object
+                  Update:
+                    additionalProperties: false
+                    properties:
+                      commenter_entity:
+                        type:
+                          - string
+                          - 'null'
+                      content_json:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      content_text:
+                        type:
+                          - string
+                          - 'null'
+                      created_at:
+                        type: string
+                      date_submitted:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      parent_document_id:
+                        type:
+                          - number
+                          - 'null'
+                      public_acess:
+                        type:
+                          - boolean
+                          - 'null'
+                      public_source:
+                        type:
+                          - boolean
+                          - 'null'
+                      response_json:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      response_text:
+                        type:
+                          - string
+                          - 'null'
+                      submission_method:
+                        type:
+                          - string
+                          - 'null'
+                    type: object
+                required:
+                  - Row
+                  - Insert
+                  - Update
+                  - Relationships
+                type: object
+              decision_element:
+                additionalProperties: false
+                properties:
+                  Insert:
+                    additionalProperties: false
+                    properties:
+                      category:
+                        type:
+                          - string
+                          - 'null'
+                      created_at:
+                        type: string
+                      description:
+                        type:
+                          - string
+                          - 'null'
+                      evaluation_dmn:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      evaluation_method:
+                        type:
+                          - string
+                          - 'null'
+                      form_data:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      form_response_desc:
+                        type:
+                          - string
+                          - 'null'
+                      form_text:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      intersect:
+                        type:
+                          - boolean
+                          - 'null'
+                      legal_structure_id:
+                        type:
+                          - number
+                          - 'null'
+                      measure:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      parent_decision_element_id:
+                        type:
+                          - number
+                          - 'null'
+                      process_model:
+                        type:
+                          - number
+                          - 'null'
+                      process_model_internal_reference_id:
+                        type:
+                          - string
+                          - 'null'
+                      spatial:
+                        type:
+                          - boolean
+                          - 'null'
+                      spatial_reference:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      threshold:
+                        type:
+                          - number
+                          - 'null'
+                      title:
+                        type:
+                          - string
+                          - 'null'
+                    type: object
+                  Relationships:
+                    items:
+                      - additionalProperties: false
+                        properties:
+                          columns:
+                            items:
+                              const: legal_structure_id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          foreignKeyName:
+                            const: decision_element_legal_structure_id_fkey
+                            type: string
+                          isOneToOne:
+                            const: false
+                            type: boolean
+                          referencedColumns:
+                            items:
+                              const: id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          referencedRelation:
+                            const: legal_structure
+                            type: string
+                        required:
+                          - foreignKeyName
+                          - columns
+                          - isOneToOne
+                          - referencedRelation
+                          - referencedColumns
+                        type: object
+                      - additionalProperties: false
+                        properties:
+                          columns:
+                            items:
+                              const: process_model
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          foreignKeyName:
+                            const: process_decision_element_process_model_fkey
+                            type: string
+                          isOneToOne:
+                            const: false
+                            type: boolean
+                          referencedColumns:
+                            items:
+                              const: id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          referencedRelation:
+                            const: process_model
+                            type: string
+                        required:
+                          - foreignKeyName
+                          - columns
+                          - isOneToOne
+                          - referencedRelation
+                          - referencedColumns
+                        type: object
+                    maxItems: 2
+                    minItems: 2
+                    type: array
+                  Row:
+                    additionalProperties: false
+                    properties:
+                      category:
+                        type:
+                          - string
+                          - 'null'
+                      created_at:
+                        type: string
+                      description:
+                        type:
+                          - string
+                          - 'null'
+                      evaluation_dmn:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      evaluation_method:
+                        type:
+                          - string
+                          - 'null'
+                      form_data:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      form_response_desc:
+                        type:
+                          - string
+                          - 'null'
+                      form_text:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      intersect:
+                        type:
+                          - boolean
+                          - 'null'
+                      legal_structure_id:
+                        type:
+                          - number
+                          - 'null'
+                      measure:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      parent_decision_element_id:
+                        type:
+                          - number
+                          - 'null'
+                      process_model:
+                        type:
+                          - number
+                          - 'null'
+                      process_model_internal_reference_id:
+                        type:
+                          - string
+                          - 'null'
+                      spatial:
+                        type:
+                          - boolean
+                          - 'null'
+                      spatial_reference:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      threshold:
+                        type:
+                          - number
+                          - 'null'
+                      title:
+                        type:
+                          - string
+                          - 'null'
+                    required:
+                      - category
+                      - created_at
+                      - description
+                      - evaluation_dmn
+                      - evaluation_method
+                      - form_data
+                      - form_response_desc
+                      - form_text
+                      - id
+                      - intersect
+                      - legal_structure_id
+                      - measure
+                      - other
+                      - parent_decision_element_id
+                      - process_model
+                      - process_model_internal_reference_id
+                      - spatial
+                      - spatial_reference
+                      - threshold
+                      - title
+                    type: object
+                  Update:
+                    additionalProperties: false
+                    properties:
+                      category:
+                        type:
+                          - string
+                          - 'null'
+                      created_at:
+                        type: string
+                      description:
+                        type:
+                          - string
+                          - 'null'
+                      evaluation_dmn:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      evaluation_method:
+                        type:
+                          - string
+                          - 'null'
+                      form_data:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      form_response_desc:
+                        type:
+                          - string
+                          - 'null'
+                      form_text:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      intersect:
+                        type:
+                          - boolean
+                          - 'null'
+                      legal_structure_id:
+                        type:
+                          - number
+                          - 'null'
+                      measure:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      parent_decision_element_id:
+                        type:
+                          - number
+                          - 'null'
+                      process_model:
+                        type:
+                          - number
+                          - 'null'
+                      process_model_internal_reference_id:
+                        type:
+                          - string
+                          - 'null'
+                      spatial:
+                        type:
+                          - boolean
+                          - 'null'
+                      spatial_reference:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      threshold:
+                        type:
+                          - number
+                          - 'null'
+                      title:
+                        type:
+                          - string
+                          - 'null'
+                    type: object
+                required:
+                  - Row
+                  - Insert
+                  - Update
+                  - Relationships
+                type: object
+              document:
+                additionalProperties: false
+                properties:
+                  Insert:
+                    additionalProperties: false
+                    properties:
+                      created_at:
+                        type: string
+                      document_revision:
+                        type:
+                          - string
+                          - 'null'
+                      document_summary:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      document_toc:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      document_type:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      notes:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      parent_process_id:
+                        type:
+                          - number
+                          - 'null'
+                      prepared_by:
+                        type:
+                          - string
+                          - 'null'
+                      public_access:
+                        type:
+                          - boolean
+                          - 'null'
+                      publish_date:
+                        type:
+                          - string
+                          - 'null'
+                      related_document_id:
+                        type:
+                          - number
+                          - 'null'
+                      revision_no:
+                        type:
+                          - number
+                          - 'null'
+                      status:
+                        type:
+                          - string
+                          - 'null'
+                      supplement_no:
+                        type:
+                          - number
+                          - 'null'
+                      title:
+                        type:
+                          - string
+                          - 'null'
+                      url:
+                        type:
+                          - string
+                          - 'null'
+                      volume_title:
+                        type:
+                          - string
+                          - 'null'
+                    type: object
+                  Relationships:
+                    items:
+                      additionalProperties: false
+                      properties:
+                        columns:
+                          items:
+                            const: parent_process_id
+                            type: string
+                          maxItems: 1
+                          minItems: 1
+                          type: array
+                        foreignKeyName:
+                          const: document_parent_process_id_fkey
+                          type: string
+                        isOneToOne:
+                          const: false
+                          type: boolean
+                        referencedColumns:
+                          items:
+                            const: id
+                            type: string
+                          maxItems: 1
+                          minItems: 1
+                          type: array
+                        referencedRelation:
+                          const: process_instance
+                          type: string
+                      required:
+                        - foreignKeyName
+                        - columns
+                        - isOneToOne
+                        - referencedRelation
+                        - referencedColumns
+                      type: object
+                    maxItems: 1
+                    minItems: 1
+                    type: array
+                  Row:
+                    additionalProperties: false
+                    properties:
+                      created_at:
+                        type: string
+                      document_revision:
+                        type:
+                          - string
+                          - 'null'
+                      document_summary:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      document_toc:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      document_type:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      notes:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      parent_process_id:
+                        type:
+                          - number
+                          - 'null'
+                      prepared_by:
+                        type:
+                          - string
+                          - 'null'
+                      public_access:
+                        type:
+                          - boolean
+                          - 'null'
+                      publish_date:
+                        type:
+                          - string
+                          - 'null'
+                      related_document_id:
+                        type:
+                          - number
+                          - 'null'
+                      revision_no:
+                        type:
+                          - number
+                          - 'null'
+                      status:
+                        type:
+                          - string
+                          - 'null'
+                      supplement_no:
+                        type:
+                          - number
+                          - 'null'
+                      title:
+                        type:
+                          - string
+                          - 'null'
+                      url:
+                        type:
+                          - string
+                          - 'null'
+                      volume_title:
+                        type:
+                          - string
+                          - 'null'
+                    required:
+                      - created_at
+                      - document_revision
+                      - document_summary
+                      - document_toc
+                      - document_type
+                      - id
+                      - notes
+                      - other
+                      - parent_process_id
+                      - prepared_by
+                      - public_access
+                      - publish_date
+                      - related_document_id
+                      - revision_no
+                      - status
+                      - supplement_no
+                      - title
+                      - url
+                      - volume_title
+                    type: object
+                  Update:
+                    additionalProperties: false
+                    properties:
+                      created_at:
+                        type: string
+                      document_revision:
+                        type:
+                          - string
+                          - 'null'
+                      document_summary:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      document_toc:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      document_type:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      notes:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      parent_process_id:
+                        type:
+                          - number
+                          - 'null'
+                      prepared_by:
+                        type:
+                          - string
+                          - 'null'
+                      public_access:
+                        type:
+                          - boolean
+                          - 'null'
+                      publish_date:
+                        type:
+                          - string
+                          - 'null'
+                      related_document_id:
+                        type:
+                          - number
+                          - 'null'
+                      revision_no:
+                        type:
+                          - number
+                          - 'null'
+                      status:
+                        type:
+                          - string
+                          - 'null'
+                      supplement_no:
+                        type:
+                          - number
+                          - 'null'
+                      title:
+                        type:
+                          - string
+                          - 'null'
+                      url:
+                        type:
+                          - string
+                          - 'null'
+                      volume_title:
+                        type:
+                          - string
+                          - 'null'
+                    type: object
+                required:
+                  - Row
+                  - Insert
+                  - Update
+                  - Relationships
+                type: object
+              engagement:
+                additionalProperties: false
+                properties:
+                  Insert:
+                    additionalProperties: false
+                    properties:
+                      attendance:
+                        type:
+                          - number
+                          - 'null'
+                      created_at:
+                        type: string
+                      end_datetime:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      location:
+                        type:
+                          - string
+                          - 'null'
+                      notes:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      parent_process_id:
+                        type:
+                          - number
+                          - 'null'
+                      participation:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      related_document_id:
+                        type:
+                          - number
+                          - 'null'
+                      start_datetime:
+                        type:
+                          - string
+                          - 'null'
+                      type:
+                        type:
+                          - string
+                          - 'null'
+                    type: object
+                  Relationships:
+                    items:
+                      - additionalProperties: false
+                        properties:
+                          columns:
+                            items:
+                              const: parent_process_id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          foreignKeyName:
+                            const: engagement_parent_process_id_fkey
+                            type: string
+                          isOneToOne:
+                            const: false
+                            type: boolean
+                          referencedColumns:
+                            items:
+                              const: id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          referencedRelation:
+                            const: process_instance
+                            type: string
+                        required:
+                          - foreignKeyName
+                          - columns
+                          - isOneToOne
+                          - referencedRelation
+                          - referencedColumns
+                        type: object
+                      - additionalProperties: false
+                        properties:
+                          columns:
+                            items:
+                              const: related_document_id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          foreignKeyName:
+                            const: engagement_related_document_id_fkey
+                            type: string
+                          isOneToOne:
+                            const: false
+                            type: boolean
+                          referencedColumns:
+                            items:
+                              const: id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          referencedRelation:
+                            const: document
+                            type: string
+                        required:
+                          - foreignKeyName
+                          - columns
+                          - isOneToOne
+                          - referencedRelation
+                          - referencedColumns
+                        type: object
+                    maxItems: 2
+                    minItems: 2
+                    type: array
+                  Row:
+                    additionalProperties: false
+                    properties:
+                      attendance:
+                        type:
+                          - number
+                          - 'null'
+                      created_at:
+                        type: string
+                      end_datetime:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      location:
+                        type:
+                          - string
+                          - 'null'
+                      notes:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      parent_process_id:
+                        type:
+                          - number
+                          - 'null'
+                      participation:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      related_document_id:
+                        type:
+                          - number
+                          - 'null'
+                      start_datetime:
+                        type:
+                          - string
+                          - 'null'
+                      type:
+                        type:
+                          - string
+                          - 'null'
+                    required:
+                      - attendance
+                      - created_at
+                      - end_datetime
+                      - id
+                      - location
+                      - notes
+                      - other
+                      - parent_process_id
+                      - participation
+                      - related_document_id
+                      - start_datetime
+                      - type
+                    type: object
+                  Update:
+                    additionalProperties: false
+                    properties:
+                      attendance:
+                        type:
+                          - number
+                          - 'null'
+                      created_at:
+                        type: string
+                      end_datetime:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      location:
+                        type:
+                          - string
+                          - 'null'
+                      notes:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      parent_process_id:
+                        type:
+                          - number
+                          - 'null'
+                      participation:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      related_document_id:
+                        type:
+                          - number
+                          - 'null'
+                      start_datetime:
+                        type:
+                          - string
+                          - 'null'
+                      type:
+                        type:
+                          - string
+                          - 'null'
+                    type: object
+                required:
+                  - Row
+                  - Insert
+                  - Update
+                  - Relationships
+                type: object
+              gis_data:
+                additionalProperties: false
+                properties:
+                  Insert:
+                    additionalProperties: false
+                    properties:
+                      address:
+                        type:
+                          - string
+                          - 'null'
+                      centroid_lat:
+                        type:
+                          - number
+                          - 'null'
+                      centroid_lon:
+                        type:
+                          - number
+                          - 'null'
+                      container_inventory:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      created_at:
+                        type: string
+                      creator:
+                        type:
+                          - string
+                          - 'null'
+                      creator_contact:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      data_container:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      description:
+                        type:
+                          - string
+                          - 'null'
+                      extent:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      map_image:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      notes:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      parent_case_event_id:
+                        type:
+                          - number
+                          - 'null'
+                      parent_comment_id:
+                        type:
+                          - number
+                          - 'null'
+                      parent_document_id:
+                        type:
+                          - number
+                          - 'null'
+                      parent_engagement_id:
+                        type:
+                          - number
+                          - 'null'
+                      parent_process_id:
+                        type:
+                          - number
+                          - 'null'
+                      parent_project_id:
+                        type:
+                          - number
+                          - 'null'
+                      updated_last:
+                        type:
+                          - string
+                          - 'null'
+                    type: object
+                  Relationships:
+                    items:
+                      - additionalProperties: false
+                        properties:
+                          columns:
+                            items:
+                              const: parent_comment_id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          foreignKeyName:
+                            const: gis_data_parent_comment_fkey
+                            type: string
+                          isOneToOne:
+                            const: false
+                            type: boolean
+                          referencedColumns:
+                            items:
+                              const: id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          referencedRelation:
+                            const: comment
+                            type: string
+                        required:
+                          - foreignKeyName
+                          - columns
+                          - isOneToOne
+                          - referencedRelation
+                          - referencedColumns
+                        type: object
+                      - additionalProperties: false
+                        properties:
+                          columns:
+                            items:
+                              const: parent_document_id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          foreignKeyName:
+                            const: gis_data_parent_document_id_fkey
+                            type: string
+                          isOneToOne:
+                            const: false
+                            type: boolean
+                          referencedColumns:
+                            items:
+                              const: id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          referencedRelation:
+                            const: document
+                            type: string
+                        required:
+                          - foreignKeyName
+                          - columns
+                          - isOneToOne
+                          - referencedRelation
+                          - referencedColumns
+                        type: object
+                      - additionalProperties: false
+                        properties:
+                          columns:
+                            items:
+                              const: parent_engagement_id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          foreignKeyName:
+                            const: gis_data_parent_engagement_fkey
+                            type: string
+                          isOneToOne:
+                            const: false
+                            type: boolean
+                          referencedColumns:
+                            items:
+                              const: id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          referencedRelation:
+                            const: engagement
+                            type: string
+                        required:
+                          - foreignKeyName
+                          - columns
+                          - isOneToOne
+                          - referencedRelation
+                          - referencedColumns
+                        type: object
+                      - additionalProperties: false
+                        properties:
+                          columns:
+                            items:
+                              const: parent_case_event_id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          foreignKeyName:
+                            const: gis_data_parent_event_fkey
+                            type: string
+                          isOneToOne:
+                            const: false
+                            type: boolean
+                          referencedColumns:
+                            items:
+                              const: id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          referencedRelation:
+                            const: case_event
+                            type: string
+                        required:
+                          - foreignKeyName
+                          - columns
+                          - isOneToOne
+                          - referencedRelation
+                          - referencedColumns
+                        type: object
+                      - additionalProperties: false
+                        properties:
+                          columns:
+                            items:
+                              const: parent_process_id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          foreignKeyName:
+                            const: gis_data_parent_process_fkey
+                            type: string
+                          isOneToOne:
+                            const: false
+                            type: boolean
+                          referencedColumns:
+                            items:
+                              const: id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          referencedRelation:
+                            const: process_instance
+                            type: string
+                        required:
+                          - foreignKeyName
+                          - columns
+                          - isOneToOne
+                          - referencedRelation
+                          - referencedColumns
+                        type: object
+                      - additionalProperties: false
+                        properties:
+                          columns:
+                            items:
+                              const: parent_project_id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          foreignKeyName:
+                            const: gis_data_parent_project_id_fkey
+                            type: string
+                          isOneToOne:
+                            const: false
+                            type: boolean
+                          referencedColumns:
+                            items:
+                              const: id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          referencedRelation:
+                            const: project
+                            type: string
+                        required:
+                          - foreignKeyName
+                          - columns
+                          - isOneToOne
+                          - referencedRelation
+                          - referencedColumns
+                        type: object
+                    maxItems: 6
+                    minItems: 6
+                    type: array
+                  Row:
+                    additionalProperties: false
+                    properties:
+                      address:
+                        type:
+                          - string
+                          - 'null'
+                      centroid_lat:
+                        type:
+                          - number
+                          - 'null'
+                      centroid_lon:
+                        type:
+                          - number
+                          - 'null'
+                      container_inventory:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      created_at:
+                        type: string
+                      creator:
+                        type:
+                          - string
+                          - 'null'
+                      creator_contact:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      data_container:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      description:
+                        type:
+                          - string
+                          - 'null'
+                      extent:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      map_image:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      notes:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      parent_case_event_id:
+                        type:
+                          - number
+                          - 'null'
+                      parent_comment_id:
+                        type:
+                          - number
+                          - 'null'
+                      parent_document_id:
+                        type:
+                          - number
+                          - 'null'
+                      parent_engagement_id:
+                        type:
+                          - number
+                          - 'null'
+                      parent_process_id:
+                        type:
+                          - number
+                          - 'null'
+                      parent_project_id:
+                        type:
+                          - number
+                          - 'null'
+                      updated_last:
+                        type:
+                          - string
+                          - 'null'
+                    required:
+                      - address
+                      - centroid_lat
+                      - centroid_lon
+                      - container_inventory
+                      - created_at
+                      - creator
+                      - creator_contact
+                      - data_container
+                      - description
+                      - extent
+                      - id
+                      - map_image
+                      - notes
+                      - other
+                      - parent_case_event_id
+                      - parent_comment_id
+                      - parent_document_id
+                      - parent_engagement_id
+                      - parent_process_id
+                      - parent_project_id
+                      - updated_last
+                    type: object
+                  Update:
+                    additionalProperties: false
+                    properties:
+                      address:
+                        type:
+                          - string
+                          - 'null'
+                      centroid_lat:
+                        type:
+                          - number
+                          - 'null'
+                      centroid_lon:
+                        type:
+                          - number
+                          - 'null'
+                      container_inventory:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      created_at:
+                        type: string
+                      creator:
+                        type:
+                          - string
+                          - 'null'
+                      creator_contact:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      data_container:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      description:
+                        type:
+                          - string
+                          - 'null'
+                      extent:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      map_image:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      notes:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      parent_case_event_id:
+                        type:
+                          - number
+                          - 'null'
+                      parent_comment_id:
+                        type:
+                          - number
+                          - 'null'
+                      parent_document_id:
+                        type:
+                          - number
+                          - 'null'
+                      parent_engagement_id:
+                        type:
+                          - number
+                          - 'null'
+                      parent_process_id:
+                        type:
+                          - number
+                          - 'null'
+                      parent_project_id:
+                        type:
+                          - number
+                          - 'null'
+                      updated_last:
+                        type:
+                          - string
+                          - 'null'
+                    type: object
+                required:
+                  - Row
+                  - Insert
+                  - Update
+                  - Relationships
+                type: object
+              gis_data_element:
+                additionalProperties: false
+                properties:
+                  Insert:
+                    additionalProperties: false
+                    properties:
+                      access_info:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      access_method:
+                        type:
+                          - string
+                          - 'null'
+                      bot_right_lat:
+                        type:
+                          - number
+                          - 'null'
+                      bot_right_lon:
+                        type:
+                          - number
+                          - 'null'
+                      container_reference:
+                        type:
+                          - string
+                          - 'null'
+                      coordinate_system:
+                        type:
+                          - string
+                          - 'null'
+                      created_at:
+                        type: string
+                      data_match:
+                        type:
+                          - string
+                          - 'null'
+                      format:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      parent_gis:
+                        type:
+                          - number
+                          - 'null'
+                      purpose:
+                        type:
+                          - string
+                          - 'null'
+                      top_left_lat:
+                        type:
+                          - number
+                          - 'null'
+                      top_left_lon:
+                        type:
+                          - number
+                          - 'null'
+                    type: object
+                  Relationships:
+                    items:
+                      additionalProperties: false
+                      properties:
+                        columns:
+                          items:
+                            const: parent_gis
+                            type: string
+                          maxItems: 1
+                          minItems: 1
+                          type: array
+                        foreignKeyName:
+                          const: gis_data_element_parent_gis_fkey
+                          type: string
+                        isOneToOne:
+                          const: false
+                          type: boolean
+                        referencedColumns:
+                          items:
+                            const: id
+                            type: string
+                          maxItems: 1
+                          minItems: 1
+                          type: array
+                        referencedRelation:
+                          const: gis_data
+                          type: string
+                      required:
+                        - foreignKeyName
+                        - columns
+                        - isOneToOne
+                        - referencedRelation
+                        - referencedColumns
+                      type: object
+                    maxItems: 1
+                    minItems: 1
+                    type: array
+                  Row:
+                    additionalProperties: false
+                    properties:
+                      access_info:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      access_method:
+                        type:
+                          - string
+                          - 'null'
+                      bot_right_lat:
+                        type:
+                          - number
+                          - 'null'
+                      bot_right_lon:
+                        type:
+                          - number
+                          - 'null'
+                      container_reference:
+                        type:
+                          - string
+                          - 'null'
+                      coordinate_system:
+                        type:
+                          - string
+                          - 'null'
+                      created_at:
+                        type: string
+                      data_match:
+                        type:
+                          - string
+                          - 'null'
+                      format:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      parent_gis:
+                        type:
+                          - number
+                          - 'null'
+                      purpose:
+                        type:
+                          - string
+                          - 'null'
+                      top_left_lat:
+                        type:
+                          - number
+                          - 'null'
+                      top_left_lon:
+                        type:
+                          - number
+                          - 'null'
+                    required:
+                      - access_info
+                      - access_method
+                      - bot_right_lat
+                      - bot_right_lon
+                      - container_reference
+                      - coordinate_system
+                      - created_at
+                      - data_match
+                      - format
+                      - id
+                      - other
+                      - parent_gis
+                      - purpose
+                      - top_left_lat
+                      - top_left_lon
+                    type: object
+                  Update:
+                    additionalProperties: false
+                    properties:
+                      access_info:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      access_method:
+                        type:
+                          - string
+                          - 'null'
+                      bot_right_lat:
+                        type:
+                          - number
+                          - 'null'
+                      bot_right_lon:
+                        type:
+                          - number
+                          - 'null'
+                      container_reference:
+                        type:
+                          - string
+                          - 'null'
+                      coordinate_system:
+                        type:
+                          - string
+                          - 'null'
+                      created_at:
+                        type: string
+                      data_match:
+                        type:
+                          - string
+                          - 'null'
+                      format:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      parent_gis:
+                        type:
+                          - number
+                          - 'null'
+                      purpose:
+                        type:
+                          - string
+                          - 'null'
+                      top_left_lat:
+                        type:
+                          - number
+                          - 'null'
+                      top_left_lon:
+                        type:
+                          - number
+                          - 'null'
+                    type: object
+                required:
+                  - Row
+                  - Insert
+                  - Update
+                  - Relationships
+                type: object
+              legal_structure:
+                additionalProperties: false
+                properties:
+                  Insert:
+                    additionalProperties: false
+                    properties:
+                      citation:
+                        type:
+                          - string
+                          - 'null'
+                      compliance_data:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      context:
+                        type:
+                          - string
+                          - 'null'
+                      created_at:
+                        type: string
+                      description:
+                        type:
+                          - string
+                          - 'null'
+                      effective_date:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      issuing_authority:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      title:
+                        type:
+                          - string
+                          - 'null'
+                      url:
+                        type:
+                          - string
+                          - 'null'
+                    type: object
+                  Relationships:
+                    maxItems: 0
+                    minItems: 0
+                    type: array
+                  Row:
+                    additionalProperties: false
+                    properties:
+                      citation:
+                        type:
+                          - string
+                          - 'null'
+                      compliance_data:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      context:
+                        type:
+                          - string
+                          - 'null'
+                      created_at:
+                        type: string
+                      description:
+                        type:
+                          - string
+                          - 'null'
+                      effective_date:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      issuing_authority:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      title:
+                        type:
+                          - string
+                          - 'null'
+                      url:
+                        type:
+                          - string
+                          - 'null'
+                    required:
+                      - citation
+                      - compliance_data
+                      - context
+                      - created_at
+                      - description
+                      - effective_date
+                      - id
+                      - issuing_authority
+                      - other
+                      - title
+                      - url
+                    type: object
+                  Update:
+                    additionalProperties: false
+                    properties:
+                      citation:
+                        type:
+                          - string
+                          - 'null'
+                      compliance_data:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      context:
+                        type:
+                          - string
+                          - 'null'
+                      created_at:
+                        type: string
+                      description:
+                        type:
+                          - string
+                          - 'null'
+                      effective_date:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      issuing_authority:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      title:
+                        type:
+                          - string
+                          - 'null'
+                      url:
+                        type:
+                          - string
+                          - 'null'
+                    type: object
+                required:
+                  - Row
+                  - Insert
+                  - Update
+                  - Relationships
+                type: object
+              process_decision_payload:
+                additionalProperties: false
+                properties:
+                  Insert:
+                    additionalProperties: false
+                    properties:
+                      created_at:
+                        type: string
+                      data_annotation:
+                        type:
+                          - string
+                          - 'null'
+                      data_description:
+                        type:
+                          - string
+                          - 'null'
+                      evaluation_data:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      evaluation_data_annotation:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      id:
+                        type: number
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      parent_payload:
+                        type:
+                          - number
+                          - 'null'
+                      process:
+                        type:
+                          - number
+                          - 'null'
+                      process_decision_element:
+                        type:
+                          - number
+                          - 'null'
+                      project:
+                        type:
+                          - number
+                          - 'null'
+                      response:
+                        type:
+                          - string
+                          - 'null'
+                      result:
+                        type:
+                          - string
+                          - 'null'
+                      result_bool:
+                        type:
+                          - boolean
+                          - 'null'
+                      result_data:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      result_notes:
+                        type:
+                          - string
+                          - 'null'
+                      result_source:
+                        type:
+                          - string
+                          - 'null'
+                    type: object
+                  Relationships:
+                    items:
+                      - additionalProperties: false
+                        properties:
+                          columns:
+                            items:
+                              const: process_decision_element
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          foreignKeyName:
+                            const: >-
+                              process_decision_payload_process_decision_element_fkey
+                            type: string
+                          isOneToOne:
+                            const: false
+                            type: boolean
+                          referencedColumns:
+                            items:
+                              const: id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          referencedRelation:
+                            const: decision_element
+                            type: string
+                        required:
+                          - foreignKeyName
+                          - columns
+                          - isOneToOne
+                          - referencedRelation
+                          - referencedColumns
+                        type: object
+                      - additionalProperties: false
+                        properties:
+                          columns:
+                            items:
+                              const: process
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          foreignKeyName:
+                            const: process_decision_payload_process_fkey
+                            type: string
+                          isOneToOne:
+                            const: false
+                            type: boolean
+                          referencedColumns:
+                            items:
+                              const: id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          referencedRelation:
+                            const: process_instance
+                            type: string
+                        required:
+                          - foreignKeyName
+                          - columns
+                          - isOneToOne
+                          - referencedRelation
+                          - referencedColumns
+                        type: object
+                      - additionalProperties: false
+                        properties:
+                          columns:
+                            items:
+                              const: project
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          foreignKeyName:
+                            const: process_decision_payload_project_fkey
+                            type: string
+                          isOneToOne:
+                            const: false
+                            type: boolean
+                          referencedColumns:
+                            items:
+                              const: id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          referencedRelation:
+                            const: project
+                            type: string
+                        required:
+                          - foreignKeyName
+                          - columns
+                          - isOneToOne
+                          - referencedRelation
+                          - referencedColumns
+                        type: object
+                    maxItems: 3
+                    minItems: 3
+                    type: array
+                  Row:
+                    additionalProperties: false
+                    properties:
+                      created_at:
+                        type: string
+                      data_annotation:
+                        type:
+                          - string
+                          - 'null'
+                      data_description:
+                        type:
+                          - string
+                          - 'null'
+                      evaluation_data:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      evaluation_data_annotation:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      id:
+                        type: number
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      parent_payload:
+                        type:
+                          - number
+                          - 'null'
+                      process:
+                        type:
+                          - number
+                          - 'null'
+                      process_decision_element:
+                        type:
+                          - number
+                          - 'null'
+                      project:
+                        type:
+                          - number
+                          - 'null'
+                      response:
+                        type:
+                          - string
+                          - 'null'
+                      result:
+                        type:
+                          - string
+                          - 'null'
+                      result_bool:
+                        type:
+                          - boolean
+                          - 'null'
+                      result_data:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      result_notes:
+                        type:
+                          - string
+                          - 'null'
+                      result_source:
+                        type:
+                          - string
+                          - 'null'
+                    required:
+                      - created_at
+                      - data_annotation
+                      - data_description
+                      - evaluation_data
+                      - evaluation_data_annotation
+                      - id
+                      - other
+                      - parent_payload
+                      - process
+                      - process_decision_element
+                      - project
+                      - response
+                      - result
+                      - result_bool
+                      - result_data
+                      - result_notes
+                      - result_source
+                    type: object
+                  Update:
+                    additionalProperties: false
+                    properties:
+                      created_at:
+                        type: string
+                      data_annotation:
+                        type:
+                          - string
+                          - 'null'
+                      data_description:
+                        type:
+                          - string
+                          - 'null'
+                      evaluation_data:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      evaluation_data_annotation:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      id:
+                        type: number
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      parent_payload:
+                        type:
+                          - number
+                          - 'null'
+                      process:
+                        type:
+                          - number
+                          - 'null'
+                      process_decision_element:
+                        type:
+                          - number
+                          - 'null'
+                      project:
+                        type:
+                          - number
+                          - 'null'
+                      response:
+                        type:
+                          - string
+                          - 'null'
+                      result:
+                        type:
+                          - string
+                          - 'null'
+                      result_bool:
+                        type:
+                          - boolean
+                          - 'null'
+                      result_data:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      result_notes:
+                        type:
+                          - string
+                          - 'null'
+                      result_source:
+                        type:
+                          - string
+                          - 'null'
+                    type: object
+                required:
+                  - Row
+                  - Insert
+                  - Update
+                  - Relationships
+                type: object
+              process_instance:
+                additionalProperties: false
+                properties:
+                  Insert:
+                    additionalProperties: false
+                    properties:
+                      agency_id:
+                        type:
+                          - string
+                          - 'null'
+                      comment_end:
+                        type:
+                          - string
+                          - 'null'
+                      comment_start:
+                        type:
+                          - string
+                          - 'null'
+                      complete_date:
+                        type:
+                          - string
+                          - 'null'
+                      cooperating_agencies:
+                        type:
+                          - string
+                          - 'null'
+                      created_at:
+                        type: string
+                      description:
+                        type:
+                          - string
+                          - 'null'
+                      federal_id:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      joint_lead_agency:
+                        type:
+                          - string
+                          - 'null'
+                      lead_agency:
+                        type:
+                          - string
+                          - 'null'
+                      notes:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      outcome:
+                        type:
+                          - string
+                          - 'null'
+                      parent_process_id:
+                        type:
+                          - number
+                          - 'null'
+                      parent_project_id:
+                        type:
+                          - number
+                          - 'null'
+                      participating_agencies:
+                        type:
+                          - string
+                          - 'null'
+                      process_model:
+                        type:
+                          - number
+                          - 'null'
+                      purpose_need:
+                        type:
+                          - string
+                          - 'null'
+                      stage:
+                        type:
+                          - string
+                          - 'null'
+                      start_date:
+                        type:
+                          - string
+                          - 'null'
+                      status:
+                        type:
+                          - string
+                          - 'null'
+                      type:
+                        type:
+                          - string
+                          - 'null'
+                    type: object
+                  Relationships:
+                    items:
+                      - additionalProperties: false
+                        properties:
+                          columns:
+                            items:
+                              const: parent_project_id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          foreignKeyName:
+                            const: process_parent_project_fkey
+                            type: string
+                          isOneToOne:
+                            const: false
+                            type: boolean
+                          referencedColumns:
+                            items:
+                              const: id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          referencedRelation:
+                            const: project
+                            type: string
+                        required:
+                          - foreignKeyName
+                          - columns
+                          - isOneToOne
+                          - referencedRelation
+                          - referencedColumns
+                        type: object
+                      - additionalProperties: false
+                        properties:
+                          columns:
+                            items:
+                              const: process_model
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          foreignKeyName:
+                            const: process_process_model_fkey
+                            type: string
+                          isOneToOne:
+                            const: false
+                            type: boolean
+                          referencedColumns:
+                            items:
+                              const: id
+                              type: string
+                            maxItems: 1
+                            minItems: 1
+                            type: array
+                          referencedRelation:
+                            const: process_model
+                            type: string
+                        required:
+                          - foreignKeyName
+                          - columns
+                          - isOneToOne
+                          - referencedRelation
+                          - referencedColumns
+                        type: object
+                    maxItems: 2
+                    minItems: 2
+                    type: array
+                  Row:
+                    additionalProperties: false
+                    properties:
+                      agency_id:
+                        type:
+                          - string
+                          - 'null'
+                      comment_end:
+                        type:
+                          - string
+                          - 'null'
+                      comment_start:
+                        type:
+                          - string
+                          - 'null'
+                      complete_date:
+                        type:
+                          - string
+                          - 'null'
+                      cooperating_agencies:
+                        type:
+                          - string
+                          - 'null'
+                      created_at:
+                        type: string
+                      description:
+                        type:
+                          - string
+                          - 'null'
+                      federal_id:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      joint_lead_agency:
+                        type:
+                          - string
+                          - 'null'
+                      lead_agency:
+                        type:
+                          - string
+                          - 'null'
+                      notes:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      outcome:
+                        type:
+                          - string
+                          - 'null'
+                      parent_process_id:
+                        type:
+                          - number
+                          - 'null'
+                      parent_project_id:
+                        type:
+                          - number
+                          - 'null'
+                      participating_agencies:
+                        type:
+                          - string
+                          - 'null'
+                      process_model:
+                        type:
+                          - number
+                          - 'null'
+                      purpose_need:
+                        type:
+                          - string
+                          - 'null'
+                      stage:
+                        type:
+                          - string
+                          - 'null'
+                      start_date:
+                        type:
+                          - string
+                          - 'null'
+                      status:
+                        type:
+                          - string
+                          - 'null'
+                      type:
+                        type:
+                          - string
+                          - 'null'
+                    required:
+                      - agency_id
+                      - comment_end
+                      - comment_start
+                      - complete_date
+                      - cooperating_agencies
+                      - created_at
+                      - description
+                      - federal_id
+                      - id
+                      - joint_lead_agency
+                      - lead_agency
+                      - notes
+                      - other
+                      - outcome
+                      - parent_process_id
+                      - parent_project_id
+                      - participating_agencies
+                      - process_model
+                      - purpose_need
+                      - stage
+                      - start_date
+                      - status
+                      - type
+                    type: object
+                  Update:
+                    additionalProperties: false
+                    properties:
+                      agency_id:
+                        type:
+                          - string
+                          - 'null'
+                      comment_end:
+                        type:
+                          - string
+                          - 'null'
+                      comment_start:
+                        type:
+                          - string
+                          - 'null'
+                      complete_date:
+                        type:
+                          - string
+                          - 'null'
+                      cooperating_agencies:
+                        type:
+                          - string
+                          - 'null'
+                      created_at:
+                        type: string
+                      description:
+                        type:
+                          - string
+                          - 'null'
+                      federal_id:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      joint_lead_agency:
+                        type:
+                          - string
+                          - 'null'
+                      lead_agency:
+                        type:
+                          - string
+                          - 'null'
+                      notes:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      outcome:
+                        type:
+                          - string
+                          - 'null'
+                      parent_process_id:
+                        type:
+                          - number
+                          - 'null'
+                      parent_project_id:
+                        type:
+                          - number
+                          - 'null'
+                      participating_agencies:
+                        type:
+                          - string
+                          - 'null'
+                      process_model:
+                        type:
+                          - number
+                          - 'null'
+                      purpose_need:
+                        type:
+                          - string
+                          - 'null'
+                      stage:
+                        type:
+                          - string
+                          - 'null'
+                      start_date:
+                        type:
+                          - string
+                          - 'null'
+                      status:
+                        type:
+                          - string
+                          - 'null'
+                      type:
+                        type:
+                          - string
+                          - 'null'
+                    type: object
+                required:
+                  - Row
+                  - Insert
+                  - Update
+                  - Relationships
+                type: object
+              process_model:
+                additionalProperties: false
+                properties:
+                  Insert:
+                    additionalProperties: false
+                    properties:
+                      DMN_model:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      agency:
+                        type:
+                          - string
+                          - 'null'
+                      bpmn_model:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      created_at:
+                        type: string
+                      description:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      legal_structure_id:
+                        type:
+                          - number
+                          - 'null'
+                      legal_structure_text:
+                        type:
+                          - string
+                          - 'null'
+                      notes:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      parent_model:
+                        type:
+                          - number
+                          - 'null'
+                      screening_desc_json:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      screening_description:
+                        type:
+                          - string
+                          - 'null'
+                      title:
+                        type:
+                          - string
+                          - 'null'
+                    type: object
+                  Relationships:
+                    items:
+                      additionalProperties: false
+                      properties:
+                        columns:
+                          items:
+                            const: legal_structure_id
+                            type: string
+                          maxItems: 1
+                          minItems: 1
+                          type: array
+                        foreignKeyName:
+                          const: process_model_legal_structure_id_fkey
+                          type: string
+                        isOneToOne:
+                          const: false
+                          type: boolean
+                        referencedColumns:
+                          items:
+                            const: id
+                            type: string
+                          maxItems: 1
+                          minItems: 1
+                          type: array
+                        referencedRelation:
+                          const: legal_structure
+                          type: string
+                      required:
+                        - foreignKeyName
+                        - columns
+                        - isOneToOne
+                        - referencedRelation
+                        - referencedColumns
+                      type: object
+                    maxItems: 1
+                    minItems: 1
+                    type: array
+                  Row:
+                    additionalProperties: false
+                    properties:
+                      DMN_model:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      agency:
+                        type:
+                          - string
+                          - 'null'
+                      bpmn_model:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      created_at:
+                        type: string
+                      description:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      legal_structure_id:
+                        type:
+                          - number
+                          - 'null'
+                      legal_structure_text:
+                        type:
+                          - string
+                          - 'null'
+                      notes:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      parent_model:
+                        type:
+                          - number
+                          - 'null'
+                      screening_desc_json:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      screening_description:
+                        type:
+                          - string
+                          - 'null'
+                      title:
+                        type:
+                          - string
+                          - 'null'
+                    required:
+                      - agency
+                      - bpmn_model
+                      - created_at
+                      - description
+                      - DMN_model
+                      - id
+                      - legal_structure_id
+                      - legal_structure_text
+                      - notes
+                      - other
+                      - parent_model
+                      - screening_desc_json
+                      - screening_description
+                      - title
+                    type: object
+                  Update:
+                    additionalProperties: false
+                    properties:
+                      DMN_model:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      agency:
+                        type:
+                          - string
+                          - 'null'
+                      bpmn_model:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      created_at:
+                        type: string
+                      description:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      legal_structure_id:
+                        type:
+                          - number
+                          - 'null'
+                      legal_structure_text:
+                        type:
+                          - string
+                          - 'null'
+                      notes:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      parent_model:
+                        type:
+                          - number
+                          - 'null'
+                      screening_desc_json:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      screening_description:
+                        type:
+                          - string
+                          - 'null'
+                      title:
+                        type:
+                          - string
+                          - 'null'
+                    type: object
+                required:
+                  - Row
+                  - Insert
+                  - Update
+                  - Relationships
+                type: object
+              project:
+                additionalProperties: false
+                properties:
+                  Insert:
+                    additionalProperties: false
+                    properties:
+                      created_at:
+                        type: string
+                      current_status:
+                        type:
+                          - string
+                          - 'null'
+                      description:
+                        type:
+                          - string
+                          - 'null'
+                      funding:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      lead_agency:
+                        type:
+                          - string
+                          - 'null'
+                      location_lat:
+                        type:
+                          - number
+                          - 'null'
+                      location_lon:
+                        type:
+                          - number
+                          - 'null'
+                      location_object:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      location_text:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      parent_project_id:
+                        type:
+                          - number
+                          - 'null'
+                      participating_agencies:
+                        type:
+                          - string
+                          - 'null'
+                      sector:
+                        type:
+                          - string
+                          - 'null'
+                      sponsor:
+                        type:
+                          - string
+                          - 'null'
+                      sponsor_contact:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      start_date:
+                        type:
+                          - string
+                          - 'null'
+                      title:
+                        type:
+                          - string
+                          - 'null'
+                      type:
+                        type:
+                          - string
+                          - 'null'
+                    type: object
+                  Relationships:
+                    maxItems: 0
+                    minItems: 0
+                    type: array
+                  Row:
+                    additionalProperties: false
+                    properties:
+                      created_at:
+                        type: string
+                      current_status:
+                        type:
+                          - string
+                          - 'null'
+                      description:
+                        type:
+                          - string
+                          - 'null'
+                      funding:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      lead_agency:
+                        type:
+                          - string
+                          - 'null'
+                      location_lat:
+                        type:
+                          - number
+                          - 'null'
+                      location_lon:
+                        type:
+                          - number
+                          - 'null'
+                      location_object:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      location_text:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      parent_project_id:
+                        type:
+                          - number
+                          - 'null'
+                      participating_agencies:
+                        type:
+                          - string
+                          - 'null'
+                      sector:
+                        type:
+                          - string
+                          - 'null'
+                      sponsor:
+                        type:
+                          - string
+                          - 'null'
+                      sponsor_contact:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      start_date:
+                        type:
+                          - string
+                          - 'null'
+                      title:
+                        type:
+                          - string
+                          - 'null'
+                      type:
+                        type:
+                          - string
+                          - 'null'
+                    required:
+                      - created_at
+                      - current_status
+                      - description
+                      - funding
+                      - id
+                      - lead_agency
+                      - location_lat
+                      - location_lon
+                      - location_object
+                      - location_text
+                      - other
+                      - parent_project_id
+                      - participating_agencies
+                      - sector
+                      - sponsor
+                      - sponsor_contact
+                      - start_date
+                      - title
+                      - type
+                    type: object
+                  Update:
+                    additionalProperties: false
+                    properties:
+                      created_at:
+                        type: string
+                      current_status:
+                        type:
+                          - string
+                          - 'null'
+                      description:
+                        type:
+                          - string
+                          - 'null'
+                      funding:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      lead_agency:
+                        type:
+                          - string
+                          - 'null'
+                      location_lat:
+                        type:
+                          - number
+                          - 'null'
+                      location_lon:
+                        type:
+                          - number
+                          - 'null'
+                      location_object:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      location_text:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      parent_project_id:
+                        type:
+                          - number
+                          - 'null'
+                      participating_agencies:
+                        type:
+                          - string
+                          - 'null'
+                      sector:
+                        type:
+                          - string
+                          - 'null'
+                      sponsor:
+                        type:
+                          - string
+                          - 'null'
+                      sponsor_contact:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      start_date:
+                        type:
+                          - string
+                          - 'null'
+                      title:
+                        type:
+                          - string
+                          - 'null'
+                      type:
+                        type:
+                          - string
+                          - 'null'
+                    type: object
+                required:
+                  - Row
+                  - Insert
+                  - Update
+                  - Relationships
+                type: object
+              user_role:
+                additionalProperties: false
+                properties:
+                  Insert:
+                    additionalProperties: false
+                    properties:
+                      access_policy:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      created_at:
+                        type: string
+                      description:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      name:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      permission_descriptions:
+                        type:
+                          - string
+                          - 'null'
+                      public:
+                        type:
+                          - boolean
+                          - 'null'
+                    type: object
+                  Relationships:
+                    maxItems: 0
+                    minItems: 0
+                    type: array
+                  Row:
+                    additionalProperties: false
+                    properties:
+                      access_policy:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      created_at:
+                        type: string
+                      description:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      name:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      permission_descriptions:
+                        type:
+                          - string
+                          - 'null'
+                      public:
+                        type:
+                          - boolean
+                          - 'null'
+                    required:
+                      - access_policy
+                      - created_at
+                      - description
+                      - id
+                      - name
+                      - other
+                      - permission_descriptions
+                      - public
+                    type: object
+                  Update:
+                    additionalProperties: false
+                    properties:
+                      access_policy:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      created_at:
+                        type: string
+                      description:
+                        type:
+                          - string
+                          - 'null'
+                      id:
+                        type: number
+                      name:
+                        type:
+                          - string
+                          - 'null'
+                      other:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: 'null'
+                      permission_descriptions:
+                        type:
+                          - string
+                          - 'null'
+                      public:
+                        type:
+                          - boolean
+                          - 'null'
+                    type: object
+                required:
+                  - Row
+                  - Insert
+                  - Update
+                  - Relationships
+                type: object
+            required:
+              - case_event
+              - comment
+              - decision_element
+              - document
+              - engagement
+              - gis_data
+              - gis_data_element
+              - legal_structure
+              - process_decision_payload
+              - process_instance
+              - process_model
+              - project
+              - user_role
+            type: object
+          Views:
+            additionalProperties: false
+            type: object
+        required:
+          - Tables
+          - Views
+          - Functions
+          - Enums
+          - CompositeTypes
+        type: object
+    required:
+      - graphql_public
+      - public
+    type: object
+  Json:
+    anyOf:
+      - type: string
+      - type: number
+      - type: boolean
+      - type: 'null'
+      - additionalProperties:
+          anyOf:
+            - $ref: '#/definitions/Json'
+            - not: {}
+        type: object
+      - items:
+          $ref: '#/definitions/Json'
+        type: array
+
