@@ -1,7 +1,5 @@
 # NEPA and Permitting Data and Technology Standard
 
-[![Validation Status](https://github.com/GSA-TTS/pic-standards/actions/workflows/validation.yml/badge.svg)](https://github.com/GSA-TTS/pic-standards/actions/workflows/validation.yml)
-
 ## Why this project
 
 This repository includes a toolkit for implementation of the data standards, technical documentation, and scripts that can aid in validating implementations.  For more information, see the Permitting Innovation Center's [website](https://permitting.innovation.gov).
