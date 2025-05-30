@@ -4,7 +4,7 @@ We're so glad you're thinking about contributing to an [open source project of t
 
 We encourage you to read this project's CONTRIBUTING policy (you are here), its [LICENSE](LICENSE.md), and its [README](README.md).
 
-To contribute to this project, use the feedback tools on the Permitting Innovation Center's (website)[https://permitting.innovation.gov]
+To contribute to this project, use the feedback tools on the Permitting Innovation Center's [website](https://permitting.innovation.gov)
 
 ## Policies
 
