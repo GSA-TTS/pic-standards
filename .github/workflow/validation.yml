@@ -1,0 +1,64 @@
+name: pic-standards
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: pic-standards/package-lock.json
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Lint scripts
+        run: npm run lint
+        
+      - name: Validate JSON schemas
+        id: validate_schemas
+        run: npm run validate:schemas
+        
+      - name: Validate JSON examples
+        id: validate_examples
+        run: npm run validate:json
+        continue-on-error: false
+        
+      - name: Validate YAML examples
+        id: validate_yaml
+        run: npm run validate:yaml
+        continue-on-error: false
+        
+      - name: Validate database crosswalk
+        id: validate_crosswalk
+        run: npm run validate:crosswalk
+        continue-on-error: false
+        
+      - name: Validate OpenAPI specifications
+        id: validate_openapi
+        run: npm run validate:openapi
+        continue-on-error: false
+      
+      # Create validation summary
+      - name: Validation Summary
+        run: |
+          echo "### Validation Results 📋" >> $GITHUB_STEP_SUMMARY
+          echo "- JSON Schema Validation: ${{ steps.validate_schemas.outcome == 'success' && '✅ Passed' || '❌ Failed' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- JSON Examples Validation: ${{ steps.validate_examples.outcome == 'success' && '✅ Passed' || '⚠️ Issues' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- YAML Example Validation: ${{ steps.validate_yaml.outcome == 'success' && '✅ Passed' || '⚠️ Issues' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Database Crosswalk Validation: ${{ steps.validate_crosswalk.outcome == 'success' && '✅ Passed' || '⚠️ Issues' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- OpenAPI Validation: ${{ steps.validate_openapi.outcome == 'success' && '✅ Passed' || '⚠️ Issues' }}" >> $GITHUB_STEP_SUMMARY
+          
+          if [[ "${{ steps.validate_schemas.outcome }}" == "failure" ]]; then
+            echo "❌ Workflow failed: Schema validation errors must be fixed" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
