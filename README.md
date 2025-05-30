@@ -4,11 +4,11 @@
 
 ## Why this project
 
-This repository includes a toolkit for implementation of the data standards, technical documentation, and scripts that can aid in validating implementations.  For more information, see the Permitting Innovation Center's [website](https://permitting.innovation.gov)
+This repository includes a toolkit for implementation of the data standards, technical documentation, and scripts that can aid in validating implementations.  For more information, see the Permitting Innovation Center's [website](https://permitting.innovation.gov).
 
 ## Toolkit
 
-The toolkit (found in - [/src](./src)) contains working files for the NEPA and Permitting Data and Technology Standard, versioned by tag.  The current version is v1.0.0
+The toolkit (found in - [/src](./src)) contains working files for the NEPA and Permitting Data and Technology Standard, versioned by tag.  The current version is v1.0
 
 - [JSONschema](./src/jsonschema) - The core of the **NEPA Data Standard** is the [nepa.schema.json](./src/jsonschema/nepa.schema.json) file, which defines the structure and validation rules for NEPA-related data.
 - [Data Standard Crosswalk](./src/crosswalk) - csv file containing a list of all entities, properties, types (postgres), and descriptions.
