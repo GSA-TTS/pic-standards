@@ -1,0 +1,220 @@
+table,column,data_type,description,is_generated
+case_event,id,bigint,database id,NO
+case_event,created_at,timestamp with time zone,created,NO
+case_event,parent_process_id,bigint,Reference to Process ID of the associated NEPA process for this event.,NO
+case_event,parent_event_id,bigint,"If applicable, the parent ID of the event. ",NO
+case_event,related_document_id,bigint," Reference to Document ID of the document related to the event. Optional.",NO
+case_event,name,text,Name of event,NO
+case_event,description,text,"Description of event. ",NO
+case_event,source,text,Link to information about the event.,NO
+case_event,type,text,"Event class (e.g., NOI, ROD)",NO
+case_event,public_access,boolean,Indicates whether events can be displayed publicly. (Binary Y/N),NO
+case_event,tier,bigint,"Optional event hierarchy (e.g., Tier 1 NOI, Tier 2 Scoping Complete, Tier 3 Task assigned to Jane Doe). ",NO
+case_event,status,text,"Pending, completed, in progress.",NO
+case_event,outcome,text,Result or action taken.,NO
+case_event,assigned_entity,text,Responsible individuals or agencies.,NO
+case_event,datetime,timestamp with time zone,Date and time of event,NO
+case_event,following_segment_name,text,"Name of segment following this event (e.g. if this is ""start of scoping"" the next segment is ""scoping"").",NO
+case_event,related_engagement_id,bigint,Related engagement event if applicable,NO
+case_event,other,jsonb,"This jsonb field should be used for additional data structures as needed. ",NO
+comment,id,bigint,database id,NO
+comment,created_at,timestamp with time zone,created,NO
+comment,parent_document_id,bigint,Reference to Document ID of the document to which the comment is related.,NO
+comment,commenter_entity,text,Individual or organization.,NO
+comment,date_submitted,date,Submission date.,NO
+comment,submission_method,text,"Online, email, mail, in-person.",NO
+comment,content_text,text,Text of the comment.,NO
+comment,content_json,json,Text of the comment (json object if applicable),NO
+comment,response_text,text,"Formal reply, if applicable.",NO
+comment,response_json,json,"Formal reply, if applicable. (json object if applicable)",NO
+comment,public_source,boolean,Whether comment came from member of the public,NO
+comment,public_acess,boolean,Whether comment should be viewed by public,NO
+comment,other,jsonb,"This jsonb field should be used for additional data structures as needed. ",NO
+decision_element,id,bigint,database id,NO
+decision_element,created_at,timestamp with time zone,created,NO
+decision_element,process_model_id,bigint,Reference to the process model this decision element belongs to,NO
+decision_element,legal_structure_id,bigint,"If applicable, legal structure related to specific criteria",NO
+decision_element,title,text,Name of element,NO
+decision_element,description,text,Plain language description of the criterion,NO
+decision_element,measure,text,A description of the type of thing being measured in the criteria (e.g. threshold of contamination),NO
+decision_element,threshold,double precision,numeric value of the triggering measure (if applicable),NO
+decision_element,spatial,boolean,Whether the criterion is a spatial relationship,NO
+decision_element,intersect,boolean,If the spatial relationship is a simple intersection (e.g. floodplain),NO
+decision_element,spatial_reference,json," A container for reference to the screening criteria (e.g. api call for wetland data)",NO
+decision_element,form_text,text,Text data to display on a screening form for a user to input data,NO
+decision_element,form_response_desc,text,"A description of the type of response expected on the form (e.g. text, select from list, number)",NO
+decision_element,form_data,json,"Formatted response for a formbuilder application (e.g. likert scale, number, etc)",NO
+decision_element,evaluation_method,text,"A description of how the response is matched against the condition and what the results could be. ",NO
+decision_element,evaluation_dmn,json,Decision Model Notation description of evaluation of decision element.,NO
+decision_element,category,text,"The category of the process decision element, such as limitation, condition, core, or extraordinary circumstances.",NO
+decision_element,process_model_internal_reference_id,text,"Process models may have complex decision trees - this string can reference the specific piece of the process model that this decision element applies to. ",NO
+decision_element,parent_decision_element_id,bigint,"If this decision element depends on another decision element (e.g. if answer a is yes, ask question b), this field can be used to reference the parent decision element. ",NO
+decision_element,other,jsonb,"This jsonb field should be used for additional data structures as needed. ",NO
+document,id,bigint,database id,NO
+document,created_at,timestamp with time zone,creation date,NO
+document,parent_process_id,bigint,Reference to Process ID of parent process for the document,NO
+document,related_document_id,bigint,Unique identification number for related document (if applicable),NO
+document,title,text,Document title.,NO
+document,volume_title,text,"Volume title (e.g., Appendix)",NO
+document,document_revision,text,"Indicates which revision of the document (e.g., first revised Draft EIS).",NO
+document,revision_no,bigint,"Indicates which revision of the document (e.g., first revised Draft EIS) - numeric form",NO
+document,supplement_no,bigint,Indicates supplement number,NO
+document,publish_date,date,Publication or submission date.,NO
+document,prepared_by,text,Responsible entity.,NO
+document,status,text,"Document production phase. ",NO
+document,public_access,boolean,Public or restricted.,NO
+document,url,text,Online link if available.,NO
+document,notes,text,Miscellaneous notes.,NO
+document,document_summary,json,container for summary information,NO
+document,document_toc,json,the table of contents (or heading structure) of the document.,NO
+document,document_type,text,"Document category, such as EIS, EA, etc. ",NO
+document,other,jsonb,"This jsonb field should be used for additional data structures as needed. ",NO
+engagement,id,bigint,database id,NO
+engagement,created_at,timestamp with time zone,created,NO
+engagement,parent_process_id,bigint,"If associated with a process, the related process ID",NO
+engagement,type,text,"Optional category or other classification for the type of event (e.g. public meeting, comment period, consultation period)",NO
+engagement,location,text,"Physical, virtual, hybrid. (Note that this may also be attached as a relationship with a GIS object). ",NO
+engagement,related_document_id,bigint,Reference to Document ID of the documents released or referenced for this event.,NO
+engagement,attendance,bigint,Participant count.,NO
+engagement,participation,json,Container for participation data,NO
+engagement,notes,text,"additional notes. ",NO
+engagement,start_datetime,timestamp with time zone,Engagement start date/time,NO
+engagement,end_datetime,timestamp with time zone,Engagement end date/time,NO
+engagement,other,jsonb,"This jsonb field should be used for additional data structures as needed. ",NO
+gis_data,id,bigint,database id,NO
+gis_data,created_at,timestamp with time zone,created date,NO
+gis_data,parent_project_id,bigint,"Reference to Foreign object attached to GIS object (one for each other entity table - expected architecture is that there is one foreign key among all these, not all possible relationships filled in)",NO
+gis_data,parent_process_id,bigint,"Reference to Foreign object attached to GIS object (one for each other entity table - expected architecture is that there is one foreign key among all these, not all possible relationships filled in)",NO
+gis_data,parent_document_id,bigint,"Reference to Foreign object attached to GIS object (one for each other entity table - expected architecture is that there is one foreign key among all these, not all possible relationships filled in)",NO
+gis_data,parent_case_event_id,bigint,"Reference to Foreign object attached to GIS object (one for each other entity table - expected architecture is that there is one foreign key among all these, not all possible relationships filled in)",NO
+gis_data,parent_comment_id,bigint,"Reference to Foreign object attached to GIS object (one for each other entity table - expected architecture is that there is one foreign key among all these, not all possible relationships filled in)",NO
+gis_data,parent_engagement_id,bigint,"Reference to Foreign object attached to GIS object (one for each other entity table - expected architecture is that there is one foreign key among all these, not all possible relationships filled in)",NO
+gis_data,description,text,Optional description,NO
+gis_data,extent,text,"Optional. ",NO
+gis_data,centroid_lat,double precision,Option to specify single point or centroid for rapid plotting,NO
+gis_data,centroid_lon,double precision,Option to specify single point or centroid for rapid plotting,NO
+gis_data,creator,text,Organization or individual.,NO
+gis_data,creator_contact,jsonb,Contact card-type data for creator.,NO
+gis_data,notes,text,Miscellaneous notes.,NO
+gis_data,container_inventory,jsonb,"Inventory of map image container and GIS data container in json format (note inventory should be attached through gis_data_element objects, which may include a list of:
+-	Format: GeoJSON, Shapefile, KML.
+-	Access Method: URL, API, direct upload.
+-	Coordinate System: Spatial reference system.
+-	Bounding Box: Geographic extent.
+-	Purpose: Bespoke, analysis, or base map.
+-	Reference to database: Whether this object references an identified GIS analysis in an official inventory.",NO
+gis_data,map_image,jsonb,"map image data ",NO
+gis_data,data_container,jsonb,json container for any attached GIS data,NO
+gis_data,address,text,address of centroid (if applicable),NO
+gis_data,updated_last,timestamp with time zone,Timestamp of last update to this dataset,NO
+gis_data,other,jsonb,"This jsonb field should be used for additional data structures as needed. ",NO
+gis_data_element,id,bigint,database id,NO
+gis_data_element,created_at,timestamp with time zone,created date,NO
+gis_data_element,parent_gis,bigint,Parent GIS data entity,NO
+gis_data_element,container_reference,text,Reference to header or other information in GIS data container to locate this particular data element,NO
+gis_data_element,format,text,"GeoJSON, Shapefile, KML.",NO
+gis_data_element,access_method,text,"URL, API, direct upload.",NO
+gis_data_element,coordinate_system,text,Spatial reference system.,NO
+gis_data_element,top_left_lat,double precision,Geographic extent.,NO
+gis_data_element,top_left_lon,double precision,Geographic extent.,NO
+gis_data_element,bot_right_lat,double precision,Geographic extent.,NO
+gis_data_element,bot_right_lon,double precision,Geographic extent.,NO
+gis_data_element,purpose,text,"1.	Bespoke GIS Data: Project-specific (boundaries, analysis areas).
+2.	Analysis GIS Data: Data layers used for analysis (e.g., wetlands inventory).
+3.	Base Map Data: Foundational layers (streets, elevation).
+",NO
+gis_data_element,data_match,text,Whether this object references an identified GIS analysis in an official inventory.,NO
+gis_data_element,access_info,json,instructions for access to data,NO
+gis_data_element,other,jsonb,"This jsonb field should be used for additional data structures as needed. ",NO
+legal_structure,id,bigint,database id,NO
+legal_structure,created_at,timestamp with time zone,"created ",NO
+legal_structure,title,text,Official name.,NO
+legal_structure,citation,text,Legal reference.,NO
+legal_structure,description,text,Summary and relevance.,NO
+legal_structure,context,text,Full text or excerpt.,NO
+legal_structure,issuing_authority,text,Government body.,NO
+legal_structure,effective_date,date,Implementation date.,NO
+legal_structure,compliance_data,json,"Procedural mandates, ideally structured as data using an ontology that includes facts (such as thresholds triggering processes), duties, and actors (e.g., FLINT frames). ",NO
+legal_structure,url,text,URL of legal reference (e.g. eCFR),NO
+legal_structure,other,jsonb,"This jsonb field should be used for additional data structures as needed. ",NO
+process_decision_payload,id,bigint,database id,NO
+process_decision_payload,created_at,timestamp with time zone,created,NO
+process_decision_payload,process_decision_element,bigint,"Relationship with process decision element ",NO
+process_decision_payload,process_id,bigint,Reference to the process this payload belongs to,NO
+process_decision_payload,project,bigint,"Identifier of project the data is associated with. ",NO
+process_decision_payload,data_description,text,Text of the data about the project in response to the evaluation condition,NO
+process_decision_payload,evaluation_data,jsonb,Text of the data about the project in response to the evaluation condition (json object),NO
+process_decision_payload,response,text,Text of the response of the evaluation (if applicable),NO
+process_decision_payload,result,text,Text of the response of the evaluation (if applicable),NO
+process_decision_payload,result_bool,boolean,Whether response is included in this payload,NO
+process_decision_payload,result_notes,text,Miscellaneous notes on response,NO
+process_decision_payload,result_data,json,Text of the response of the evaluation (if applicable - json object),NO
+process_decision_payload,result_source,text,Origin of the response,NO
+process_decision_payload,parent_payload,bigint,"Parent payload ID (e.g. if this is a response to a submission, this would be the submission ID)",NO
+process_decision_payload,other,jsonb,"This jsonb field should be used for additional data structures as needed. ",NO
+process_decision_payload,data_annotation,text,null,NO
+process_decision_payload,evaluation_data_annotation,jsonb,"Jsonb field for additional data annotations (e.g. if the response is ""yes,"" may contain additional context or notes. ",NO
+process_instance,id,bigint,database id,NO
+process_instance,parent_project_id,bigint,"Reference to Project ID of parent project. ",NO
+process_instance,created_at,timestamp with time zone,created,NO
+process_instance,parent_process_id,bigint,"If applicable, reference to Process ID of parent process",NO
+process_instance,agency_id,text,"Process-specific ID assigned by agency, if assigned.",NO
+process_instance,federal_id,text,Unique identification number (*not* database ID),NO
+process_instance,type,text,Level of NEPA review or other permit or authorization (see Permitting Council Federal Environmental Review and Authorization Inventory).,NO
+process_instance,status,text,"Indicates status of process (planned, underway, paused, completed).",NO
+process_instance,stage,text,"Current state of process, may be derived from the last case event with this Process ID.",NO
+process_instance,start_date,date,Initiation date.,NO
+process_instance,complete_date,date,Conclusion date.,NO
+process_instance,outcome,text,"Result (e.g., Record of Decision, permit issuance).",NO
+process_instance,comment_start,date,Time frame for public input.,NO
+process_instance,comment_end,date,Time frame for public input.,NO
+process_instance,lead_agency,text,Federal agency that supervises preparation of the environmental documents for the project,NO
+process_instance,joint_lead_agency,text,If applicable.,NO
+process_instance,cooperating_agencies,text,"Cooperating agencies. ",NO
+process_instance,participating_agencies,text,Other involved agencies.,NO
+process_instance,notes,text,Miscellaneous notes.,NO
+process_instance,process_model,bigint,Relationship with process model data that describes the process (if available/applicable),NO
+process_instance,other,jsonb,"This jsonb field should be used for additional data structures as needed. ",NO
+process_instance,purpose_need,text,null,NO
+process_instance,description,text,null,NO
+process_model,id,bigint,database id,NO
+process_model,created_at,timestamp with time zone,created,NO
+process_model,title,text,"Name of process model ",NO
+process_model,description,text,"Plain language description of the process model ",NO
+process_model,notes,text,Miscellaneous notes on process model,NO
+process_model,bpmn_model,json,Object containing the BPMN representation of the process,NO
+process_model,legal_structure_id,bigint,Reference to legal structure entity that defines the process,NO
+process_model,legal_structure_text,text,"Reference to legal structure that defines the process (text, cfr reference, etc)",NO
+process_model,screening_description,text,"Plain language description of the screening criteria that would lead to starting the process for an individual project. ",NO
+process_model,screening_desc_json,json,Plain language description of the screening criteria that would lead to starting the process for an individual project.  (json object option - this should not replace the decision element relationships),NO
+process_model,agency,text,Agency responsible for carrying out this process,NO
+process_model,parent_model,bigint,"Reference to parent model, if applicable (i.e. if this is a subprocess or flows from a previous process)",NO
+process_model,DMN_model,jsonb,"Decision model notation (in json wrapper) to structure logic for how to evaluate responses to decision elements. Optionally, each decision element may have individual DMN models.  ",NO
+process_model,other,jsonb,"This jsonb field should be used for additional data structures as needed. ",NO
+project,id,bigint,database id,NO
+project,created_at,timestamp with time zone,created,NO
+project,title,text,Descriptive name of the project.,NO
+project,description,text,Summary of the project’s goals and scope.,NO
+project,sector,text,"High-level project category (e.g., energy, transportation, land management).",NO
+project,lead_agency,text,Federal agency that supervises preparation of the environmental documents for the project.,NO
+project,participating_agencies,text,Other involved agencies.,NO
+project,location_lat,double precision,Center/centroid of project (shortcut for plotting on a map - should attach GIS data object as well),NO
+project,location_lon,double precision,Center/centroid of project (shortcut for plotting on a map - should attach GIS data object as well),NO
+project,location_object,json,Container for more advanced location object if applicable or if this improves performance (should not replace gis data entity relationship),NO
+project,type,text,"Classification, a sub-type of sector (pipeline, highway, habitat restoration).",NO
+project,funding,text,"Link to federal, state, local or other funding by reference (e.g., grant program, loan guarantee, appropriated funds)",NO
+project,start_date,date,Environmental review initiation date (aggregated from process status),NO
+project,current_status,text,"Current phase (pre-application, underway, paused, completed) of the NEPA, permitting, or other authorization process (aggregated from process status).",NO
+project,sponsor,text,"Name of responsible entity, organization, or person.",NO
+project,sponsor_contact,json,"Name of responsible entity, organization, or person (contact information json object)",NO
+project,parent_project_id,bigint,"If nesting projects, reference to the parent project's ID. ",NO
+project,location_text,text,"Text field to specify location, eg. address. ",NO
+project,other,jsonb,"This jsonb field should be used for additional data structures as needed. ",NO
+user_role,id,bigint,database id,NO
+user_role,created_at,timestamp with time zone,created,NO
+user_role,name,text,"Title of the role (Agency Staff, Public Commenter).",NO
+user_role,description,text,Responsibilities and access rights.,NO
+user_role,access_policy,json,access policy json object,NO
+user_role,permission_descriptions,text,System access levels description,NO
+user_role,public,boolean,role is a member of the broader class of public users/stakeholders,NO
+user_role,other,jsonb,"This jsonb field should be used for additional data structures as needed. ",NO

@@ -1,0 +1,53 @@
+{
+  "name": "pic-standards",
+  "version": "0.1.0",
+  "description": "NEPA and Permitting Data and Technology Standard - Schemas and Artifacts",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint --config .eslintrc.json .",
+    "lint:fix": "eslint --config .eslintrc.json . --fix",
+    "lint:json": "eslint --config .eslintrc.json \"**/*.json\" --fix",
+    "validate:schemas": "node scripts/validate-schemas.js --verbose",
+    "validate:schemas:quiet": "node scripts/validate-schemas.js",
+    "validate:json": "node scripts/validate-json.js --verbose",
+    "validate:json:quiet": "node scripts/validate-json.js",
+    "validate:yaml": "node scripts/validate-yaml.js --verbose",
+    "validate:yaml:quiet": "node scripts/validate-yaml.js",
+    "validate:csv": "node scripts/validate-csv.js",
+    "validate:crosswalk": "node scripts/validate-database-crosswalk.js",
+    "crosswalk:suggestions": "node scripts/validate-database-crosswalk.js --suggestions",
+    "validate:openapi": "node scripts/validate-openapi.js",
+    "validate:all": "npm run validate:schemas && npm run validate:json && npm run validate:yaml",
+    "remove-additional-properties": "node scripts/remove-additional-properties.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GSA-TTS/pic-standards.git"
+  },
+  "keywords": [
+    "nepa",
+    "standards",
+    "schema",
+    "json-schema"
+  ],
+  "author": "",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://permitting.innovation.gov/contact/"
+  },
+  "homepage": "https://github.com/GSA-TTS/pic-standards#readme",
+  "devDependencies": {
+    "@eslint/json": "^0.12.0",
+    "jsonc-eslint-parser": "^2.3.0",
+    "eslint-plugin-jsonc": "^2.10.0",
+    "ajv": "^8.12.0",
+    "ajv-formats": "^2.1.1",
+    "ajv-keywords": "^5.1.0",
+    "csv-parser": "^3.0.0",
+    "csv-writer": "^1.6.0",
+    "eslint": "^8.57.1",
+    "jest": "^29.6.1",
+    "js-yaml": "^4.1.0"
+  }
+}

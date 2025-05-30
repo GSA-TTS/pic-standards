@@ -1,0 +1,403 @@
+public_comments:
+  - id: 1
+    other: null
+    created_at: "2025-02-19T14:44:14.179487+00:00"
+    content_json: {}
+    content_text: I love this!
+    public_access: "false"
+    public_source: "true"
+    response_json: {}
+    response_text: 'Thanks for your input.   '
+    date_submitted: "2025-04-02"
+    commenter_name: Alice
+    method_of_submission: online
+    related_document_id: "1"
+    comment_id: "1"
+    content: "I love this!"
+  - id: 2
+    other: null
+    created_at: "2025-02-19T14:45:38.29017+00:00"
+    content_json: {}
+    content_text: 'I am worried. '
+    public_access: "false"
+    public_source: "true"
+    response_json: {}
+    response_text: 'Thanks for your input.   '
+    date_submitted: "2025-04-05"
+    commenter_name: Ben
+    method_of_submission: online
+    related_document_id: "1"
+    comment_id: "2"
+    content: "I am worried."
+projects:
+  - id: 1
+    type: Infrastructure, Buildings
+    other: null
+    title: 'Generic Infrastructure Project  '
+    sector: 'Infrastructure  '
+    funding: 'Grant 1245 $1M  '
+    sponsor:
+      name: Company A
+      contact_info: ""
+    created_at: "2025-02-19T14:12:43.935047+00:00"
+    start_date: "2025-03-01"
+    description: 'This project will build an infrastructure component. '
+    lead_agency: "Agency A"
+    location:
+      latitude: 38.8998620437023
+      longitude: -77.0381325355824
+      description: ""
+    current_status: "pre-application"
+    location_object: null
+    sponsor_contact: ""
+    parent_project_id: null
+    participating_agencies:
+      - 'Agency B'
+    project_id: "1"
+    project_title: "Generic Infrastructure Project"
+    project_description: "This project will build an infrastructure component."
+    project_sector: "Infrastructure"
+    project_sponsor:
+      name: "Company A"
+      contact_info: ""
+documents:
+  - id: 1
+    document_id: "1"
+    process_id: "1"
+    title: Project NOI
+    status: Complete
+    created_at: "2025-02-19T14:18:19.070403+00:00"
+    prepared_by: FAA
+    revision_no: null
+    document_toc: ""
+    publish_date: "2025-03-01"
+    volume_title: ""
+    document_type: NOI
+    public_access: "true"
+    supplement_no: null
+    document_summary: ""
+    document_revision: ""
+    related_document_id: 0
+  - id: 3
+    document_id: "3"
+    process_id: "1"
+    title: Project FEIS
+    status: Complete
+    created_at: "2025-02-19T14:20:03.422395+00:00"
+    prepared_by: FAA
+    revision_no: null
+    document_toc: ""
+    publish_date: "2025-05-01"
+    volume_title: "Volume 1: Whole thing"
+    document_type: Final EIS
+    public_access: "true"
+    supplement_no: null
+    document_summary: ""
+    document_revision: ""
+    related_document_id: 2
+gis_data:
+  - id: 1
+    gis_id: "gis_data_1"
+    data_type: "Point"
+    notes: ""
+    other: null
+    extent: ""
+    address: null
+    creator: Dave
+    map_image: null
+    created_at: "2025-02-19T14:22:22.749759+00:00"
+    description: Project location
+    centroid_lat: 38.8997743722264
+    centroid_lon: -77.0381379
+    updated_last: "2025-02-19T14:22:22.749759+00:00"
+    data_container: null
+    creator_contact: null
+    parent_comment_id: 0
+    parent_process_id: 0
+    parent_project_id: 1
+    parent_document_id: 0
+    container_inventory: {}
+    parent_case_event_id: 0
+    parent_engagement_id: 0
+case_events:
+  - id: 1
+    case_event_id: "1"
+    process_id: "1"
+    event_name: "NOI published"
+    event_date: "2025-03-01"
+    event_type: "NOI"
+    other: null
+    source: ""
+    status: completed
+    outcome: ""
+    datetime: "2025-03-01T17:00:00+00:00"
+    created_at: "2025-02-19T14:35:08.738838+00:00"
+    description: NOI published in federal register
+    public_access: "true"
+    parent_event_id: 0
+    related_engagement_id: 0
+  - id: 2
+    case_event_id: "2"
+    process_id: "1"
+    event_name: "Scoping complete"
+    event_date: "2025-03-12"
+    event_type: ""
+    source: ""
+    status: completed
+    outcome: ""
+    datetime: "2025-03-12T17:00:00+00:00"
+    created_at: "2025-02-19T14:36:08.738838+00:00"
+    description: Scoping for the project is complete.
+    public_access: "true"
+    parent_event_id: 0
+    related_engagement_id: 0
+processes:
+  - id: 1
+    process_id: "1"
+    project_id: "1"
+    process_type: "EIS"
+    process_status: "completed"
+    notes: ""
+    lead_agency: "Agency A"
+public_engagement_events:
+  - id: 1
+    event_id: "1"
+    type: "public meeting"
+    date: "2025-04-02"
+    related_process_id: "1"
+    location:
+      type: "physical"
+      details: "Community Center"
+      gis_reference: ""
+    attendance: 50
+    related_document_id: 1
+    end_datetime: "2025-04-02T20:00:00Z"
+    other: null
+    created_at: "2025-02-19T14:44:14.179487+00:00"
+    content_json: {}
+    content_text: I love this!
+    public_access: "false"
+    public_source: "true"
+    response_json: {}
+    response_text: 'Thanks for your input.   '
+    date_submitted: "2025-04-02"
+    commenter_name: Alice
+    method_of_submission: online
+    comment_id: "1"
+    content: "I love this!"
+  - id: 2
+    event_id: "2"
+    type: "notice"
+    date: "2025-04-05"
+    related_process_id: "1"
+    location:
+      type: "virtual"
+      details: "Online webinar"
+      gis_reference: ""
+    attendance: 100
+    related_document_id: 1
+    end_datetime: "2025-04-05T18:00:00Z"
+    other: null
+    created_at: "2025-02-19T14:45:38.29017+00:00"
+    content_json: {}
+    content_text: 'I am worried. '
+    public_access: "false"
+    public_source: "true"
+    response_json: {}
+    response_text: 'Thanks for your input.   '
+    date_submitted: "2025-04-05"
+    commenter_name: Ben
+    method_of_submission: online
+    comment_id: "2"
+    content: "I am worried."
+legal_structures:
+  - id: 1
+    legal_structure_id: "1"
+    title: "National Environmental Policy Act"
+    citation: "42 U.S.C. § 4321 et seq."
+    description: "Federal law requiring environmental impact assessment"
+    text_content: "The National Environmental Policy Act of 1969..."
+    issuing_authority: "U.S. Congress"
+    effective_date: "1970-01-01"
+    compliance_requirements:
+      facts: []
+      duties: ["Prepare environmental impact statements", "Consider alternatives"]
+      actors: ["Federal agencies", "Project sponsors"]
+    context: "Environmental protection"
+    compliance_data: {}
+    url: "https://www.epa.gov/nepa"
+    other: null
+    created_at: "2025-02-19T14:44:14.179487+00:00"
+    content_json: {}
+    content_text: I love this!
+    public_access: "false"
+    public_source: "true"
+    response_json: {}
+    response_text: 'Thanks for your input.   '
+    date_submitted: "2025-04-02"
+    commenter_name: Alice
+    method_of_submission: online
+    related_document_id: "1"
+    comment_id: "1"
+    content: "I love this!"
+  - id: 2
+    legal_structure_id: "2"
+    title: "Council on Environmental Quality Regulations"
+    citation: "40 CFR Parts 1500-1508"
+    description: "Implementing regulations for NEPA"
+    text_content: "These regulations implement the procedural provisions of NEPA..."
+    issuing_authority: "Council on Environmental Quality"
+    effective_date: "1978-07-01"
+    compliance_requirements:
+      facts: []
+      duties: ["Follow NEPA procedures", "Engage public"]
+      actors: ["Federal agencies"]
+    context: "NEPA implementation"
+    compliance_data: {}
+    url: "https://www.ecfr.gov/current/title-40/chapter-V"
+    other: null
+    created_at: "2025-02-19T14:45:38.29017+00:00"
+    content_json: {}
+    content_text: 'I am worried. '
+    public_access: "false"
+    public_source: "true"
+    response_json: {}
+    response_text: 'Thanks for your input.   '
+    date_submitted: "2025-04-05"
+    commenter_name: Ben
+    method_of_submission: online
+    related_document_id: "1"
+    comment_id: "2"
+    content: "I am worried."
+decision_elements:
+  - id: 1
+    decision_element_id: "1"
+    process_model_id: "1"
+    element_title: "Project Size Threshold"
+    element_description: "Determines if project exceeds size threshold requiring EIS"
+    category: "core"
+    threshold: "25 acres minimum"
+    spatial: "false"
+    intersect: "false"
+    measure: "Project footprint area"
+    form_text: "What is the total project area in acres?"
+    form_response_desc: "Numeric value in acres"
+    form_data: {"type": "number", "unit": "acres"}
+    evaluation_method: "Compare against threshold"
+    evaluation_dmn: ""
+    spatial_reference: ""
+    process_model_internal_reference_id: "size_check"
+    parent_decision_element_id: null
+    legal_structure_id: null
+    other: null
+    created_at: "2025-02-19T14:44:14.179487+00:00"
+    content_json: {}
+    content_text: I love this!
+    public_access: "false"
+    public_source: "true"
+    response_json: {}
+    response_text: 'Thanks for your input.   '
+    date_submitted: "2025-04-02"
+    commenter_name: Alice
+    method_of_submission: online
+    related_document_id: "1"
+    comment_id: "1"
+    content: "I love this!"
+  - id: 2
+    decision_element_id: "2"
+    process_model_id: "1"
+    element_title: "Environmental Sensitivity"
+    element_description: "Checks if project is in environmentally sensitive area"
+    category: "limitation"
+    threshold: "Within 1 mile"
+    spatial: "true"
+    intersect: "true"
+    measure: "Distance to sensitive habitat"
+    form_text: "Is the project within 1 mile of sensitive habitat?"
+    form_response_desc: "Yes/No selection"
+    form_data: {"type": "boolean"}
+    evaluation_method: "Spatial intersection analysis"
+    evaluation_dmn: ""
+    spatial_reference: "sensitive_habitats layer with 1 mile buffer"
+    process_model_internal_reference_id: "habitat_check"
+    parent_decision_element_id: null
+    legal_structure_id: 1
+    other: null
+    created_at: "2025-02-19T14:45:38.29017+00:00"
+    content_json: {}
+    content_text: 'I am worried. '
+    public_access: "false"
+    public_source: "true"
+    response_json: {}
+    response_text: 'Thanks for your input.   '
+    date_submitted: "2025-04-05"
+    commenter_name: Ben
+    method_of_submission: online
+    related_document_id: "1"
+    comment_id: "2"
+    content: "I am worried."
+decision_payloads:
+  - id: 1
+    decision_payload_id: "1"
+    process_id: "1"
+    project_id: "1"
+    decision_element_id: "1"
+    payload_data: {"project_area": 30, "unit": "acres"}
+    created_date: "2025-02-19T14:44:14.179487+00:00"
+    data_description: "Project area measurement"
+    evaluation_data: {"input_value": 30, "threshold": 25}
+    response: "30 acres"
+    result: "Exceeds threshold"
+    result_bool: true
+    result_notes: "Project exceeds 25 acre threshold, EIS required"
+    result_data: {"recommendation": "EIS", "trigger": "size_threshold"}
+    result_source: "Automated calculation"
+    parent_payload: null
+    data_annotation: "Measured from project boundaries"
+    evaluation_data_annotation: "High confidence survey data"
+    other: null
+    created_at: "2025-02-19T14:44:14.179487+00:00"
+    content_json: {}
+    content_text: I love this!
+    public_access: "false"
+    public_source: "true"
+    response_json: {}
+    response_text: 'Thanks for your input.   '
+    date_submitted: "2025-04-02"
+    commenter_name: Alice
+    method_of_submission: online
+    related_document_id: "1"
+    comment_id: "1"
+    content: "I love this!"
+  - id: 2
+    decision_payload_id: "2"
+    process_id: "1"
+    project_id: "1"
+    decision_element_id: "2"
+    payload_data: {"within_sensitive_area": false, "distance": "2.5 miles"}
+    created_date: "2025-02-19T14:45:38.29017+00:00"
+    data_description: "Environmental sensitivity check"
+    evaluation_data: {"distance_to_habitat": 2.5, "threshold": 1.0}
+    response: "No"
+    result: "Outside sensitive area"
+    result_bool: false
+    result_notes: "Project is 2.5 miles from nearest sensitive habitat"
+    result_data: {"recommendation": "No additional constraints", "buffer_check": "passed"}
+    result_source: "GIS analysis"
+    parent_payload: null
+    data_annotation: "Based on latest habitat mapping"
+    evaluation_data_annotation: "Medium confidence GIS analysis"
+    other: null
+    created_at: "2025-02-19T14:45:38.29017+00:00"
+    content_json: {}
+    content_text: 'I am worried. '
+    public_access: "false"
+    public_source: "true"
+    response_json: {}
+    response_text: 'Thanks for your input.   '
+    date_submitted: "2025-04-05"
+    commenter_name: Ben
+    method_of_submission: online
+    related_document_id: "1"
+    comment_id: "2"
+    content: "I am worried."
