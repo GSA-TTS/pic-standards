@@ -356,19 +356,6 @@ decision_payloads:
     data_annotation: "Measured from project boundaries"
     evaluation_data_annotation: "High confidence survey data"
     other: null
-    created_at: "2025-02-19T14:44:14.179487+00:00"
-    content_json: {}
-    content_text: I love this!
-    public_access: "false"
-    public_source: "true"
-    response_json: {}
-    response_text: 'Thanks for your input.   '
-    date_submitted: "2025-04-02"
-    commenter_name: Alice
-    method_of_submission: online
-    related_document_id: "1"
-    comment_id: "1"
-    content: "I love this!"
   - id: 2
     decision_payload_id: "2"
     process_id: "1"
@@ -388,16 +375,4 @@ decision_payloads:
     data_annotation: "Based on latest habitat mapping"
     evaluation_data_annotation: "Medium confidence GIS analysis"
     other: null
-    created_at: "2025-02-19T14:45:38.29017+00:00"
-    content_json: {}
-    content_text: 'I am worried. '
-    public_access: "false"
-    public_source: "true"
-    response_json: {}
-    response_text: 'Thanks for your input.   '
-    date_submitted: "2025-04-05"
-    commenter_name: Ben
-    method_of_submission: online
-    related_document_id: "1"
-    comment_id: "2"
-    content: "I am worried."
+ 

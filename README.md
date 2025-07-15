@@ -6,10 +6,11 @@ This repository includes a toolkit for implementation of the data standards, tec
 
 ## Toolkit
 
-The toolkit (found in - [/src](./src)) contains working files for the NEPA and Permitting Data and Technology Standard, versioned by tag.  The current version is v1.0
+The toolkit (found in - [/src](./src)) contains working files for the NEPA and Permitting Data and Technology Standard, versioned by tag.  The current version is v1.1 - This version includes new documentation but no new changes to the data standard structure itself.  
 
 - [JSONschema](./src/jsonschema) - The core of the **NEPA Data Standard** is the [nepa.schema.json](./src/jsonschema/nepa.schema.json) file, which defines the structure and validation rules for NEPA-related data.
 - [Data Standard Crosswalk](./src/crosswalk) - csv file containing a list of all entities, properties, types (postgres), and descriptions.
+- [SQL Database migration](./src/database) - Migration files and seed data to create a sql database with the data standards structure.
 - [JSON](./src/json) - json file(s) including sample data organized in the data standard structure
 - [YAML](./src/yaml) - yaml file(s) including sample data organized in the data standard structure
 - [OpenAPI](./src/openapi) specs - sample yaml and json files that can be used to generate swagger or other documentation (note - there is no API implementation, just documentation)
