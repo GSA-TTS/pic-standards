@@ -3,14 +3,12 @@
  * Ensures all schema files are valid JSON and follow JSON Schema standards
  */
 const path = require('path');
-const {
-  createValidator,
-  loadSchemaFile,
-  findJsonFiles,
-  validateJsonFile,
-  printSummary,
-  colors
-} = require('./utils/validation-utils');
+
+// Load validation-utils (tests may mock this module and inject a findJsonFiles)
+const validationUtils = require('./utils/validation-utils');
+const { createValidator, loadSchemaFile, colors, findJsonFiles: vuFindJsonFiles } = validationUtils;
+const { findJsonFiles: fuFindJsonFiles } = require('./utils/file-utils');
+const findJsonFiles = vuFindJsonFiles || fuFindJsonFiles;
 
 /**
  * Extract and display detailed information about schema properties
@@ -215,7 +213,7 @@ function gatherSchemaStatistics(schema) {
 
   // Count definition properties
   if (schema.definitions) {
-    for (const [defName, defSchema] of Object.entries(schema.definitions)) {
+    for (const defSchema of Object.values(schema.definitions)) {
       if (defSchema.properties) {
         countProperties(defSchema.properties, defSchema.required || []);
       }
@@ -309,9 +307,27 @@ if (require.main === module) {
   }
   
   const success = validateSchemas(targetDir, verbose);
-  
-  printSummary(success, 'schema validation');
+  // Patch: generate and print proper summary to avoid TypeError
+  const { generateSummaryReport, printSummary } = require('./utils/error-reporting');
+  let summary;
+  if (typeof success === 'boolean') {
+    summary = generateSummaryReport({
+      valid: success,
+      entityCounts: {},
+      rootErrors: success ? [] : [{ message: 'Validation failed' }],
+      entityErrors: []
+    }, { totalFiles: 1 });
+  } else {
+    summary = success;
+  }
+  printSummary(summary);
   process.exit(success ? 0 : 1);
 }
 
-module.exports = { validateSchemas };
+// Export for testing internals (helps unit tests cover display & stats branches)
+module.exports = {
+  validateSchemas,
+  displaySchemaProperties,
+  displayVerboseSchemaInfo,
+  gatherSchemaStatistics
+};

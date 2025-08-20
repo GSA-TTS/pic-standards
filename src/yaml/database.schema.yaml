@@ -3,55 +3,6 @@ definitions:
   Database:
     additionalProperties: false
     properties:
-      graphql_public:
-        additionalProperties: false
-        properties:
-          CompositeTypes:
-            additionalProperties: false
-            type: object
-          Enums:
-            additionalProperties: false
-            type: object
-          Functions:
-            additionalProperties: false
-            properties:
-              graphql:
-                additionalProperties: false
-                properties:
-                  Args:
-                    additionalProperties: false
-                    properties:
-                      extensions:
-                        $ref: '#/definitions/Json'
-                      operationName:
-                        type: string
-                      query:
-                        type: string
-                      variables:
-                        $ref: '#/definitions/Json'
-                    type: object
-                  Returns:
-                    $ref: '#/definitions/Json'
-                required:
-                  - Args
-                  - Returns
-                type: object
-            required:
-              - graphql
-            type: object
-          Tables:
-            additionalProperties: false
-            type: object
-          Views:
-            additionalProperties: false
-            type: object
-        required:
-          - Tables
-          - Views
-          - Functions
-          - Enums
-          - CompositeTypes
-        type: object
       public:
         additionalProperties: false
         properties:
@@ -92,71 +43,95 @@ definitions:
                       assigned_entity:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       created_at:
                         type: string
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       datetime:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       following_segment_name:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       name:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       outcome:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       parent_event_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       parent_process_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       public_access:
                         type:
                           - boolean
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
                       related_document_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       related_engagement_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       source:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       status:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       tier:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       type:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     type: object
                   Relationships:
                     items:
@@ -265,86 +240,116 @@ definitions:
                       assigned_entity:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       created_at:
                         type: string
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       datetime:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       following_segment_name:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       name:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       outcome:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       parent_event_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       parent_process_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       public_access:
                         type:
                           - boolean
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
                       related_document_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       related_engagement_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       source:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       status:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       tier:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       type:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     required:
                       - assigned_entity
                       - created_at
+                      - data_record_version
+                      - data_source_agency
+                      - data_source_system
                       - datetime
                       - description
                       - following_segment_name
                       - id
+                      - last_updated
                       - name
                       - other
                       - outcome
                       - parent_event_id
                       - parent_process_id
                       - public_access
+                      - record_owner_agency
                       - related_document_id
                       - related_engagement_id
+                      - retrieved_timestamp
                       - source
                       - status
                       - tier
@@ -356,71 +361,95 @@ definitions:
                       assigned_entity:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       created_at:
                         type: string
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       datetime:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       following_segment_name:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       name:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       outcome:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       parent_event_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       parent_process_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       public_access:
                         type:
                           - boolean
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
                       related_document_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       related_engagement_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       source:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       status:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       tier:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       type:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     type: object
                 required:
                   - Row
@@ -437,51 +466,75 @@ definitions:
                       commenter_entity:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       content_json:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       content_text:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       created_at:
                         type: string
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       date_submitted:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       parent_document_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       public_acess:
                         type:
                           - boolean
-                          - 'null'
+                          - "null"
                       public_source:
                         type:
                           - boolean
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
                       response_json:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       response_text:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       submission_method:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     type: object
                   Relationships:
                     items:
@@ -526,64 +579,94 @@ definitions:
                       commenter_entity:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       content_json:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       content_text:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       created_at:
                         type: string
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       date_submitted:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       parent_document_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       public_acess:
                         type:
                           - boolean
-                          - 'null'
+                          - "null"
                       public_source:
                         type:
                           - boolean
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
                       response_json:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       response_text:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       submission_method:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     required:
                       - commenter_entity
                       - content_json
                       - content_text
                       - created_at
+                      - data_record_version
+                      - data_source_agency
+                      - data_source_system
                       - date_submitted
                       - id
+                      - last_updated
                       - other
                       - parent_document_id
                       - public_acess
                       - public_source
+                      - record_owner_agency
                       - response_json
                       - response_text
+                      - retrieved_timestamp
                       - submission_method
                     type: object
                   Update:
@@ -592,51 +675,75 @@ definitions:
                       commenter_entity:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       content_json:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       content_text:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       created_at:
                         type: string
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       date_submitted:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       parent_document_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       public_acess:
                         type:
                           - boolean
-                          - 'null'
+                          - "null"
                       public_source:
                         type:
                           - boolean
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
                       response_json:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       response_text:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       submission_method:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     type: object
                 required:
                   - Row
@@ -653,79 +760,111 @@ definitions:
                       category:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       created_at:
                         type: string
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       evaluation_dmn:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       evaluation_method:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      expected_evaluation_data:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: "null"
                       form_data:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       form_response_desc:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       form_text:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
                       intersect:
                         type:
                           - boolean
-                          - 'null'
+                          - "null"
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       legal_structure_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       measure:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       parent_decision_element_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       process_model:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       process_model_internal_reference_id:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
+                      response_data:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       spatial:
                         type:
                           - boolean
-                          - 'null'
+                          - "null"
                       spatial_reference:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       threshold:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       title:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     type: object
                   Relationships:
                     items:
@@ -802,96 +941,136 @@ definitions:
                       category:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       created_at:
                         type: string
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       evaluation_dmn:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       evaluation_method:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      expected_evaluation_data:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: "null"
                       form_data:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       form_response_desc:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       form_text:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
                       intersect:
                         type:
                           - boolean
-                          - 'null'
+                          - "null"
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       legal_structure_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       measure:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       parent_decision_element_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       process_model:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       process_model_internal_reference_id:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
+                      response_data:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       spatial:
                         type:
                           - boolean
-                          - 'null'
+                          - "null"
                       spatial_reference:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       threshold:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       title:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     required:
                       - category
                       - created_at
+                      - data_record_version
+                      - data_source_agency
+                      - data_source_system
                       - description
                       - evaluation_dmn
                       - evaluation_method
+                      - expected_evaluation_data
                       - form_data
                       - form_response_desc
                       - form_text
                       - id
                       - intersect
+                      - last_updated
                       - legal_structure_id
                       - measure
                       - other
                       - parent_decision_element_id
                       - process_model
                       - process_model_internal_reference_id
+                      - record_owner_agency
+                      - response_data
+                      - retrieved_timestamp
                       - spatial
                       - spatial_reference
                       - threshold
@@ -903,79 +1082,111 @@ definitions:
                       category:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       created_at:
                         type: string
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       evaluation_dmn:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       evaluation_method:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      expected_evaluation_data:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: "null"
                       form_data:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       form_response_desc:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       form_text:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
                       intersect:
                         type:
                           - boolean
-                          - 'null'
+                          - "null"
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       legal_structure_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       measure:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       parent_decision_element_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       process_model:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       process_model_internal_reference_id:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
+                      response_data:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       spatial:
                         type:
                           - boolean
-                          - 'null'
+                          - "null"
                       spatial_reference:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       threshold:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       title:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     type: object
                 required:
                   - Row
@@ -991,76 +1202,104 @@ definitions:
                     properties:
                       created_at:
                         type: string
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
+                      document_files:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: "null"
                       document_revision:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       document_summary:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       document_toc:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       document_type:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       notes:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       parent_process_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       prepared_by:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       public_access:
                         type:
                           - boolean
-                          - 'null'
+                          - "null"
                       publish_date:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
                       related_document_id:
                         type:
                           - number
-                          - 'null'
-                      revision_no:
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
+                      revision_number:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       status:
                         type:
                           - string
-                          - 'null'
-                      supplement_no:
+                          - "null"
+                      supplement_number:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       title:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       url:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       volume_title:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     type: object
                   Relationships:
                     items:
@@ -1104,93 +1343,128 @@ definitions:
                     properties:
                       created_at:
                         type: string
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
+                      document_files:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: "null"
                       document_revision:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       document_summary:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       document_toc:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       document_type:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       notes:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       parent_process_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       prepared_by:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       public_access:
                         type:
                           - boolean
-                          - 'null'
+                          - "null"
                       publish_date:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
                       related_document_id:
                         type:
                           - number
-                          - 'null'
-                      revision_no:
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
+                      revision_number:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       status:
                         type:
                           - string
-                          - 'null'
-                      supplement_no:
+                          - "null"
+                      supplement_number:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       title:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       url:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       volume_title:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     required:
                       - created_at
+                      - data_record_version
+                      - data_source_agency
+                      - data_source_system
+                      - document_files
                       - document_revision
                       - document_summary
                       - document_toc
                       - document_type
                       - id
+                      - last_updated
                       - notes
                       - other
                       - parent_process_id
                       - prepared_by
                       - public_access
                       - publish_date
+                      - record_owner_agency
                       - related_document_id
-                      - revision_no
+                      - retrieved_timestamp
+                      - revision_number
                       - status
-                      - supplement_no
+                      - supplement_number
                       - title
                       - url
                       - volume_title
@@ -1200,76 +1474,104 @@ definitions:
                     properties:
                       created_at:
                         type: string
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
+                      document_files:
+                        anyOf:
+                          - $ref: '#/definitions/Json'
+                          - type: "null"
                       document_revision:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       document_summary:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       document_toc:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       document_type:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       notes:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       parent_process_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       prepared_by:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       public_access:
                         type:
                           - boolean
-                          - 'null'
+                          - "null"
                       publish_date:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
                       related_document_id:
                         type:
                           - number
-                          - 'null'
-                      revision_no:
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
+                      revision_number:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       status:
                         type:
                           - string
-                          - 'null'
-                      supplement_no:
+                          - "null"
+                      supplement_number:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       title:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       url:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       volume_title:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     type: object
                 required:
                   - Row
@@ -1286,47 +1588,71 @@ definitions:
                       attendance:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       created_at:
                         type: string
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       end_datetime:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       location:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       notes:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       parent_process_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       participation:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
                       related_document_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       start_datetime:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       type:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     type: object
                   Relationships:
                     items:
@@ -1403,58 +1729,88 @@ definitions:
                       attendance:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       created_at:
                         type: string
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       end_datetime:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       location:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       notes:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       parent_process_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       participation:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
                       related_document_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       start_datetime:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       type:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     required:
                       - attendance
                       - created_at
+                      - data_record_version
+                      - data_source_agency
+                      - data_source_system
                       - end_datetime
                       - id
+                      - last_updated
                       - location
                       - notes
                       - other
                       - parent_process_id
                       - participation
+                      - record_owner_agency
                       - related_document_id
+                      - retrieved_timestamp
                       - start_datetime
                       - type
                     type: object
@@ -1464,47 +1820,71 @@ definitions:
                       attendance:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       created_at:
                         type: string
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       end_datetime:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       location:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       notes:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       parent_process_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       participation:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
                       related_document_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       start_datetime:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       type:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     type: object
                 required:
                   - Row
@@ -1521,83 +1901,107 @@ definitions:
                       address:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       centroid_lat:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       centroid_lon:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       container_inventory:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       created_at:
                         type: string
                       creator:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       creator_contact:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       data_container:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       extent:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       map_image:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       notes:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       parent_case_event_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       parent_comment_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       parent_document_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       parent_engagement_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       parent_process_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       parent_project_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       updated_last:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     type: object
                   Relationships:
                     items:
@@ -1802,83 +2206,107 @@ definitions:
                       address:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       centroid_lat:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       centroid_lon:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       container_inventory:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       created_at:
                         type: string
                       creator:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       creator_contact:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       data_container:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       extent:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       map_image:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       notes:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       parent_case_event_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       parent_comment_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       parent_document_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       parent_engagement_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       parent_process_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       parent_project_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       updated_last:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     required:
                       - address
                       - centroid_lat
@@ -1888,9 +2316,13 @@ definitions:
                       - creator
                       - creator_contact
                       - data_container
+                      - data_record_version
+                      - data_source_agency
+                      - data_source_system
                       - description
                       - extent
                       - id
+                      - last_updated
                       - map_image
                       - notes
                       - other
@@ -1900,6 +2332,8 @@ definitions:
                       - parent_engagement_id
                       - parent_process_id
                       - parent_project_id
+                      - record_owner_agency
+                      - retrieved_timestamp
                       - updated_last
                     type: object
                   Update:
@@ -1908,83 +2342,107 @@ definitions:
                       address:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       centroid_lat:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       centroid_lon:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       container_inventory:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       created_at:
                         type: string
                       creator:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       creator_contact:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       data_container:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       extent:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       map_image:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       notes:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       parent_case_event_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       parent_comment_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       parent_document_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       parent_engagement_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       parent_process_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       parent_project_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       updated_last:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     type: object
                 required:
                   - Row
@@ -2001,59 +2459,83 @@ definitions:
                       access_info:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       access_method:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       bot_right_lat:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       bot_right_lon:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       container_reference:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       coordinate_system:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       created_at:
                         type: string
                       data_match:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       format:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       parent_gis:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       purpose:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       top_left_lat:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       top_left_lon:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                     type: object
                   Relationships:
                     items:
@@ -2098,59 +2580,83 @@ definitions:
                       access_info:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       access_method:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       bot_right_lat:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       bot_right_lon:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       container_reference:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       coordinate_system:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       created_at:
                         type: string
                       data_match:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       format:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       parent_gis:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       purpose:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       top_left_lat:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       top_left_lon:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                     required:
                       - access_info
                       - access_method
@@ -2160,11 +2666,17 @@ definitions:
                       - coordinate_system
                       - created_at
                       - data_match
+                      - data_record_version
+                      - data_source_agency
+                      - data_source_system
                       - format
                       - id
+                      - last_updated
                       - other
                       - parent_gis
                       - purpose
+                      - record_owner_agency
+                      - retrieved_timestamp
                       - top_left_lat
                       - top_left_lon
                     type: object
@@ -2174,59 +2686,83 @@ definitions:
                       access_info:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       access_method:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       bot_right_lat:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       bot_right_lon:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       container_reference:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       coordinate_system:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       created_at:
                         type: string
                       data_match:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       format:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       parent_gis:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       purpose:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       top_left_lat:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       top_left_lon:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                     type: object
                 required:
                   - Row
@@ -2243,43 +2779,67 @@ definitions:
                       citation:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       compliance_data:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       context:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       created_at:
                         type: string
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       effective_date:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
                       issuing_authority:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       title:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       url:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     type: object
                   Relationships:
                     maxItems: 0
@@ -2291,53 +2851,83 @@ definitions:
                       citation:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       compliance_data:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       context:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       created_at:
                         type: string
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       effective_date:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
                       issuing_authority:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       title:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       url:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     required:
                       - citation
                       - compliance_data
                       - context
                       - created_at
+                      - data_record_version
+                      - data_source_agency
+                      - data_source_system
                       - description
                       - effective_date
                       - id
                       - issuing_authority
+                      - last_updated
                       - other
+                      - record_owner_agency
+                      - retrieved_timestamp
                       - title
                       - url
                     type: object
@@ -2347,43 +2937,67 @@ definitions:
                       citation:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       compliance_data:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       context:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       created_at:
                         type: string
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       effective_date:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
                       issuing_authority:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       title:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       url:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     type: object
                 required:
                   - Row
@@ -2402,65 +3016,89 @@ definitions:
                       data_annotation:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       data_description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       evaluation_data:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       evaluation_data_annotation:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       parent_payload:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       process:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       process_decision_element:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       project:
                         type:
                           - number
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
                       response:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       result:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       result_bool:
                         type:
                           - boolean
-                          - 'null'
+                          - "null"
                       result_data:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       result_notes:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       result_source:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                     type: object
                   Relationships:
                     items:
@@ -2474,8 +3112,7 @@ definitions:
                             minItems: 1
                             type: array
                           foreignKeyName:
-                            const: >-
-                              process_decision_payload_process_decision_element_fkey
+                            const: process_decision_payload_process_decision_element_fkey
                             type: string
                           isOneToOne:
                             const: false
@@ -2572,83 +3209,113 @@ definitions:
                       data_annotation:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       data_description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       evaluation_data:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       evaluation_data_annotation:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       parent_payload:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       process:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       process_decision_element:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       project:
                         type:
                           - number
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
                       response:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       result:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       result_bool:
                         type:
                           - boolean
-                          - 'null'
+                          - "null"
                       result_data:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       result_notes:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       result_source:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                     required:
                       - created_at
                       - data_annotation
                       - data_description
+                      - data_record_version
+                      - data_source_agency
+                      - data_source_system
                       - evaluation_data
                       - evaluation_data_annotation
                       - id
+                      - last_updated
                       - other
                       - parent_payload
                       - process
                       - process_decision_element
                       - project
+                      - record_owner_agency
                       - response
                       - result
                       - result_bool
                       - result_data
                       - result_notes
                       - result_source
+                      - retrieved_timestamp
                     type: object
                   Update:
                     additionalProperties: false
@@ -2658,65 +3325,89 @@ definitions:
                       data_annotation:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       data_description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       evaluation_data:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       evaluation_data_annotation:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       parent_payload:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       process:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       process_decision_element:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       project:
                         type:
                           - number
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
                       response:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       result:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       result_bool:
                         type:
                           - boolean
-                          - 'null'
+                          - "null"
                       result_data:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       result_notes:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       result_source:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                     type: object
                 required:
                   - Row
@@ -2733,91 +3424,119 @@ definitions:
                       agency_id:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       comment_end:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       comment_start:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       complete_date:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       cooperating_agencies:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       created_at:
                         type: string
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       federal_id:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
                       joint_lead_agency:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       lead_agency:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       notes:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       outcome:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       parent_process_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       parent_project_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       participating_agencies:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      process_code:
+                        type:
+                          - string
+                          - "null"
                       process_model:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       purpose_need:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       stage:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       start_date:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       status:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       type:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     type: object
                   Relationships:
                     items:
@@ -2894,91 +3613,119 @@ definitions:
                       agency_id:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       comment_end:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       comment_start:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       complete_date:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       cooperating_agencies:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       created_at:
                         type: string
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       federal_id:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
                       joint_lead_agency:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       lead_agency:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       notes:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       outcome:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       parent_process_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       parent_project_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       participating_agencies:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      process_code:
+                        type:
+                          - string
+                          - "null"
                       process_model:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       purpose_need:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       stage:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       start_date:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       status:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       type:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     required:
                       - agency_id
                       - comment_end
@@ -2986,10 +3733,14 @@ definitions:
                       - complete_date
                       - cooperating_agencies
                       - created_at
+                      - data_record_version
+                      - data_source_agency
+                      - data_source_system
                       - description
                       - federal_id
                       - id
                       - joint_lead_agency
+                      - last_updated
                       - lead_agency
                       - notes
                       - other
@@ -2997,8 +3748,11 @@ definitions:
                       - parent_process_id
                       - parent_project_id
                       - participating_agencies
+                      - process_code
                       - process_model
                       - purpose_need
+                      - record_owner_agency
+                      - retrieved_timestamp
                       - stage
                       - start_date
                       - status
@@ -3010,91 +3764,119 @@ definitions:
                       agency_id:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       comment_end:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       comment_start:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       complete_date:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       cooperating_agencies:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       created_at:
                         type: string
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       federal_id:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
                       joint_lead_agency:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       lead_agency:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       notes:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       outcome:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       parent_process_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       parent_project_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       participating_agencies:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      process_code:
+                        type:
+                          - string
+                          - "null"
                       process_model:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       purpose_need:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       stage:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       start_date:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       status:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       type:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     type: object
                 required:
                   - Row
@@ -3111,55 +3893,79 @@ definitions:
                       DMN_model:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       agency:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       bpmn_model:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       created_at:
                         type: string
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       legal_structure_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       legal_structure_text:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       notes:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       parent_model:
                         type:
                           - number
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       screening_desc_json:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       screening_description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       title:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     type: object
                   Relationships:
                     items:
@@ -3204,67 +4010,97 @@ definitions:
                       DMN_model:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       agency:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       bpmn_model:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       created_at:
                         type: string
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       legal_structure_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       legal_structure_text:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       notes:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       parent_model:
                         type:
                           - number
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       screening_desc_json:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       screening_description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       title:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     required:
                       - agency
                       - bpmn_model
                       - created_at
+                      - data_record_version
+                      - data_source_agency
+                      - data_source_system
                       - description
                       - DMN_model
                       - id
+                      - last_updated
                       - legal_structure_id
                       - legal_structure_text
                       - notes
                       - other
                       - parent_model
+                      - record_owner_agency
+                      - retrieved_timestamp
                       - screening_desc_json
                       - screening_description
                       - title
@@ -3275,55 +4111,79 @@ definitions:
                       DMN_model:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       agency:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       bpmn_model:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       created_at:
                         type: string
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       legal_structure_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       legal_structure_text:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       notes:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       parent_model:
                         type:
                           - number
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       screening_desc_json:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       screening_description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       title:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     type: object
                 required:
                   - Row
@@ -3342,73 +4202,97 @@ definitions:
                       current_status:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       funding:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       lead_agency:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       location_lat:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       location_lon:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       location_object:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       location_text:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       parent_project_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       participating_agencies:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       sector:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       sponsor:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       sponsor_contact:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       start_date:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       title:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       type:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     type: object
                   Relationships:
                     maxItems: 0
@@ -3422,79 +4306,107 @@ definitions:
                       current_status:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       funding:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       lead_agency:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       location_lat:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       location_lon:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       location_object:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       location_text:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       parent_project_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       participating_agencies:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       sector:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       sponsor:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       sponsor_contact:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       start_date:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       title:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       type:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     required:
                       - created_at
                       - current_status
+                      - data_record_version
+                      - data_source_agency
+                      - data_source_system
                       - description
                       - funding
                       - id
+                      - last_updated
                       - lead_agency
                       - location_lat
                       - location_lon
@@ -3503,6 +4415,8 @@ definitions:
                       - other
                       - parent_project_id
                       - participating_agencies
+                      - record_owner_agency
+                      - retrieved_timestamp
                       - sector
                       - sponsor
                       - sponsor_contact
@@ -3518,73 +4432,97 @@ definitions:
                       current_status:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       funding:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       lead_agency:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       location_lat:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       location_lon:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       location_object:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       location_text:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       parent_project_id:
                         type:
                           - number
-                          - 'null'
+                          - "null"
                       participating_agencies:
                         type:
                           - string
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                       sector:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       sponsor:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       sponsor_contact:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       start_date:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       title:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       type:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                     type: object
                 required:
                   - Row
@@ -3601,31 +4539,55 @@ definitions:
                       access_policy:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       created_at:
                         type: string
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       name:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       permission_descriptions:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       public:
                         type:
                           - boolean
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                     type: object
                   Relationships:
                     maxItems: 0
@@ -3637,40 +4599,70 @@ definitions:
                       access_policy:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       created_at:
                         type: string
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       name:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       permission_descriptions:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       public:
                         type:
                           - boolean
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                     required:
                       - access_policy
                       - created_at
+                      - data_record_version
+                      - data_source_agency
+                      - data_source_system
                       - description
                       - id
+                      - last_updated
                       - name
                       - other
                       - permission_descriptions
                       - public
+                      - record_owner_agency
+                      - retrieved_timestamp
                     type: object
                   Update:
                     additionalProperties: false
@@ -3678,31 +4670,55 @@ definitions:
                       access_policy:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       created_at:
                         type: string
+                      data_record_version:
+                        type:
+                          - string
+                          - "null"
+                      data_source_agency:
+                        type:
+                          - string
+                          - "null"
+                      data_source_system:
+                        type:
+                          - string
+                          - "null"
                       description:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       id:
                         type: number
+                      last_updated:
+                        type:
+                          - string
+                          - "null"
                       name:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       other:
                         anyOf:
                           - $ref: '#/definitions/Json'
-                          - type: 'null'
+                          - type: "null"
                       permission_descriptions:
                         type:
                           - string
-                          - 'null'
+                          - "null"
                       public:
                         type:
                           - boolean
-                          - 'null'
+                          - "null"
+                      record_owner_agency:
+                        type:
+                          - string
+                          - "null"
+                      retrieved_timestamp:
+                        type:
+                          - string
+                          - "null"
                     type: object
                 required:
                   - Row
@@ -3736,7 +4752,7 @@ definitions:
           - CompositeTypes
         type: object
     required:
-      - graphql_public
+      - __InternalSupabase
       - public
     type: object
   Json:
@@ -3744,7 +4760,7 @@ definitions:
       - type: string
       - type: number
       - type: boolean
-      - type: 'null'
+      - type: "null"
       - additionalProperties:
           anyOf:
             - $ref: '#/definitions/Json'
@@ -3753,4 +4769,3 @@ definitions:
       - items:
           $ref: '#/definitions/Json'
         type: array
-

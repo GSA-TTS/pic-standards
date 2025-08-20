@@ -6,7 +6,8 @@ This repository includes a toolkit for implementation of the data standards, tec
 
 ## Toolkit
 
-The toolkit (found in - [/src](./src)) contains working files for the NEPA and Permitting Data and Technology Standard, versioned by tag.  The current version is v1.1 - This version includes new documentation but no new changes to the data standard structure itself.  
+The toolkit (found in - [/src](./src)) contains working files for the NEPA and Permitting Data and Technology Standard, versioned by tag.  The current version is 1.2; changes include additional fields to identify record origin and some minor updates to fields.  The best way to check these changes is with the SQL database migration file in the database folder. 
+The previous version was 1.1 - this version included new documentation but no new changes to the data standard structure itself.  
 
 - [JSONschema](./src/jsonschema) - The core of the **NEPA Data Standard** is the [nepa.schema.json](./src/jsonschema/nepa.schema.json) file, which defines the structure and validation rules for NEPA-related data.
 - [Data Standard Crosswalk](./src/crosswalk) - csv file containing a list of all entities, properties, types (postgres), and descriptions.
@@ -17,6 +18,40 @@ The toolkit (found in - [/src](./src)) contains working files for the NEPA and P
 
 
 Sample data is entirely notional to illustrate data structure and does not reflect any actual projects, environmental review or permitting, or other formal position of the US government related to permitting or environmental review. In some cases sample data is synthetically generated. No endorsement is implied in this sample data.
+
+## Changelog
+
+Version 1.0 to 1.1: 
+
+- Added SQL database files to toolkit, but did not change any data structure.  
+
+Version 1.1 to 1.2: 
+- New Provenance Properties (added to all tables):
+  - data_record_version: The version of the record, for tracking updates or changes to the data.
+  - data_source_agency: The name of the agency or organization that provided the data.
+  - data_source_system: The system or database where the data originally came from.
+  - last_updated: The date and time when the record was last updated.
+  - record_owner_agency: The agency responsible for maintaining or “owning” this record.
+  - retrieved_timestamp: The date and time when this record was retrieved from its source.
+
+- Other Table-Specific Additions:
+
+  - decision_element table: 
+    - expected_evaluation_data: Stores expected evaluation information in JSON format.
+    - response_data: Stores response data in JSON format.
+
+  - document table:
+    - document_files: Stores files related to the document in JSON format.
+  - process_instance table:
+    - process_code: Stores a code identifying the process instance.
+
+- Column Type Changes:
+
+  - For the document and process_decision_payload tables, existing columns were changed from text to JSON format:
+    - document_summary and document_toc are now stored as JSON.
+    - result_data in process_decision_payload is now stored as JSON.
+
+
 
 ## Documentation
 

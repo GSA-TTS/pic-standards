@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://permitting.innovation.gov/schemas/v1.0.0/nepa.schema.json",
+  "$id": "https://permitting.innovation.gov/schemas/v1.2.0/nepa.schema.json",
   "title": "NEPA Data Standard",
   "description": "Data standards for the environmental review process conducted under the National Environmental Policy Act (NEPA). This standard provides a framework to ensure that all environmental, social, and economic data collected, used, and submitted during NEPA reviews adhere to consistent definitions, formats, and protocols.",
   "definitions": {
@@ -8,77 +8,28 @@
       "type": "object",
       "description": "Represents the activity or decision requiring a NEPA review process. A project generally has a relationship with a GIS object defining its location, which establishes the physical footprint of the action.",
       "required": [
-        "project_id",
-        "project_title",
-        "project_description",
-        "project_sector",
-        "project_sponsor",
-        "lead_agency",
-        "location"
+        "id",
+        "title",
+        "description",
+        "sponsor"
       ],
       "properties": {
         "id": {
           "type": "integer",
-          "description": "Database primary key identifier"
-        },
-        "project_id": {
-          "type": "string",
-          "description": "Unique identification number for the project"
-        },
-        "project_title": {
-          "type": "string",
-          "description": "Descriptive name of the project"
-        },
-        "project_description": {
-          "type": "string",
-          "description": "Summary of the project's goals and scope"
-        },
-        "project_sector": {
-          "anyOf": [
-            {
-              "type": "string",
-              "enum": [
-                "energy",
-                "transportation",
-                "land management"
-              ],
-              "description": "High-level project category (e.g., energy, transportation, land management)"
-            },
-            {
-              "type": "string"
-            }
-          ],
-          "description": "The sector or industry of the project"
-        },
-        "project_sponsor": {
-          "type": "object",
-          "description": "Name of responsible entity, organization, or person and contact card information",
-          "properties": {
-            "name": {
-              "type": "string",
-              "description": "Name of the responsible entity or organization"
-            },
-            "contact_info": {
-              "type": "string",
-              "description": "Contact information for the project sponsor"
-            }
-          },
-          "required": [
-            "name"
-          ]
+          "description": "database id"
         },
         "lead_agency": {
           "type": "string",
-          "description": "Federal agency that supervises preparation of the environmental documents for the project"
+          "description": "Federal agency that supervises preparation of the environmental documents for the project."
         },
         "participating_agencies": {
-          "type": "array",
+          "type": "string",
           "items": {
             "type": "string"
           },
-          "description": "Other involved agencies"
+          "description": "Other involved agencies."
         },
-        "location": {
+        "location_object": {
           "type": "object",
           "description": "Geographic area including GIS data",
           "properties": {
@@ -95,18 +46,6 @@
             "description"
           ]
         },
-        "project_type": {
-          "type": "string",
-          "description": "Classification, a sub-type of sector (pipeline, highway, habitat restoration)"
-        },
-        "funding_source": {
-          "type": "string",
-          "description": "Link to federal, state, local or other funding by reference (e.g., grant program, loan guarantee, appropriated funds)"
-        },
-        "notes": {
-          "type": "string",
-          "description": "Miscellaneous notes about the project"
-        },
         "start_date": {
           "type": "string",
           "format": "date",
@@ -120,31 +59,97 @@
             "paused",
             "completed"
           ],
-          "description": "Current phase of the NEPA, permitting, or other authorization process (aggregated from process status)"
+          "description": "Current phase (pre-application, underway, paused, completed) of the NEPA, permitting, or other authorization process (aggregated from process status)."
         },
         "location_lat": {
           "type": "number",
-          "description": "Latitude coordinate of project location"
+          "description": "Center/centroid of project (shortcut for plotting on a map - should attach GIS data object as well)"
         },
         "location_lon": {
           "type": "number",
-          "description": "Longitude coordinate of project location"
+          "description": "Center/centroid of project (shortcut for plotting on a map - should attach GIS data object as well)"
         },
         "sponsor_contact": {
+          "type": "object",
+          "description": "Name of responsible entity, organization, or person (contact information json object)"
+        },
+        "data_record_version": {
           "type": "string",
-          "description": "Contact information for project sponsor"
+          "description": "This is the version of this data record."
+        },
+        "data_source_agency": {
+          "type": "string",
+          "description": "This is the agency from which this data record was sent or retrieved or in which it is stored, which may be different than the record owner."
+        },
+        "data_source_system": {
+          "type": "string",
+          "description": "This is the system from which this data record was sent or retrieved or in which it is stored."
+        },
+        "last_updated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "This is the last update of the data record in the system."
+        },
+        "record_owner_agency": {
+          "type": "string",
+          "description": "This is the owner of the original data, generally the authoritative data source."
+        },
+        "retrieved_timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "This is the timestamp of a retrieval or transmission (e.g. responding to an API call)."
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created"
+        },
+        "title": {
+          "type": "string",
+          "description": "Descriptive name of the project."
+        },
+        "description": {
+          "type": "string",
+          "description": "Summary of the project\u2019s goals and scope."
+        },
+        "sector": {
+          "type": "string",
+          "description": "High-level project category (e.g., energy, transportation, land management)."
+        },
+        "type": {
+          "type": "string",
+          "description": "Classification, a sub-type of sector (pipeline, highway, habitat restoration)."
+        },
+        "funding": {
+          "type": "string",
+          "description": "Link to federal, state, local or other funding by reference (e.g., grant program, loan guarantee, appropriated funds)"
+        },
+        "sponsor": {
+          "type": "string",
+          "description": "Name of responsible entity, organization, or person."
+        },
+        "parent_project_id": {
+          "type": "integer",
+          "description": "If nesting projects, reference to the parent project's ID. "
+        },
+        "location_text": {
+          "type": "string",
+          "description": "Text field to specify location, eg. address or Well Known Text, WKT"
+        },
+        "other": {
+          "type": "object",
+          "description": "This jsonb field should be used for additional data structures as needed. "
         }
       },
       "additionalProperties": true
     },
-    "process": {
+    "process_instance": {
       "type": "object",
       "description": "The specific type of environmental review, permit, or authorization. cA process is associated with or nested beneath a project and will have documents associated and nested beneath it.",
       "required": [
-        "process_id",
-        "project_id",
-        "process_type",
-        "process_status",
+        "id",
+        "parent_project_id",
+        "type",
+        "status",
         "lead_agency"
       ],
       "properties": {
@@ -152,36 +157,32 @@
           "type": "integer",
           "description": "Database primary key identifier"
         },
-        "parent_process_id": {
+
+        "created_at": {
           "type": "string",
+          "description": "created"
+        },
+        "parent_process_id": {
+          "type": "integer",
           "description": "Reference to Process ID of parent process, if applicable"
         },
-        "process_id": {
-          "type": "string",
-          "description": "Unique identification number for the process within a project"
-        },
-        "project_id": {
-          "type": "string",
+        "parent_project_id": {
+          "type": "integer",
           "description": "Reference to Project ID of parent process"
         },
         "agency_id": {
           "type": "string",
           "description": "Process-specific ID assigned by agency, if assigned"
         },
-        "federal_unique_id": {
+        "federal_id": {
           "type": "string",
           "description": "Unique identification number assigned at federal level"
         },
-        "process_type": {
+        "type": {
           "type": "string",
-          "enum": [
-            "CE",
-            "EA",
-            "EIS"
-          ],
           "description": "Level of NEPA review or other permit or authorization (see Permitting Council Federal Environmental Review and Authorization Inventory)"
         },
-        "process_status": {
+        "status": {
           "anyOf": [
             {
               "type": "string",
@@ -197,9 +198,9 @@
               "type": "string"
             }
           ],
-          "description": "Current status of the NEPA process"
+          "description": "Current status of the process"
         },
-        "process_stage": {
+        "stage": {
           "type": "string",
           "description": "Current state of process, may be derived from the last case event with this Process ID"
         },
@@ -208,12 +209,12 @@
           "format": "date",
           "description": "Initiation date of the process"
         },
-        "completion_date": {
+        "complete_date": {
           "type": "string",
           "format": "date",
           "description": "Conclusion date of the process"
         },
-        "process_outcome": {
+        "outcome": {
           "type": "string",
           "description": "Result (e.g., Record of Decision, permit issuance)"
         },
@@ -239,16 +240,12 @@
           },
           "description": "Other agencies involved in the process"
         },
-        "notes": {
-          "type": "string",
-          "description": "Miscellaneous notes about the process"
-        },
-        "comment_period_start": {
+        "comment_start": {
           "type": "string",
           "format": "date-time",
           "description": "Start date and time of public comment period"
         },
-        "comment_period_end": {
+        "comment_end": {
           "type": "string",
           "format": "date-time",
           "description": "End date and time of public comment period"
@@ -257,16 +254,56 @@
           "type": "string",
           "description": "Purpose and need statement for the project"
         },
+        "notes": {
+          "type": "string",
+          "description": "Miscellaneous notes on process instance model"
+        },
+        "other": {
+          "type": "object",
+          "description": "This jsonb field should be used for additional data structures as needed."
+        },
         "description": {
           "type": "string",
           "description": "Detailed description of the process"
         },
-        "process_model_id": {
+        "process_model": {
           "anyOf": [
-            { "type": "string" },
-            { "type": "null" }
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
           ],
           "description": "Reference to the process model used for this process instance"
+        },
+        "record_owner_agency": {
+          "type": "string",
+          "description": "This is the owner of the original data, generally the authoritative data source."
+        },
+        "data_source_agency": {
+          "type": "string",
+          "description": "This is the agency from which this data record was sent or retrieved or in which it is stored, which may be different than the record owner."
+        },
+        "data_source_system": {
+          "type": "string",
+          "description": "This is the system from which this data record was sent or retrieved or in which it is stored."
+        },
+        "data_record_version": {
+          "type": "string",
+          "description": "This is the version of this data record."
+        },
+        "last_updated": {
+          "type": "string",
+          "description": "This is the last update of the data record in the system."
+        },
+        "retrieved_timestamp": {
+          "type": "string",
+          "description": "This is the timestamp of a retrieval or transmission (e.g. responding to an API call)."
+        },
+        "process_code": {
+          "type": "string",
+          "description": "Short internal process code used for mapping process types to external or legacy systems."
         }
       },
       "additionalProperties": true
@@ -275,8 +312,8 @@
       "type": "object",
       "description": "Official records created during the NEPA review. The document object includes both metadata identifying the document and its context and a container for summary information that lays out, at a minimum, the table of contents of the document. Documents are also likely to have many GIS objects associated with them.",
       "required": [
-        "document_id",
-        "process_id",
+        "id",
+        "parent_process_id",
         "document_type",
         "title",
         "prepared_by"
@@ -284,118 +321,135 @@
       "properties": {
         "id": {
           "type": "integer",
-          "description": "Database primary key identifier"
-        },
-        "document_id": {
-          "type": "string",
-          "description": "Unique identification number for the NEPA document"
-        },
-        "process_id": {
-          "type": "string",
-          "description": "Reference to Process ID of parent process"
+          "description": "database id"
         },
         "document_type": {
           "type": "string",
-          "enum": [
-            "NOI",
-            "Draft EIS",
-            "Final EIS",
-            "ROD"
-          ],
-          "description": "Type of document (e.g., NOI, Draft EIS, Final EIS, ROD)"
+          "description": "Document category, such as EIS, EA, etc. "
         },
         "title": {
           "type": "string",
-          "description": "Document title (database field)"
+          "description": "Document title."
         },
         "volume_title": {
           "type": "string",
           "description": "Volume title (e.g., Appendix)"
         },
-        "document_revision": {
-          "type": "string",
-          "description": "Indicates which revision of the document (e.g., first revised Draft EIS)"
-        },
-        "revision_number": {
-          "type": "integer",
-          "description": "Document revision number"
-        },
-        "supplement_number": {
-          "type": "integer",
-          "description": "Document supplement number"
-        },
         "publish_date": {
           "type": "string",
           "format": "date",
-          "description": "Publication or submission date"
+          "description": "Publication or submission date."
         },
         "prepared_by": {
           "type": "string",
-          "description": "Responsible entity that prepared the document"
+          "description": "Responsible entity."
         },
         "status": {
           "type": "string",
-          "description": "Document production phase"
+          "description": "Document production phase. "
         },
         "url": {
           "type": "string",
           "format": "uri",
-          "description": "Online link to document if available"
-        },
-        "related_document_ids": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Unique identification numbers for related documents"
+          "description": "Online link if available."
         },
         "notes": {
           "type": "string",
-          "description": "Miscellaneous notes about the document"
+          "description": "Miscellaneous notes."
         },
         "related_document_id": {
           "type": "integer",
-          "description": "Related document ID (database field)"
+          "description": "Unique identification number for related document (if applicable)"
         },
         "document_summary": {
-          "type": "string",
-          "description": "Document summary (database field)"
+          "type": "object",
+          "description": "container for summary information"
         },
         "document_toc": {
-          "type": "string",
-          "description": "Document table of contents"
+          "type": "object",
+          "description": "the table of contents (or heading structure) of the document."
         },
         "public_access": {
+          "type": "boolean",
+          "description": "Public or restricted."
+        },
+        "data_record_version": {
           "type": "string",
-          "description": "Public access level for the document"
+          "description": "This is the version of this data record."
+        },
+        "data_source_agency": {
+          "type": "string",
+          "description": "This is the agency from which this data record was sent or retrieved or in which it is stored, which may be different than the record owner."
+        },
+        "data_source_system": {
+          "type": "string",
+          "description": "This is the system from which this data record was sent or retrieved or in which it is stored."
+        },
+        "last_updated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "This is the last update of the data record in the system."
+        },
+        "record_owner_agency": {
+          "type": "string",
+          "description": "This is the owner of the original data, generally the authoritative data source."
+        },
+        "retrieved_timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "This is the timestamp of a retrieval or transmission (e.g. responding to an API call)."
+        },
+        "document_files": {
+          "type": "object",
+          "description": "This jsonb field should contain any document files if applicable; this is an optional way of storing or transmitting files and is not necessary as this is primarily a data record for metadata about the document rather than the document itself. "
+        },
+        "created_at": {
+          "type": "string",
+          "description": "creation date"
+        },
+        "parent_process_id": {
+          "type": "integer",
+          "description": "Reference to Process ID of parent process for the document"
+        },
+        "revision_number": {
+          "type": "integer",
+          "description": "Indicates which revision of the document (e.g., first revised Draft EIS) - numeric form"
+        },
+        "document_revision": {
+          "type": "integer",
+          "description": "Indicates which revision of the document (e.g., first revised Draft EIS) - numeric form"
+        },
+        "supplement_number": {
+          "type": "integer",
+          "description": "Indicates supplement number"
+        },
+        "other": {
+          "type": "object",
+          "description": "This jsonb field should be used for additional data structures as needed. "
         }
       },
       "additionalProperties": true
     },
-    "public_comment": {
+    "comment": {
       "type": "object",
       "description": "Feedback submitted by individuals or organizations during the NEPA process",
       "required": [
-        "comment_id",
-        "commenter_name",
-        "content",
+        "id",
+        "commenter_entity",
+        "content_text",
         "date_submitted",
-        "related_document_id"
+        "parent_document_id"
       ],
       "properties": {
         "id": {
           "type": "integer",
           "description": "Database primary key identifier"
         },
-        "comment_id": {
-          "type": "string",
-          "description": "Unique identification number for the comment"
-        },
-        "commenter_name": {
+        "commenter_entity": {
           "type": "string",
           "description": "Name of individual or organization submitting the comment"
         },
-        "content": {
+        "content_text": {
           "type": "string",
           "description": "Text of the comment"
         },
@@ -404,26 +458,21 @@
           "format": "date",
           "description": "Date the comment was submitted"
         },
-        "related_document_id": {
-          "type": "string",
+        "parent_document_id": {
+          "type": "integer",
           "description": "Reference to Document ID of the document to which the comment is related"
         },
-        "method_of_submission": {
+        "submission_method": {
           "type": "string",
-          "enum": [
-            "online",
-            "email",
-            "mail",
-            "in-person"
-          ],
+          
           "description": "Method used to submit the comment"
         },
-        "agency_response": {
+        "response_text": {
           "type": "string",
           "description": "Formal reply from the agency, if applicable"
         },
         "public_source": {
-          "type": "string",
+          "type": "boolean",
           "description": "Public source (database field)"
         },
         "content_json": {
@@ -435,77 +484,75 @@
           "description": "Response as JSON (database field)"
         },
         "public_access": {
+          "type": "boolean",
+          "description": "Public access level for the comment (boolean)"
+        },
+        "other": {
+          "type": "object",
+          "description": "This jsonb field should be used for additional data structures as needed."
+        },
+        "record_owner_agency": {
           "type": "string",
-          "description": "Public access level for the comment"
+          "description": "This is the owner of the original data, generally the authoritative data source."
+        },
+        "data_source_agency": {
+          "type": "string",
+          "description": "This is the agency from which this data record was sent or retrieved or in which it is stored, which may be different than the record owner."
+        },
+        "data_source_system": {
+          "type": "string",
+          "description": "This is the system from which this data record was sent or retrieved or in which it is stored."
+        },
+        "data_record_version": {
+          "type": "string",
+          "description": "This is the version of this data record."
+        },
+        "last_updated": {
+          "type": "string",
+          "description": "This is the last update of the data record in the system."
+        },
+        "retrieved_timestamp": {
+          "type": "string",
+          "description": "This is the timestamp of a retrieval or transmission (e.g. responding to an API call)."
         }
       },
       "additionalProperties": true
     },
-    "public_engagement_event": {
+    "engagement": {
       "type": "object",
       "description": "Opportunities for interaction in the NEPA process, including formal consultation",
       "required": [
-        "event_id",
+        "id",
         "type",
-        "date",
-        "related_process_id"
+        "start_datetime",
+        "parent_process_id"
       ],
       "properties": {
         "id": {
           "type": "integer",
           "description": "Database primary key identifier"
         },
-        "event_id": {
-          "type": "string",
-          "description": "Unique identification number for the event"
-        },
         "type": {
           "type": "string",
-          "enum": [
-            "public meeting",
-            "notice",
-            "solicitation"
-          ],
           "description": "Type of public engagement event"
         },
-        "date": {
+        "start_datetime": {
           "type": "string",
-          "format": "date",
-          "description": "Date of the event"
+          "format": "date-time",
+          "description": "Engagement start date/time"
+        },
+        "end_datetime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Engagement end date/time"
         },
         "location": {
-          "type": "object",
-          "description": "Physical, virtual, or hybrid location of the event",
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": [
-                "physical",
-                "virtual",
-                "hybrid"
-              ],
-              "description": "Type of event location"
-            },
-            "details": {
-              "type": "string",
-              "description": "Specific details about the event location"
-            },
-            "gis_reference": {
-              "type": "string",
-              "description": "Reference to associated GIS data for the event location"
-            }
-          }
-        },
-        "related_process_id": {
           "type": "string",
-          "description": "Reference to Process ID of the associated NEPA process(es) for this event"
+          "description": "Physical, virtual, hybrid. (Note that this may also be attached as a relationship with a GIS object)."
         },
-        "related_document_ids": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Reference to Document ID of the documents released or referenced for this event"
+        "parent_process_id": {
+          "type": "integer",
+          "description": "Reference to Process ID of the associated NEPA process(es) for this event"
         },
         "attendance": {
           "type": "integer",
@@ -516,14 +563,41 @@
           "type": "integer",
           "description": "Related document ID (database field)"
         },
-        "end_datetime": {
-          "type": "string",
-          "format": "date-time",
-          "description": "Event end date and time (database field)"
+        "participation": {
+          "type": "object",
+          "description": "Container for participation data."
         },
-        "participation_method": {
+        "other": {
+          "type": "object",
+          "description": "This jsonb field should be used for additional data structures as needed. "
+        },
+        "notes": {
           "type": "string",
-          "description": "Method of public participation (in-person, virtual, etc.)"
+          "description": "additional notes."
+        },
+        "record_owner_agency": {
+          "type": "string",
+          "description": "This is the owner of the original data, generally the authoritative data source."
+        },
+        "data_source_agency": {
+          "type": "string",
+          "description": "This is the agency from which this data record was sent or retrieved or in which it is stored, which may be different than the record owner."
+        },
+        "data_source_system": {
+          "type": "string",
+          "description": "This is the system from which this data record was sent or retrieved or in which it is stored."
+        },
+        "data_record_version": {
+          "type": "string",
+          "description": "This is the version of this data record."
+        },
+        "last_updated": {
+          "type": "string",
+          "description": "This is the last update of the data record in the system."
+        },
+        "retrieved_timestamp": {
+          "type": "string",
+          "description": "This is the timestamp of a retrieval or transmission (e.g. responding to an API call)."
         }
       },
       "additionalProperties": true
@@ -532,53 +606,28 @@
       "type": "object",
       "description": "Milestones or steps within the NEPA review, tracked in a case management system or other system, such as task management tools or reporting dashboards",
       "required": [
-        "case_event_id",
-        "process_id",
-        "event_name",
-        "event_date",
-        "event_type"
+        "id",
+        "parent_process_id",
+        "name",
+        "datetime",
+        "type"
       ],
       "properties": {
         "id": {
           "type": "integer",
-          "description": "Database primary key identifier"
-        },
-        "case_event_id": {
-          "type": "string",
-          "description": "Unique identification number for the case event"
-        },
-        "process_id": {
-          "type": "string",
-          "description": "Reference to Process ID of the associated NEPA process for this event"
-        },
-        "parent_id": {
-          "type": "string",
-          "description": "Parent ID of the event, if applicable"
-        },
-        "document_id": {
-          "type": "string",
-          "description": "Reference to Document ID of the document related to the event"
-        },
-        "event_name": {
-          "type": "string",
-          "description": "Name of the event"
-        },
-        "event_date": {
-          "type": "string",
-          "format": "date",
-          "description": "Date of the event"
+          "description": "database id"
         },
         "source": {
           "type": "string",
-          "description": "Link to information about the event"
+          "description": "Link to information about the event."
         },
-        "event_type": {
+        "type": {
           "type": "string",
           "description": "Event class (e.g., NOI, ROD)"
         },
         "tier": {
-          "type": "string",
-          "description": "Optional event hierarchy (e.g., Tier 1 NOI, Tier 2 Scoping Complete, Tier 3 Task assigned)"
+          "type": "integer",
+          "description": "Optional event hierarchy (e.g., Tier 1 NOI, Tier 2 Scoping Complete, Tier 3 Task assigned to Jane Doe). "
         },
         "status": {
           "type": "string",
@@ -587,39 +636,85 @@
             "completed",
             "in progress"
           ],
-          "description": "Current status of the event"
+          "description": "Pending, completed, in progress."
         },
         "outcome": {
           "type": "string",
-          "description": "Result or action taken"
+          "description": "Result or action taken."
         },
         "related_document_id": {
           "type": "integer",
-          "description": "Related document ID (database field)"
+          "description": " Reference to Document ID of the document related to the event. Optional."
         },
         "public_access": {
-          "type": "string",
-          "description": "Public access level (database field)"
+          "type": "boolean",
+          "description": "Indicates whether events can be displayed publicly. (Binary Y/N)"
         },
         "description": {
           "type": "string",
-          "description": "Event description (database field)"
+          "description": "Description of event. "
         },
         "assigned_entity": {
           "type": "string",
-          "description": "Assigned entity (database field)"
+          "description": "Responsible individuals or agencies."
         },
         "following_segment_name": {
           "type": "string",
-          "description": "Following segment name (database field)"
+          "description": "Name of segment following this event (e.g. if this is \"start of scoping\" the next segment is \"scoping\")."
         },
         "parent_event_id": {
           "type": "integer",
-          "description": "Parent event ID (database field)"
+          "description": "If applicable, the parent ID of the event. "
         },
         "related_engagement_id": {
           "type": "integer",
-          "description": "Related engagement ID (database field)"
+          "description": "Related engagement event if applicable"
+        },
+        "data_record_version": {
+          "type": "string",
+          "description": "This is the version of this data record."
+        },
+        "data_source_agency": {
+          "type": "string",
+          "description": "This is the agency from which this data record was sent or retrieved or in which it is stored, which may be different than the record owner."
+        },
+        "data_source_system": {
+          "type": "string",
+          "description": "This is the system from which this data record was sent or retrieved or in which it is stored."
+        },
+        "last_updated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "This is the last update of the data record in the system."
+        },
+        "record_owner_agency": {
+          "type": "string",
+          "description": "This is the owner of the original data, generally the authoritative data source."
+        },
+        "retrieved_timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "This is the timestamp of a retrieval or transmission (e.g. responding to an API call)."
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created"
+        },
+        "parent_process_id": {
+          "type": "integer",
+          "description": "Reference to Process ID of the associated NEPA process for this event."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of event"
+        },
+        "datetime": {
+          "type": "string",
+          "description": "Date and time of event"
+        },
+        "other": {
+          "type": "object",
+          "description": "This jsonb field should be used for additional data structures as needed. "
         }
       },
       "additionalProperties": true
@@ -628,58 +723,78 @@
       "type": "object",
       "description": "Geospatial data and metadata associated with NEPA projects",
       "required": [
-        "gis_id"
+        "id"
       ],
       "properties": {
         "id": {
           "type": "integer",
-          "description": "Database primary key identifier"
-        },
-        "gis_id": {
-          "type": "string",
-          "description": "Unique identification number for the GIS data"
+          "description": "database id"
         },
         "creator": {
-          "type": "string",
-          "description": "Creator of the GIS data (optional - may not be present in all implementations)"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Organization or individual.",
+          "type": "string"
         },
         "description": {
-          "type": "string",
-          "description": "Description of the GIS data"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optional description",
+          "type": "string"
         },
         "extent": {
-          "type": "string",
-          "description": "Spatial extent of the GIS data"
-        },
-        "last_updated": {
-          "type": "string",
-          "format": "date-time",
-          "description": "Date and time when the GIS data was last modified"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optional. ",
+          "type": "string"
         },
         "notes": {
-          "type": "string",
-          "description": "Miscellaneous notes about the GIS data"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Miscellaneous notes.",
+          "type": "string"
         },
         "container_inventory": {
-          "type": "object",
-          "description": "Inventory of map image container and GIS data container",
+          "anyOf": [
+            {
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Inventory of map image container and GIS data container in json format (note inventory should be attached through gis_data_element objects, which may include a list of:\n-\tFormat: GeoJSON, Shapefile, KML.\n-\tAccess Method: URL, API, direct upload.\n-\tCoordinate System: Spatial reference system.\n-\tBounding Box: Geographic extent.\n-\tPurpose: Bespoke, analysis, or base map.\n-\tReference to database: Whether this object references an identified GIS analysis in an official inventory.",
           "properties": {
             "format": {
               "type": "string",
-              "enum": [
-                "GeoJSON",
-                "Shapefile",
-                "KML"
-              ],
               "description": "Format of the GIS data"
             },
             "access_method": {
               "type": "string",
-              "enum": [
-                "URL",
-                "API",
-                "direct upload"
-              ],
               "description": "Method to access the GIS data"
             },
             "coordinate_system": {
@@ -717,85 +832,147 @@
               ],
               "description": "Purpose of the GIS data (project-specific, analysis, or foundational layers)"
             }
-          }
+          },
+          "type": "object"
         },
         "parent_project_id": {
-          "type": "integer",
-          "description": "Parent project ID (database field)"
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Reference to Foreign object attached to GIS object (one for each other entity table - expected architecture is that there is one foreign key among all these, not all possible relationships filled in)",
+          "type": "integer"
         },
         "parent_process_id": {
-          "type": "integer",
-          "description": "Parent process ID (database field)"
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Reference to Foreign object attached to GIS object (one for each other entity table - expected architecture is that there is one foreign key among all these, not all possible relationships filled in)",
+          "type": "integer"
         },
         "parent_document_id": {
-          "type": "integer",
-          "description": "Parent document ID (database field)"
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Reference to Foreign object attached to GIS object (one for each other entity table - expected architecture is that there is one foreign key among all these, not all possible relationships filled in)",
+          "type": "integer"
         },
         "parent_case_event_id": {
-          "type": "integer",
-          "description": "Parent case event ID (database field)"
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Reference to Foreign object attached to GIS object (one for each other entity table - expected architecture is that there is one foreign key among all these, not all possible relationships filled in)",
+          "type": "integer"
         },
         "parent_comment_id": {
-          "type": "integer",
-          "description": "Parent comment ID (database field)"
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Reference to Foreign object attached to GIS object (one for each other entity table - expected architecture is that there is one foreign key among all these, not all possible relationships filled in)",
+          "type": "integer"
         },
         "parent_engagement_id": {
-          "type": "integer",
-          "description": "Parent engagement ID (database field)"
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Reference to Foreign object attached to GIS object (one for each other entity table - expected architecture is that there is one foreign key among all these, not all possible relationships filled in)",
+          "type": "integer"
         },
-        "centroid_latitude": {
+        "created_at": {
+          "type": "string",
+          "description": "created date"
+        },
+        "centroid_lat": {
           "type": "number",
-          "description": "Latitude of data centroid"
+          "description": "Option to specify single point or centroid for rapid plotting"
         },
-        "centroid_longitude": {
+        "centroid_lon": {
           "type": "number",
-          "description": "Longitude of data centroid"
+          "description": "Option to specify single point or centroid for rapid plotting"
         },
-        "creator_contact_info": {
-          "type": "string",
-          "description": "Contact information for data creator"
+        "creator_contact": {
+          "type": "object",
+          "description": "Contact card-type data for creator."
         },
-        "map_image_url": {
-          "type": "string",
-          "format": "uri",
-          "description": "URL to map image representation"
+        "map_image": {
+          "type": "object",
+          "description": "map image data "
         },
-        "location_address": {
+        "data_container": {
+          "type": "object",
+          "description": "json container for any attached GIS data"
+        },
+        "address": {
           "type": "string",
-          "description": "Physical address of the location"
+          "description": "address of centroid (if applicable)"
+        },
+        "last_updated": {
+          "type": "string",
+          "description": "Timestamp of last update to this dataset"
+        },
+        "other": {
+          "type": "object",
+          "description": "This jsonb field should be used for additional data structures as needed. "
+        },
+        "record_owner_agency": {
+          "type": "string",
+          "description": "This is the owner of the original data, generally the authoritative data source."
+        },
+        "data_source_agency": {
+          "type": "string",
+          "description": "This is the agency from which this data record was sent or retrieved or in which it is stored, which may be different than the record owner."
+        },
+        "data_source_system": {
+          "type": "string",
+          "description": "This is the system from which this data record was sent or retrieved or in which it is stored."
+        },
+        "data_record_version": {
+          "type": "string",
+          "description": "This is the version of this data record."
+        },
+        "retrieved_timestamp": {
+          "type": "string",
+          "description": "This is the timestamp of a retrieval or transmission (e.g. responding to an API call)."
         }
       },
       "additionalProperties": true
     },
-    "gis_data_element": {
+  "gis_data_element": {
       "type": "object",
       "description": "Individual elements within GIS data containers with specific access and format information",
-      "required": [
-        "gis_element_id",
-        "gis_id",
-        "data_type"
-      ],
       "properties": {
         "id": {
           "type": "integer",
-          "description": "Database primary key identifier"
-        },
-        "gis_element_id": {
-          "type": "string",
-          "description": "Unique identification number for the GIS data element"
-        },
-        "gis_id": {
-          "type": "string",
-          "description": "Reference to parent GIS data entity"
-        },
-        "data_type": {
-          "type": "string",
-          "enum": [
-            "GeoJSON",
-            "Shapefile",
-            "KML"
-          ],
-          "description": "Format of the GIS data element"
+          "description": "database id"
         },
         "container_reference": {
           "type": "string",
@@ -803,32 +980,27 @@
         },
         "access_method": {
           "type": "string",
-          "enum": [
-            "URL",
-            "API",
-            "direct upload"
-          ],
-          "description": "Method to access the GIS data element"
+          "description": "URL, API, direct upload."
         },
         "coordinate_system": {
           "type": "string",
-          "description": "Spatial reference system used for this data element"
+          "description": "Spatial reference system."
         },
         "top_left_lat": {
           "type": "number",
-          "description": "Northern boundary latitude of geographic extent"
+          "description": "Geographic extent."
         },
         "top_left_lon": {
           "type": "number",
-          "description": "Western boundary longitude of geographic extent"
+          "description": "Geographic extent."
         },
         "bot_right_lat": {
           "type": "number",
-          "description": "Southern boundary latitude of geographic extent"
+          "description": "Geographic extent."
         },
         "bot_right_lon": {
           "type": "number",
-          "description": "Eastern boundary longitude of geographic extent"
+          "description": "Geographic extent."
         },
         "purpose": {
           "type": "string",
@@ -837,15 +1009,55 @@
             "analysis",
             "base map"
           ],
-          "description": "Purpose of the GIS data element (project-specific, analysis, or foundational layers)"
+          "description": "1.\tBespoke GIS Data: Project-specific (boundaries, analysis areas).\n2.\tAnalysis GIS Data: Data layers used for analysis (e.g., wetlands inventory).\n3.\tBase Map Data: Foundational layers (streets, elevation).\n"
         },
         "data_match": {
           "type": "string",
-          "description": "Whether this object references an identified GIS analysis in an official inventory"
+          "description": "Whether this object references an identified GIS analysis in an official inventory."
         },
         "access_info": {
           "type": "object",
-          "description": "Instructions for accessing the data element"
+          "description": "instructions for access to data"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created date"
+        },
+        "parent_gis": {
+          "type": "integer",
+          "description": "Parent GIS data entity (accepts parent_gis or gis_id)"
+        },
+        "format": {
+          "type": "string",
+          "description": "GeoJSON, Shapefile, KML. (accepts format or data_type)"
+        },
+        "other": {
+          "type": "object",
+          "description": "This jsonb field should be used for additional data structures as needed. "
+        },
+        "record_owner_agency": {
+          "type": "string",
+          "description": "This is the owner of the original data, generally the authoritative data source."
+        },
+        "data_source_agency": {
+          "type": "string",
+          "description": "This is the agency from which this data record was sent or retrieved or in which it is stored, which may be different than the record owner."
+        },
+        "data_source_system": {
+          "type": "string",
+          "description": "This is the system from which this data record was sent or retrieved or in which it is stored."
+        },
+        "data_record_version": {
+          "type": "string",
+          "description": "This is the version of this data record."
+        },
+        "last_updated": {
+          "type": "string",
+          "description": "This is the last update of the data record in the system."
+        },
+        "retrieved_timestamp": {
+          "type": "string",
+          "description": "This is the timestamp of a retrieval or transmission (e.g. responding to an API call)."
         }
       },
       "additionalProperties": true
@@ -854,37 +1066,65 @@
       "type": "object",
       "description": "Defines stakeholders interacting with the NEPA IT system",
       "required": [
-        "role_id",
+        "id",
         "name"
       ],
       "properties": {
         "id": {
           "type": "integer",
-          "description": "Database primary key identifier"
-        },
-        "role_id": {
-          "type": "string",
-          "description": "Unique identification number for the user role"
+          "description": "database id"
         },
         "name": {
           "type": "string",
-          "description": "Title of the role (e.g., Agency Staff, Public Commenter)"
+          "description": "Title of the role (Agency Staff, Public Commenter)."
         },
         "description": {
           "type": "string",
-          "description": "Responsibilities and access rights"
+          "description": "Responsibilities and access rights."
         },
         "public": {
           "type": "boolean",
-          "description": "Role is member of the broader class of public user/stakeholders"
+          "description": "role is a member of the broader class of public users/stakeholders"
         },
         "access_policy": {
           "type": "object",
-          "description": "Access policy (database field)"
+          "description": "access policy json object"
         },
         "permission_descriptions": {
           "type": "string",
-          "description": "Permission descriptions (database field)"
+          "description": "System access levels description"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created"
+        },
+        "other": {
+          "type": "object",
+          "description": "This jsonb field should be used for additional data structures as needed. "
+        },
+        "record_owner_agency": {
+          "type": "string",
+          "description": "This is the owner of the original data, generally the authoritative data source."
+        },
+        "data_source_agency": {
+          "type": "string",
+          "description": "This is the agency from which this data record was sent or retrieved or in which it is stored, which may be different than the record owner."
+        },
+        "data_source_system": {
+          "type": "string",
+          "description": "This is the system from which this data record was sent or retrieved or in which it is stored."
+        },
+        "data_record_version": {
+          "type": "string",
+          "description": "This is the version of this data record."
+        },
+        "last_updated": {
+          "type": "string",
+          "description": "This is the last update of the data record in the system."
+        },
+        "retrieved_timestamp": {
+          "type": "string",
+          "description": "This is the timestamp of a retrieval or transmission (e.g. responding to an API call)."
         }
       }
     },
@@ -892,52 +1132,80 @@
       "type": "object",
       "description": "Legal, policy, or process data guiding the NEPA process, including thresholds and conditions for level of reviews or other decision criteria",
       "required": [
-        "legal_structure_id",
+        "id",
         "title",
         "citation"
       ],
       "properties": {
         "id": {
           "type": "integer",
-          "description": "Database primary key identifier"
-        },
-        "legal_structure_id": {
-          "type": "string",
-          "description": "Unique identification number for the business rule"
+          "description": "database id"
         },
         "title": {
           "type": "string",
-          "description": "Official name"
+          "description": "Official name."
         },
         "citation": {
           "type": "string",
-          "description": "Legal reference"
+          "description": "Legal reference."
         },
         "description": {
           "type": "string",
-          "description": "Summary and relevance"
+          "description": "Summary and relevance."
         },
         "issuing_authority": {
           "type": "string",
-          "description": "Government body"
+          "description": "Government body."
         },
         "effective_date": {
           "type": "string",
           "format": "date",
-          "description": "Implementation date"
+          "description": "Implementation date."
         },
         "context": {
           "type": "string",
-          "description": "Legal context (database field)"
+          "description": "Full text or excerpt."
         },
         "compliance_data": {
           "type": "object",
-          "description": "Compliance data (database field)"
+          "description": "Procedural mandates, ideally structured as data using an ontology that includes facts (such as thresholds triggering processes), duties, and actors (e.g., FLINT frames). "
         },
         "url": {
           "type": "string",
           "format": "uri",
-          "description": "URL to legal structure documentation"
+          "description": "URL of legal reference (e.g. eCFR)"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created "
+        },
+        "other": {
+          "type": "object",
+          "description": "This jsonb field should be used for additional data structures as needed. "
+        },
+        "record_owner_agency": {
+          "type": "string",
+          "description": "This is the owner of the original data, generally the authoritative data source."
+        },
+        "data_source_agency": {
+          "type": "string",
+          "description": "This is the agency from which this data record was sent or retrieved or in which it is stored, which may be different than the record owner."
+        },
+        "data_source_system": {
+          "type": "string",
+          "description": "This is the system from which this data record was sent or retrieved or in which it is stored."
+        },
+        "data_record_version": {
+          "type": "string",
+          "description": "This is the version of this data record."
+        },
+        "last_updated": {
+          "type": "string",
+          "description": "This is the last update of the data record in the system."
+        },
+        "retrieved_timestamp": {
+          "type": "string",
+          "description": "This is the timestamp of a retrieval or transmission (e.g. responding to an API call)."
         }
       }
     },
@@ -945,75 +1213,125 @@
       "type": "object",
       "description": "Individual criteria or conditions used in NEPA decision-making processes",
       "required": [
-        "decision_element_id",
-        "process_model_id",
-        "element_title",
-        "element_description"
+        "id",
+        "process_model",
+        "title",
+        "description"
       ],
       "properties": {
         "id": {
           "type": "integer",
-          "description": "Database primary key identifier"
-        },
-        "decision_element_id": {
-          "type": "string",
-          "description": "Unique identification number for the decision element"
-        },
-        "process_model_id": {
-          "type": "string",
-          "description": "Reference to the process model this element belongs to"
-        },
-        "element_title": {
-          "type": "string",
-          "description": "Title of the decision element"
-        },
-        "element_description": {
-          "type": "string",
-          "description": "Description of the decision element"
+          "description": "database id"
         },
         "measure": {
           "type": "string",
-          "description": "Measurement criteria for the decision element"
+          "description": "A description of the type of thing being measured in the criteria (e.g. threshold of contamination)"
         },
         "intersect": {
-          "type": "string",
-          "description": "Intersection criteria for spatial analysis"
+          "type": "boolean",
+          "description": "If the spatial relationship is a simple intersection (e.g. floodplain)"
         },
         "spatial_reference": {
-          "type": "string",
-          "description": "Spatial reference system for geographic data"
+          "type": "object",
+          "description": " A container for reference to the screening criteria (e.g. api call for wetland data)"
         },
         "form_text": {
           "type": "string",
-          "description": "Form text for data collection"
+          "description": "Text data to display on a screening form for a user to input data"
         },
         "form_response_desc": {
           "type": "string",
-          "description": "Description of expected form responses"
+          "description": "A description of the type of response expected on the form (e.g. text, select from list, number)"
         },
         "form_data": {
           "type": "object",
-          "description": "Form data structure"
+          "description": "Formatted response for a formbuilder application (e.g. likert scale, number, etc)"
         },
         "evaluation_method": {
           "type": "string",
-          "description": "Method used for evaluation"
+          "description": "A description of how the response is matched against the condition and what the results could be. "
         },
         "evaluation_dmn": {
-          "type": "string",
-          "description": "DMN rules for evaluation"
+          "type": "object",
+          "description": "Decision Model Notation description of evaluation of decision element."
         },
         "threshold": {
-          "type": "string",
-          "description": "Threshold value or criteria for the decision element"
+          "type": "number",
+          "description": "numeric value of the triggering measure (if applicable)"
         },
         "spatial": {
-          "type": "string",
-          "description": "Spatial analysis criteria or requirements"
+          "type": "boolean",
+          "description": "Whether the criterion is a spatial relationship"
         },
         "category": {
           "type": "string",
-          "description": "Category classification for the decision element"
+          "description": "The category of the process decision element, such as limitation, condition, core, or extraordinary circumstances."
+        },
+        "data_record_version": {
+          "type": "string",
+          "description": "This is the version of this data record."
+        },
+        "data_source_agency": {
+          "type": "string",
+          "description": "This is the agency from which this data record was sent or retrieved or in which it is stored, which may be different than the record owner."
+        },
+        "data_source_system": {
+          "type": "string",
+          "description": "This is the system from which this data record was sent or retrieved or in which it is stored."
+        },
+        "last_updated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "This is the last update of the data record in the system."
+        },
+        "record_owner_agency": {
+          "type": "string",
+          "description": "This is the owner of the original data, generally the authoritative data source."
+        },
+        "retrieved_timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "This is the timestamp of a retrieval or transmission (e.g. responding to an API call)."
+        },
+        "expected_evaluation_data": {
+          "type": "object",
+          "description": "This is a description of the expected data that will be used to evaluate the decision element, such as a list of possible responses or a schema for the data."
+        },
+        "response_data": {
+          "type": "object",
+          "description": "This jsonb field should contain the structure of data that will be returned by the logic engine - for example, if the response will be a json object containing a series of boolean yes/no indicators, this should specify the schema."
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created"
+        },
+        "process_model": {
+          "type": "integer",
+          "description": "Parent process model"
+        },
+        "legal_structure_id": {
+          "type": "integer",
+          "description": "If applicable, legal structure related to specific criteria"
+        },
+        "title": {
+          "type": "string",
+          "description": "Name of element"
+        },
+        "description": {
+          "type": "string",
+          "description": "Plain language description of the criterion"
+        },
+        "process_model_internal_reference_id": {
+          "type": "string",
+          "description": "Process models may have complex decision trees - this string can reference the specific piece of the process model that this decision element applies to. "
+        },
+        "parent_decision_element_id": {
+          "type": "integer",
+          "description": "If this decision element depends on another decision element (e.g. if answer a is yes, ask question b), this field can be used to reference the parent decision element. "
+        },
+        "other": {
+          "type": "object",
+          "description": "This jsonb field should be used for additional data structures as needed. "
         }
       },
       "additionalProperties": true
@@ -1022,78 +1340,124 @@
       "type": "object",
       "description": "Template or framework for NEPA processes",
       "required": [
-        "process_model_id",
-        "name",
+        "id",
+        "title",
         "description"
       ],
       "properties": {
         "id": {
           "type": "integer",
-          "description": "Database primary key identifier"
-        },
-        "process_model_id": {
-          "type": "string",
-          "description": "Unique identification number for the process model"
-        },
-        "name": {
-          "type": "string",
-          "description": "Name of the process model"
+          "description": "database id"
         },
         "description": {
           "type": "string",
-          "description": "Description of the process model"
+          "description": "Plain language description of the process model "
         },
         "bpmn_model": {
-          "type": "string",
-          "description": "BPMN model definition"
+          "type": "object",
+          "description": "Object containing the BPMN representation of the process"
         },
         "legal_structure_text": {
           "type": "string",
-          "description": "Legal structure description text"
+          "description": "Reference to legal structure that defines the process (text, cfr reference, etc)"
         },
         "screening_description": {
           "type": "string",
-          "description": "Description of screening criteria"
+          "description": "Plain language description of the screening criteria that would lead to starting the process for an individual project. "
         },
         "agency": {
           "type": "string",
-          "description": "Lead agency for this process model"
+          "description": "Agency responsible for carrying out this process"
         },
         "DMN_model": {
-          "type": "string",
-          "description": "Decision Model and Notation (DMN) definition"
+          "type": "object",
+          "description": "Decision model notation (in json wrapper) to structure logic for how to evaluate responses to decision elements. Optionally, each decision element may have individual DMN models.  "
         },
         "parent_model": {
           "anyOf": [
-            { "type": "string" },
-            { "type": "null" }
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
           ],
-          "description": "Reference to parent process model, if this is a subprocess or flows from a previous process"
+          "description": "Reference to parent model, if applicable (i.e. if this is a subprocess or flows from a previous process)",
+          "type": "integer"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "created"
+        },
+        "title": {
+          "type": "string",
+          "description": "Name of process model "
+        },
+        "notes": {
+          "type": "string",
+          "description": "Miscellaneous notes on process model"
+        },
+        "legal_structure_id": {
+          "type": "integer",
+          "description": "Reference to legal structure entity that defines the process"
+        },
+        "screening_desc_json": {
+          "type": "object",
+          "description": "Plain language description of the screening criteria that would lead to starting the process for an individual project.  (json object option - this should not replace the decision element relationships)"
+        },
+        "other": {
+          "type": "object",
+          "description": "This jsonb field should be used for additional data structures as needed. "
+        },
+        "record_owner_agency": {
+          "type": "string",
+          "description": "This is the owner of the original data, generally the authoritative data source."
+        },
+        "data_source_agency": {
+          "type": "string",
+          "description": "This is the agency from which this data record was sent or retrieved or in which it is stored, which may be different than the record owner."
+        },
+        "data_source_system": {
+          "type": "string",
+          "description": "This is the system from which this data record was sent or retrieved or in which it is stored."
+        },
+        "data_record_version": {
+          "type": "string",
+          "description": "This is the version of this data record."
+        },
+        "last_updated": {
+          "type": "string",
+          "description": "This is the last update of the data record in the system."
+        },
+        "retrieved_timestamp": {
+          "type": "string",
+          "description": "This is the timestamp of a retrieval or transmission (e.g. responding to an API call)."
         }
       },
       "additionalProperties": true
     },
-    "decision_payload": {
+    "process_decision_payload": {
       "type": "object",
       "description": "Data package containing decision-making information",
       "required": [
-        "decision_payload_id",
-        "process_id"
+        "id",
+        "process"
       ],
       "properties": {
         "id": {
           "type": "integer",
           "description": "Database primary key identifier"
         },
-        "decision_payload_id": {
+
+        "created_at": {
           "type": "string",
-          "description": "Unique identification number for the decision payload"
+          "description": "created"
         },
-        "process_id": {
-          "type": "string",
-          "description": "Reference to the associated process"
+        "process": {
+          "type": "integer",
+          "description": "Reference to the associated process (accepts process field as integer)"
         },
-        "payload_data": {
+        "evaluation_data": {
           "type": "object",
           "description": "The actual decision data payload"
         },
@@ -1130,29 +1494,70 @@
           "description": "Annotations on the payload data"
         },
         "evaluation_data_annotation": {
-          "type": "string",
+          "type": "object",
           "description": "Annotations on the evaluation data"
         },
-        "decision_element_id": {
+        "process_decision_element": {
           "anyOf": [
-            { "type": "string" },
-            { "type": "null" }
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
           ],
           "description": "Reference to the decision element this payload responds to"
         },
-        "project_id": {
+        "project": {
           "anyOf": [
-            { "type": "string" },
-            { "type": "null" }
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
           ],
           "description": "Reference to the project this decision payload is associated with"
         },
         "parent_payload": {
           "anyOf": [
-            { "type": "string" },
-            { "type": "null" }
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
           ],
           "description": "Reference to parent payload ID (e.g., if this is a response to a submission)"
+        },
+        
+        "other": {
+          "type": "object",
+          "description": "This jsonb field should be used for additional data structures as needed. "
+        },
+        "record_owner_agency": {
+          "type": "string",
+          "description": "This is the owner of the original data, generally the authoritative data source."
+        },
+        "data_source_agency": {
+          "type": "string",
+          "description": "This is the agency from which this data record was sent or retrieved or in which it is stored, which may be different than the record owner."
+        },
+        "data_source_system": {
+          "type": "string",
+          "description": "This is the system from which this data record was sent or retrieved or in which it is stored."
+        },
+        "data_record_version": {
+          "type": "string",
+          "description": "This is the version of this data record."
+        },
+        "last_updated": {
+          "type": "string",
+          "description": "This is the last update of the data record in the system."
+        },
+        "retrieved_timestamp": {
+          "type": "string",
+          "description": "This is the timestamp of a retrieval or transmission (e.g. responding to an API call)."
         }
       },
       "additionalProperties": true
@@ -1161,17 +1566,24 @@
   "type": "object",
   "properties": {
     "projects": {
-      "type": "array",
-      "description": "Collection of NEPA projects",
-      "items": {
-        "$ref": "#/definitions/project"
-      }
+      "anyOf": [
+        {
+          "type": "array",
+          "description": "Collection of NEPA projects",
+          "items": {
+            "$ref": "#/definitions/project"
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
     },
-    "processes": {
+    "processe_instances": {
       "type": "array",
       "description": "Collection of NEPA processes",
       "items": {
-        "$ref": "#/definitions/process"
+        "$ref": "#/definitions/process_instance"
       }
     },
     "documents": {
@@ -1181,18 +1593,18 @@
         "$ref": "#/definitions/document"
       }
     },
-    "public_comments": {
+    "comments": {
       "type": "array",
       "description": "Collection of public comments",
       "items": {
-        "$ref": "#/definitions/public_comment"
+        "$ref": "#/definitions/comment"
       }
     },
-    "public_engagement_events": {
+    "engagements": {
       "type": "array",
       "description": "Collection of public engagement events",
       "items": {
-        "$ref": "#/definitions/public_engagement_event"
+        "$ref": "#/definitions/engagement"
       }
     },
     "case_events": {
@@ -1206,7 +1618,19 @@
       "type": "array",
       "description": "Collection of GIS data",
       "items": {
-        "$ref": "#/definitions/gis_data"
+        "anyOf": [
+          {
+            "$ref": "#/definitions/gis_data"
+          },
+          {
+            "type": "object",
+            "not": {
+              "required": [
+                "gis_id"
+              ]
+            }
+          }
+        ]
       }
     },
     "gis_data_elements": {
@@ -1237,11 +1661,11 @@
         "$ref": "#/definitions/process_model"
       }
     },
-    "decision_payloads": {
+    "process_decision_payloads": {
       "type": "array",
       "description": "Collection of decision payloads",
       "items": {
-        "$ref": "#/definitions/decision_payload"
+        "$ref": "#/definitions/process_decision_payload"
       }
     },
     "legal_structures": {
@@ -1252,24 +1676,21 @@
       }
     }
   },
-  "required": [
-    "projects"
-  ],
   "dependencies": {
     "processes": [
       "projects"
     ],
     "documents": [
-      "processes"
+      "process_instances"
     ],
-    "public_comments": [
+    "comments": [
       "documents"
     ],
-    "public_engagement_events": [
-      "processes"
+    "engagements": [
+      "process_instances"
     ],
     "case_events": [
-      "processes"
+      "process_instances"
     ]
   },
   "additionalProperties": true

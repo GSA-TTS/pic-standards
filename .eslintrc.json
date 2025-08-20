@@ -8,7 +8,23 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
+  "extends": ["eslint:recommended"],
+  "rules": {
+    "no-unused-vars": "error",
+    "no-unused-labels": "error"
+  },
   "overrides": [
+    {
+      "files": [
+        "scripts/**/*.test.js",
+        "**/__tests__/**/*.js",
+        "**/__*.test.js"
+      ],
+      "env": { "jest": true, "node": true },
+      "rules": {
+        "no-control-regex": "off"
+      }
+    },
     {
       "files": ["*.json", "*.json5"],
       "parser": "jsonc-eslint-parser",

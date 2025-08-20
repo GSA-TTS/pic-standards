@@ -17,6 +17,12 @@ case_event,datetime,timestamp with time zone,Date and time of event,NO
 case_event,following_segment_name,text,"Name of segment following this event (e.g. if this is ""start of scoping"" the next segment is ""scoping"").",NO
 case_event,related_engagement_id,bigint,Related engagement event if applicable,NO
 case_event,other,jsonb,"This jsonb field should be used for additional data structures as needed. ",NO
+case_event,record_owner_agency,text,"This is the owner of the original data, generally the authoritative data source.",NO
+case_event,data_source_agency,text,"This is the agency from which this data record was sent or retrieved or in which it is stored, which may be different than the record owner.",NO
+case_event,data_source_system,text,This is the system from which this data record was sent or retrieved or in which it is stored.,NO
+case_event,data_record_version,text,This is the version of this data record.,NO
+case_event,last_updated,timestamp with time zone,This is the last update of the data record in the system.,NO
+case_event,retrieved_timestamp,timestamp with time zone,This is the timestamp of a retrieval or transmission (e.g. responding to an API call).,NO
 comment,id,bigint,database id,NO
 comment,created_at,timestamp with time zone,created,NO
 comment,parent_document_id,bigint,Reference to Document ID of the document to which the comment is related.,NO
@@ -28,11 +34,17 @@ comment,content_json,json,Text of the comment (json object if applicable),NO
 comment,response_text,text,"Formal reply, if applicable.",NO
 comment,response_json,json,"Formal reply, if applicable. (json object if applicable)",NO
 comment,public_source,boolean,Whether comment came from member of the public,NO
-comment,public_acess,boolean,Whether comment should be viewed by public,NO
+comment,public_access,boolean,Whether comment should be viewed by public,NO
 comment,other,jsonb,"This jsonb field should be used for additional data structures as needed. ",NO
+comment,record_owner_agency,text,"This is the owner of the original data, generally the authoritative data source.",NO
+comment,data_source_agency,text,"This is the agency from which this data record was sent or retrieved or in which it is stored, which may be different than the record owner.",NO
+comment,data_source_system,text,This is the system from which this data record was sent or retrieved or in which it is stored.,NO
+comment,data_record_version,text,This is the version of this data record.,NO
+comment,last_updated,timestamp with time zone,This is the last update of the data record in the system.,NO
+comment,retrieved_timestamp,timestamp with time zone,This is the timestamp of a retrieval or transmission (e.g. responding to an API call).,NO
 decision_element,id,bigint,database id,NO
 decision_element,created_at,timestamp with time zone,created,NO
-decision_element,process_model_id,bigint,Reference to the process model this decision element belongs to,NO
+decision_element,process_model,bigint,Parent process model,NO
 decision_element,legal_structure_id,bigint,"If applicable, legal structure related to specific criteria",NO
 decision_element,title,text,Name of element,NO
 decision_element,description,text,Plain language description of the criterion,NO
@@ -50,6 +62,14 @@ decision_element,category,text,"The category of the process decision element, su
 decision_element,process_model_internal_reference_id,text,"Process models may have complex decision trees - this string can reference the specific piece of the process model that this decision element applies to. ",NO
 decision_element,parent_decision_element_id,bigint,"If this decision element depends on another decision element (e.g. if answer a is yes, ask question b), this field can be used to reference the parent decision element. ",NO
 decision_element,other,jsonb,"This jsonb field should be used for additional data structures as needed. ",NO
+decision_element,expected_evaluation_data,jsonb,null,NO
+decision_element,response_data,jsonb,"This jsonb field should contain the structure of data that will be returned by the logic engine - for example, if the response will be a json object containing a series of boolean yes/no indicators, this should specify the schema. ",NO
+decision_element,record_owner_agency,text,"This is the owner of the original data, generally the authoritative data source.",NO
+decision_element,data_source_agency,text,"This is the agency from which this data record was sent or retrieved or in which it is stored, which may be different than the record owner.",NO
+decision_element,data_source_system,text,This is the system from which this data record was sent or retrieved or in which it is stored.,NO
+decision_element,data_record_version,text,This is the version of this data record.,NO
+decision_element,last_updated,timestamp with time zone,This is the last update of the data record in the system.,NO
+decision_element,retrieved_timestamp,timestamp with time zone,This is the timestamp of a retrieval or transmission (e.g. responding to an API call).,NO
 document,id,bigint,database id,NO
 document,created_at,timestamp with time zone,creation date,NO
 document,parent_process_id,bigint,Reference to Process ID of parent process for the document,NO
@@ -57,18 +77,25 @@ document,related_document_id,bigint,Unique identification number for related doc
 document,title,text,Document title.,NO
 document,volume_title,text,"Volume title (e.g., Appendix)",NO
 document,document_revision,text,"Indicates which revision of the document (e.g., first revised Draft EIS).",NO
-document,revision_no,bigint,"Indicates which revision of the document (e.g., first revised Draft EIS) - numeric form",NO
-document,supplement_no,bigint,Indicates supplement number,NO
+document,revision_number,bigint,"Indicates which revision of the document (e.g., first revised Draft EIS) - numeric form",NO
+document,supplement_number,bigint,Indicates supplement number,NO
 document,publish_date,date,Publication or submission date.,NO
 document,prepared_by,text,Responsible entity.,NO
 document,status,text,"Document production phase. ",NO
 document,public_access,boolean,Public or restricted.,NO
 document,url,text,Online link if available.,NO
 document,notes,text,Miscellaneous notes.,NO
-document,document_summary,json,container for summary information,NO
-document,document_toc,json,the table of contents (or heading structure) of the document.,NO
+document,document_summary,jsonb,container for summary information,NO
+document,document_toc,jsonb,the table of contents (or heading structure) of the document.,NO
 document,document_type,text,"Document category, such as EIS, EA, etc. ",NO
 document,other,jsonb,"This jsonb field should be used for additional data structures as needed. ",NO
+document,document_files,jsonb,"This jsonb field should contain any document files if applicable; this is an optional way of storing or transmitting files and is not necessary as this is primarily a data record for metadata about the document rather than the document itself. ",NO
+document,record_owner_agency,text,"This is the owner of the original data, generally the authoritative data source.",NO
+document,data_source_agency,text,"This is the agency from which this data record was sent or retrieved or in which it is stored, which may be different than the record owner.",NO
+document,data_source_system,text,This is the system from which this data record was sent or retrieved or in which it is stored.,NO
+document,data_record_version,text,This is the version of this data record.,NO
+document,last_updated,timestamp with time zone,This is the last update of the data record in the system.,NO
+document,retrieved_timestamp,timestamp with time zone,This is the timestamp of a retrieval or transmission (e.g. responding to an API call).,NO
 engagement,id,bigint,database id,NO
 engagement,created_at,timestamp with time zone,created,NO
 engagement,parent_process_id,bigint,"If associated with a process, the related process ID",NO
@@ -81,6 +108,12 @@ engagement,notes,text,"additional notes. ",NO
 engagement,start_datetime,timestamp with time zone,Engagement start date/time,NO
 engagement,end_datetime,timestamp with time zone,Engagement end date/time,NO
 engagement,other,jsonb,"This jsonb field should be used for additional data structures as needed. ",NO
+engagement,record_owner_agency,text,"This is the owner of the original data, generally the authoritative data source.",NO
+engagement,data_source_agency,text,"This is the agency from which this data record was sent or retrieved or in which it is stored, which may be different than the record owner.",NO
+engagement,data_source_system,text,This is the system from which this data record was sent or retrieved or in which it is stored.,NO
+engagement,data_record_version,text,This is the version of this data record.,NO
+engagement,last_updated,timestamp with time zone,This is the last update of the data record in the system.,NO
+engagement,retrieved_timestamp,timestamp with time zone,This is the timestamp of a retrieval or transmission (e.g. responding to an API call).,NO
 gis_data,id,bigint,database id,NO
 gis_data,created_at,timestamp with time zone,created date,NO
 gis_data,parent_project_id,bigint,"Reference to Foreign object attached to GIS object (one for each other entity table - expected architecture is that there is one foreign key among all these, not all possible relationships filled in)",NO
@@ -108,6 +141,12 @@ gis_data,data_container,jsonb,json container for any attached GIS data,NO
 gis_data,address,text,address of centroid (if applicable),NO
 gis_data,updated_last,timestamp with time zone,Timestamp of last update to this dataset,NO
 gis_data,other,jsonb,"This jsonb field should be used for additional data structures as needed. ",NO
+gis_data,record_owner_agency,text,"This is the owner of the original data, generally the authoritative data source.",NO
+gis_data,data_source_agency,text,"This is the agency from which this data record was sent or retrieved or in which it is stored, which may be different than the record owner.",NO
+gis_data,data_source_system,text,This is the system from which this data record was sent or retrieved or in which it is stored.,NO
+gis_data,data_record_version,text,This is the version of this data record.,NO
+gis_data,last_updated,timestamp with time zone,This is the last update of the data record in the system.,NO
+gis_data,retrieved_timestamp,timestamp with time zone,This is the timestamp of a retrieval or transmission (e.g. responding to an API call).,NO
 gis_data_element,id,bigint,database id,NO
 gis_data_element,created_at,timestamp with time zone,created date,NO
 gis_data_element,parent_gis,bigint,Parent GIS data entity,NO
@@ -126,6 +165,12 @@ gis_data_element,purpose,text,"1.	Bespoke GIS Data: Project-specific (boundaries
 gis_data_element,data_match,text,Whether this object references an identified GIS analysis in an official inventory.,NO
 gis_data_element,access_info,json,instructions for access to data,NO
 gis_data_element,other,jsonb,"This jsonb field should be used for additional data structures as needed. ",NO
+gis_data_element,record_owner_agency,text,"This is the owner of the original data, generally the authoritative data source.",NO
+gis_data_element,data_source_agency,text,"This is the agency from which this data record was sent or retrieved or in which it is stored, which may be different than the record owner.",NO
+gis_data_element,data_source_system,text,This is the system from which this data record was sent or retrieved or in which it is stored.,NO
+gis_data_element,data_record_version,text,This is the version of this data record.,NO
+gis_data_element,last_updated,timestamp with time zone,This is the last update of the data record in the system.,NO
+gis_data_element,retrieved_timestamp,timestamp with time zone,This is the timestamp of a retrieval or transmission (e.g. responding to an API call).,NO
 legal_structure,id,bigint,database id,NO
 legal_structure,created_at,timestamp with time zone,"created ",NO
 legal_structure,title,text,Official name.,NO
@@ -137,10 +182,16 @@ legal_structure,effective_date,date,Implementation date.,NO
 legal_structure,compliance_data,json,"Procedural mandates, ideally structured as data using an ontology that includes facts (such as thresholds triggering processes), duties, and actors (e.g., FLINT frames). ",NO
 legal_structure,url,text,URL of legal reference (e.g. eCFR),NO
 legal_structure,other,jsonb,"This jsonb field should be used for additional data structures as needed. ",NO
+legal_structure,record_owner_agency,text,"This is the owner of the original data, generally the authoritative data source.",NO
+legal_structure,data_source_agency,text,"This is the agency from which this data record was sent or retrieved or in which it is stored, which may be different than the record owner.",NO
+legal_structure,data_source_system,text,This is the system from which this data record was sent or retrieved or in which it is stored.,NO
+legal_structure,data_record_version,text,This is the version of this data record.,NO
+legal_structure,last_updated,timestamp with time zone,This is the last update of the data record in the system.,NO
+legal_structure,retrieved_timestamp,timestamp with time zone,This is the timestamp of a retrieval or transmission (e.g. responding to an API call).,NO
 process_decision_payload,id,bigint,database id,NO
 process_decision_payload,created_at,timestamp with time zone,created,NO
 process_decision_payload,process_decision_element,bigint,"Relationship with process decision element ",NO
-process_decision_payload,process_id,bigint,Reference to the process this payload belongs to,NO
+process_decision_payload,process,bigint,Identifier of related process (if applicable),NO
 process_decision_payload,project,bigint,"Identifier of project the data is associated with. ",NO
 process_decision_payload,data_description,text,Text of the data about the project in response to the evaluation condition,NO
 process_decision_payload,evaluation_data,jsonb,Text of the data about the project in response to the evaluation condition (json object),NO
@@ -148,12 +199,18 @@ process_decision_payload,response,text,Text of the response of the evaluation (i
 process_decision_payload,result,text,Text of the response of the evaluation (if applicable),NO
 process_decision_payload,result_bool,boolean,Whether response is included in this payload,NO
 process_decision_payload,result_notes,text,Miscellaneous notes on response,NO
-process_decision_payload,result_data,json,Text of the response of the evaluation (if applicable - json object),NO
+process_decision_payload,result_data,jsonb,Text of the response of the evaluation (if applicable - json object),NO
 process_decision_payload,result_source,text,Origin of the response,NO
 process_decision_payload,parent_payload,bigint,"Parent payload ID (e.g. if this is a response to a submission, this would be the submission ID)",NO
 process_decision_payload,other,jsonb,"This jsonb field should be used for additional data structures as needed. ",NO
-process_decision_payload,data_annotation,text,null,NO
+process_decision_payload,data_annotation,text,Additional field for annotation related to payload,NO
 process_decision_payload,evaluation_data_annotation,jsonb,"Jsonb field for additional data annotations (e.g. if the response is ""yes,"" may contain additional context or notes. ",NO
+process_decision_payload,record_owner_agency,text,"This is the owner of the original data, generally the authoritative data source.",NO
+process_decision_payload,data_source_agency,text,"This is the agency from which this data record was sent or retrieved or in which it is stored, which may be different than the record owner.",NO
+process_decision_payload,data_source_system,text,This is the system from which this data record was sent or retrieved or in which it is stored.,NO
+process_decision_payload,data_record_version,text,This is the version of this data record.,NO
+process_decision_payload,last_updated,timestamp with time zone,This is the last update of the data record in the system.,NO
+process_decision_payload,retrieved_timestamp,timestamp with time zone,This is the timestamp of a retrieval or transmission (e.g. responding to an API call).,NO
 process_instance,id,bigint,database id,NO
 process_instance,parent_project_id,bigint,"Reference to Project ID of parent project. ",NO
 process_instance,created_at,timestamp with time zone,created,NO
@@ -177,6 +234,13 @@ process_instance,process_model,bigint,Relationship with process model data that 
 process_instance,other,jsonb,"This jsonb field should be used for additional data structures as needed. ",NO
 process_instance,purpose_need,text,null,NO
 process_instance,description,text,null,NO
+process_instance,record_owner_agency,text,"This is the owner of the original data, generally the authoritative data source.",NO
+process_instance,data_source_agency,text,"This is the agency from which this data record was sent or retrieved or in which it is stored, which may be different than the record owner.",NO
+process_instance,data_source_system,text,This is the system from which this data record was sent or retrieved or in which it is stored.,NO
+process_instance,data_record_version,text,This is the version of this data record.,NO
+process_instance,last_updated,timestamp with time zone,This is the last update of the data record in the system.,NO
+process_instance,retrieved_timestamp,timestamp with time zone,This is the timestamp of a retrieval or transmission (e.g. responding to an API call).,NO
+process_instance,process_code,text,"This is an optional field that can annotate the process instance with an agency's internal reference for coding, such as a CE code.  ",NO
 process_model,id,bigint,database id,NO
 process_model,created_at,timestamp with time zone,created,NO
 process_model,title,text,"Name of process model ",NO
@@ -191,6 +255,12 @@ process_model,agency,text,Agency responsible for carrying out this process,NO
 process_model,parent_model,bigint,"Reference to parent model, if applicable (i.e. if this is a subprocess or flows from a previous process)",NO
 process_model,DMN_model,jsonb,"Decision model notation (in json wrapper) to structure logic for how to evaluate responses to decision elements. Optionally, each decision element may have individual DMN models.  ",NO
 process_model,other,jsonb,"This jsonb field should be used for additional data structures as needed. ",NO
+process_model,record_owner_agency,text,"This is the owner of the original data, generally the authoritative data source.",NO
+process_model,data_source_agency,text,"This is the agency from which this data record was sent or retrieved or in which it is stored, which may be different than the record owner.",NO
+process_model,data_source_system,text,This is the system from which this data record was sent or retrieved or in which it is stored.,NO
+process_model,data_record_version,text,This is the version of this data record.,NO
+process_model,last_updated,timestamp with time zone,This is the last update of the data record in the system.,NO
+process_model,retrieved_timestamp,timestamp with time zone,This is the timestamp of a retrieval or transmission (e.g. responding to an API call).,NO
 project,id,bigint,database id,NO
 project,created_at,timestamp with time zone,created,NO
 project,title,text,Descriptive name of the project.,NO
@@ -210,6 +280,12 @@ project,sponsor_contact,json,"Name of responsible entity, organization, or perso
 project,parent_project_id,bigint,"If nesting projects, reference to the parent project's ID. ",NO
 project,location_text,text,"Text field to specify location, eg. address. ",NO
 project,other,jsonb,"This jsonb field should be used for additional data structures as needed. ",NO
+project,record_owner_agency,text,"This is the owner of the original data, generally the authoritative data source.",NO
+project,data_source_agency,text,"This is the agency from which this data record was sent or retrieved or in which it is stored, which may be different than the record owner.",NO
+project,data_source_system,text,This is the system from which this data record was sent or retrieved or in which it is stored.,NO
+project,data_record_version,text,This is the version of this data record.,NO
+project,last_updated,timestamp with time zone,This is the last update of the data record in the system.,NO
+project,retrieved_timestamp,timestamp with time zone,This is the timestamp of a retrieval or transmission (e.g. responding to an API call).,NO
 user_role,id,bigint,database id,NO
 user_role,created_at,timestamp with time zone,created,NO
 user_role,name,text,"Title of the role (Agency Staff, Public Commenter).",NO
@@ -218,3 +294,9 @@ user_role,access_policy,json,access policy json object,NO
 user_role,permission_descriptions,text,System access levels description,NO
 user_role,public,boolean,role is a member of the broader class of public users/stakeholders,NO
 user_role,other,jsonb,"This jsonb field should be used for additional data structures as needed. ",NO
+user_role,record_owner_agency,text,"This is the owner of the original data, generally the authoritative data source.",NO
+user_role,data_source_agency,text,"This is the agency from which this data record was sent or retrieved or in which it is stored, which may be different than the record owner.",NO
+user_role,data_source_system,text,This is the system from which this data record was sent or retrieved or in which it is stored.,NO
+user_role,data_record_version,text,This is the version of this data record.,NO
+user_role,last_updated,timestamp with time zone,This is the last update of the data record in the system.,NO
+user_role,retrieved_timestamp,timestamp with time zone,This is the timestamp of a retrieval or transmission (e.g. responding to an API call).,NO

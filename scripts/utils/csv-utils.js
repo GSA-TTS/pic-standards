@@ -98,7 +98,7 @@ function validateCsvStructure(csvData, requiredColumns = []) {
   
   // Check for empty rows
   let emptyRowCount = 0;
-  csvData.forEach((row, index) => {
+  csvData.forEach((row) => {
     const values = Object.values(row);
     if (values.every(val => !val || val.trim() === '')) {
       emptyRowCount++;

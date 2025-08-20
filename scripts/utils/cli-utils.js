@@ -1,7 +1,6 @@
 /**
  * Command-line utilities for validation scripts
  */
-const path = require('path');
 const { colors } = require('./validation-utils');
 
 /**
@@ -10,7 +9,7 @@ const { colors } = require('./validation-utils');
  * @param {Object} options - Parsing options
  * @returns {Object} Parsed arguments
  */
-function parseArgs(args, options = {}) {
+function parseArgs(args) {
   const result = {
     flags: {},
     positional: [],

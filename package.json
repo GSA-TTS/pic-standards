@@ -5,21 +5,27 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "test:coverage": "jest --config jest.coverage.config.js",
     "lint": "eslint --config .eslintrc.json .",
     "lint:fix": "eslint --config .eslintrc.json . --fix",
     "lint:json": "eslint --config .eslintrc.json \"**/*.json\" --fix",
+    "lint:scripts": "eslint --config .eslintrc.json --ext .js,.cjs,.mjs scripts",
+    "lint:scripts:fix": "eslint --config .eslintrc.json --ext .js,.cjs,.mjs scripts --fix",
     "validate:schemas": "node scripts/validate-schemas.js --verbose",
     "validate:schemas:quiet": "node scripts/validate-schemas.js",
     "validate:json": "node scripts/validate-json.js --verbose",
     "validate:json:quiet": "node scripts/validate-json.js",
     "validate:yaml": "node scripts/validate-yaml.js --verbose",
     "validate:yaml:quiet": "node scripts/validate-yaml.js",
-    "validate:csv": "node scripts/validate-csv.js",
     "validate:crosswalk": "node scripts/validate-database-crosswalk.js",
-    "crosswalk:suggestions": "node scripts/validate-database-crosswalk.js --suggestions",
+    "validate:crosswalk:suggestions": "node scripts/validate-database-crosswalk.js --suggestions",
     "validate:openapi": "node scripts/validate-openapi.js",
     "validate:all": "npm run validate:schemas && npm run validate:json && npm run validate:yaml",
-    "remove-additional-properties": "node scripts/remove-additional-properties.js"
+    "validate:json:raw": "node scripts/validate-json-raw.js",
+    "validate:yaml:raw": "node scripts/validate-yaml-raw.js",
+    "validate:sql-seed": "node scripts/validate-sql-seed.js --sql src/database/seed-v1.2.0.sql --schema src/jsonschema/nepa.schema.json",
+    "validate:sql-schema": "node scripts/validate-sql-schema.js --sql src/database/schema-v1.2.0.sql --schema src/jsonschema/nepa.schema.json",
+    "tmp:all": "npm run validate:schemas >> /tmp/validate_results.txt 2>&1 && npm run validate:json >> /tmp/validate_results.txt 2>&1 && npm run validate:yaml >> /tmp/validate_results.txt 2>&1 && npm run validate:crosswalk >> /tmp/validate_results.txt 2>&1 && npm run validate:openapi >> /tmp/validate_results.txt 2>&1 && npm run validate:json:raw >> /tmp/validate_results.txt 2>&1 && npm run validate:yaml:raw >> /tmp/validate_results.txt 2>&1 && npm run validate:sql-seed >> /tmp/validate_results.txt 2>&1 && npm run validate:sql-schema >> /tmp/validate_results.txt 2>&1"
   },
   "repository": {
     "type": "git",
@@ -38,7 +44,7 @@
   },
   "homepage": "https://github.com/GSA-TTS/pic-standards#readme",
   "devDependencies": {
-    "@eslint/json": "^0.12.0",
+    "@eslint/json": "^0.13.0",
     "jsonc-eslint-parser": "^2.3.0",
     "eslint-plugin-jsonc": "^2.10.0",
     "ajv": "^8.12.0",
@@ -48,6 +54,8 @@
     "csv-writer": "^1.6.0",
     "eslint": "^8.57.1",
     "jest": "^29.6.1",
-    "js-yaml": "^4.1.0"
+    "js-yaml": "^4.1.0",
+    "v8-profiler-next": "^1.9.0",
+    "0x": "^5.7.0"
   }
 }

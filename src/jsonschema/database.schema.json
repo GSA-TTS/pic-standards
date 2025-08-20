@@ -4,75 +4,6 @@
     "Database": {
       "additionalProperties": false,
       "properties": {
-        "graphql_public": {
-          "additionalProperties": false,
-          "properties": {
-            "CompositeTypes": {
-              "additionalProperties": false,
-              "type": "object"
-            },
-            "Enums": {
-              "additionalProperties": false,
-              "type": "object"
-            },
-            "Functions": {
-              "additionalProperties": false,
-              "properties": {
-                "graphql": {
-                  "additionalProperties": false,
-                  "properties": {
-                    "Args": {
-                      "additionalProperties": false,
-                      "properties": {
-                        "extensions": {
-                          "$ref": "#/definitions/Json"
-                        },
-                        "operationName": {
-                          "type": "string"
-                        },
-                        "query": {
-                          "type": "string"
-                        },
-                        "variables": {
-                          "$ref": "#/definitions/Json"
-                        }
-                      },
-                      "type": "object"
-                    },
-                    "Returns": {
-                      "$ref": "#/definitions/Json"
-                    }
-                  },
-                  "required": [
-                    "Args",
-                    "Returns"
-                  ],
-                  "type": "object"
-                }
-              },
-              "required": [
-                "graphql"
-              ],
-              "type": "object"
-            },
-            "Tables": {
-              "additionalProperties": false,
-              "type": "object"
-            },
-            "Views": {
-              "additionalProperties": false,
-              "type": "object"
-            }
-          },
-          "required": [
-            "Tables",
-            "Views",
-            "Functions",
-            "Enums",
-            "CompositeTypes"
-          ],
-          "type": "object"
-        },
         "public": {
           "additionalProperties": false,
           "properties": {
@@ -130,6 +61,24 @@
                         "created_at": {
                           "type": "string"
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "datetime": {
                           "type": [
                             "string",
@@ -150,6 +99,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "name": {
                           "type": [
@@ -191,6 +146,12 @@
                             "null"
                           ]
                         },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "related_document_id": {
                           "type": [
                             "number",
@@ -200,6 +161,12 @@
                         "related_engagement_id": {
                           "type": [
                             "number",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
+                          "type": [
+                            "string",
                             "null"
                           ]
                         },
@@ -378,6 +345,24 @@
                         "created_at": {
                           "type": "string"
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "datetime": {
                           "type": [
                             "string",
@@ -398,6 +383,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "name": {
                           "type": [
@@ -439,6 +430,12 @@
                             "null"
                           ]
                         },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "related_document_id": {
                           "type": [
                             "number",
@@ -448,6 +445,12 @@
                         "related_engagement_id": {
                           "type": [
                             "number",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
+                          "type": [
+                            "string",
                             "null"
                           ]
                         },
@@ -479,18 +482,24 @@
                       "required": [
                         "assigned_entity",
                         "created_at",
+                        "data_record_version",
+                        "data_source_agency",
+                        "data_source_system",
                         "datetime",
                         "description",
                         "following_segment_name",
                         "id",
+                        "last_updated",
                         "name",
                         "other",
                         "outcome",
                         "parent_event_id",
                         "parent_process_id",
                         "public_access",
+                        "record_owner_agency",
                         "related_document_id",
                         "related_engagement_id",
+                        "retrieved_timestamp",
                         "source",
                         "status",
                         "tier",
@@ -509,6 +518,24 @@
                         },
                         "created_at": {
                           "type": "string"
+                        },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "datetime": {
                           "type": [
@@ -530,6 +557,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "name": {
                           "type": [
@@ -571,6 +604,12 @@
                             "null"
                           ]
                         },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "related_document_id": {
                           "type": [
                             "number",
@@ -580,6 +619,12 @@
                         "related_engagement_id": {
                           "type": [
                             "number",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
+                          "type": [
+                            "string",
                             "null"
                           ]
                         },
@@ -650,6 +695,24 @@
                         "created_at": {
                           "type": "string"
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "date_submitted": {
                           "type": [
                             "string",
@@ -658,6 +721,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "other": {
                           "anyOf": [
@@ -687,6 +756,12 @@
                             "null"
                           ]
                         },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "response_json": {
                           "anyOf": [
                             {
@@ -698,6 +773,12 @@
                           ]
                         },
                         "response_text": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
                           "type": [
                             "string",
                             "null"
@@ -788,6 +869,24 @@
                         "created_at": {
                           "type": "string"
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "date_submitted": {
                           "type": [
                             "string",
@@ -796,6 +895,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "other": {
                           "anyOf": [
@@ -825,6 +930,12 @@
                             "null"
                           ]
                         },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "response_json": {
                           "anyOf": [
                             {
@@ -836,6 +947,12 @@
                           ]
                         },
                         "response_text": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
                           "type": [
                             "string",
                             "null"
@@ -853,14 +970,20 @@
                         "content_json",
                         "content_text",
                         "created_at",
+                        "data_record_version",
+                        "data_source_agency",
+                        "data_source_system",
                         "date_submitted",
                         "id",
+                        "last_updated",
                         "other",
                         "parent_document_id",
                         "public_acess",
                         "public_source",
+                        "record_owner_agency",
                         "response_json",
                         "response_text",
+                        "retrieved_timestamp",
                         "submission_method"
                       ],
                       "type": "object"
@@ -893,6 +1016,24 @@
                         "created_at": {
                           "type": "string"
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "date_submitted": {
                           "type": [
                             "string",
@@ -901,6 +1042,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "other": {
                           "anyOf": [
@@ -930,6 +1077,12 @@
                             "null"
                           ]
                         },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "response_json": {
                           "anyOf": [
                             {
@@ -941,6 +1094,12 @@
                           ]
                         },
                         "response_text": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
                           "type": [
                             "string",
                             "null"
@@ -979,6 +1138,24 @@
                         "created_at": {
                           "type": "string"
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "description": {
                           "type": [
                             "string",
@@ -999,6 +1176,16 @@
                           "type": [
                             "string",
                             "null"
+                          ]
+                        },
+                        "expected_evaluation_data": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/definitions/Json"
+                            },
+                            {
+                              "type": "null"
+                            }
                           ]
                         },
                         "form_data": {
@@ -1029,6 +1216,12 @@
                         "intersect": {
                           "type": [
                             "boolean",
+                            "null"
+                          ]
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
                             "null"
                           ]
                         },
@@ -1067,6 +1260,28 @@
                           ]
                         },
                         "process_model_internal_reference_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "response_data": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/definitions/Json"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "retrieved_timestamp": {
                           "type": [
                             "string",
                             "null"
@@ -1208,6 +1423,24 @@
                         "created_at": {
                           "type": "string"
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "description": {
                           "type": [
                             "string",
@@ -1228,6 +1461,16 @@
                           "type": [
                             "string",
                             "null"
+                          ]
+                        },
+                        "expected_evaluation_data": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/definitions/Json"
+                            },
+                            {
+                              "type": "null"
+                            }
                           ]
                         },
                         "form_data": {
@@ -1258,6 +1501,12 @@
                         "intersect": {
                           "type": [
                             "boolean",
+                            "null"
+                          ]
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
                             "null"
                           ]
                         },
@@ -1296,6 +1545,28 @@
                           ]
                         },
                         "process_model_internal_reference_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "response_data": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/definitions/Json"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "retrieved_timestamp": {
                           "type": [
                             "string",
                             "null"
@@ -1333,20 +1604,28 @@
                       "required": [
                         "category",
                         "created_at",
+                        "data_record_version",
+                        "data_source_agency",
+                        "data_source_system",
                         "description",
                         "evaluation_dmn",
                         "evaluation_method",
+                        "expected_evaluation_data",
                         "form_data",
                         "form_response_desc",
                         "form_text",
                         "id",
                         "intersect",
+                        "last_updated",
                         "legal_structure_id",
                         "measure",
                         "other",
                         "parent_decision_element_id",
                         "process_model",
                         "process_model_internal_reference_id",
+                        "record_owner_agency",
+                        "response_data",
+                        "retrieved_timestamp",
                         "spatial",
                         "spatial_reference",
                         "threshold",
@@ -1365,6 +1644,24 @@
                         },
                         "created_at": {
                           "type": "string"
+                        },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "description": {
                           "type": [
@@ -1386,6 +1683,16 @@
                           "type": [
                             "string",
                             "null"
+                          ]
+                        },
+                        "expected_evaluation_data": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/definitions/Json"
+                            },
+                            {
+                              "type": "null"
+                            }
                           ]
                         },
                         "form_data": {
@@ -1416,6 +1723,12 @@
                         "intersect": {
                           "type": [
                             "boolean",
+                            "null"
+                          ]
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
                             "null"
                           ]
                         },
@@ -1454,6 +1767,28 @@
                           ]
                         },
                         "process_model_internal_reference_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "response_data": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/definitions/Json"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "retrieved_timestamp": {
                           "type": [
                             "string",
                             "null"
@@ -1508,6 +1843,34 @@
                         "created_at": {
                           "type": "string"
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "document_files": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/definitions/Json"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
                         "document_revision": {
                           "type": [
                             "string",
@@ -1542,6 +1905,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "notes": {
                           "type": [
@@ -1583,13 +1952,25 @@
                             "null"
                           ]
                         },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "related_document_id": {
                           "type": [
                             "number",
                             "null"
                           ]
                         },
-                        "revision_no": {
+                        "retrieved_timestamp": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "revision_number": {
                           "type": [
                             "number",
                             "null"
@@ -1601,7 +1982,7 @@
                             "null"
                           ]
                         },
-                        "supplement_no": {
+                        "supplement_number": {
                           "type": [
                             "number",
                             "null"
@@ -1682,6 +2063,34 @@
                         "created_at": {
                           "type": "string"
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "document_files": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/definitions/Json"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
                         "document_revision": {
                           "type": [
                             "string",
@@ -1716,6 +2125,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "notes": {
                           "type": [
@@ -1757,13 +2172,25 @@
                             "null"
                           ]
                         },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "related_document_id": {
                           "type": [
                             "number",
                             "null"
                           ]
                         },
-                        "revision_no": {
+                        "retrieved_timestamp": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "revision_number": {
                           "type": [
                             "number",
                             "null"
@@ -1775,7 +2202,7 @@
                             "null"
                           ]
                         },
-                        "supplement_no": {
+                        "supplement_number": {
                           "type": [
                             "number",
                             "null"
@@ -1802,21 +2229,28 @@
                       },
                       "required": [
                         "created_at",
+                        "data_record_version",
+                        "data_source_agency",
+                        "data_source_system",
+                        "document_files",
                         "document_revision",
                         "document_summary",
                         "document_toc",
                         "document_type",
                         "id",
+                        "last_updated",
                         "notes",
                         "other",
                         "parent_process_id",
                         "prepared_by",
                         "public_access",
                         "publish_date",
+                        "record_owner_agency",
                         "related_document_id",
-                        "revision_no",
+                        "retrieved_timestamp",
+                        "revision_number",
                         "status",
-                        "supplement_no",
+                        "supplement_number",
                         "title",
                         "url",
                         "volume_title"
@@ -1828,6 +2262,34 @@
                       "properties": {
                         "created_at": {
                           "type": "string"
+                        },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "document_files": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/definitions/Json"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
                         },
                         "document_revision": {
                           "type": [
@@ -1863,6 +2325,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "notes": {
                           "type": [
@@ -1904,13 +2372,25 @@
                             "null"
                           ]
                         },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "related_document_id": {
                           "type": [
                             "number",
                             "null"
                           ]
                         },
-                        "revision_no": {
+                        "retrieved_timestamp": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "revision_number": {
                           "type": [
                             "number",
                             "null"
@@ -1922,7 +2402,7 @@
                             "null"
                           ]
                         },
-                        "supplement_no": {
+                        "supplement_number": {
                           "type": [
                             "number",
                             "null"
@@ -1973,6 +2453,24 @@
                         "created_at": {
                           "type": "string"
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "end_datetime": {
                           "type": [
                             "string",
@@ -1981,6 +2479,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "location": {
                           "type": [
@@ -2020,9 +2524,21 @@
                             }
                           ]
                         },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "related_document_id": {
                           "type": [
                             "number",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
+                          "type": [
+                            "string",
                             "null"
                           ]
                         },
@@ -2146,6 +2662,24 @@
                         "created_at": {
                           "type": "string"
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "end_datetime": {
                           "type": [
                             "string",
@@ -2154,6 +2688,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "location": {
                           "type": [
@@ -2193,9 +2733,21 @@
                             }
                           ]
                         },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "related_document_id": {
                           "type": [
                             "number",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
+                          "type": [
+                            "string",
                             "null"
                           ]
                         },
@@ -2215,14 +2767,20 @@
                       "required": [
                         "attendance",
                         "created_at",
+                        "data_record_version",
+                        "data_source_agency",
+                        "data_source_system",
                         "end_datetime",
                         "id",
+                        "last_updated",
                         "location",
                         "notes",
                         "other",
                         "parent_process_id",
                         "participation",
+                        "record_owner_agency",
                         "related_document_id",
+                        "retrieved_timestamp",
                         "start_datetime",
                         "type"
                       ],
@@ -2240,6 +2798,24 @@
                         "created_at": {
                           "type": "string"
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "end_datetime": {
                           "type": [
                             "string",
@@ -2248,6 +2824,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "location": {
                           "type": [
@@ -2287,9 +2869,21 @@
                             }
                           ]
                         },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "related_document_id": {
                           "type": [
                             "number",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
+                          "type": [
+                            "string",
                             "null"
                           ]
                         },
@@ -2380,6 +2974,24 @@
                             }
                           ]
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "description": {
                           "type": [
                             "string",
@@ -2394,6 +3006,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "map_image": {
                           "anyOf": [
@@ -2454,6 +3072,18 @@
                         "parent_project_id": {
                           "type": [
                             "number",
+                            "null"
+                          ]
+                        },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
+                          "type": [
+                            "string",
                             "null"
                           ]
                         },
@@ -2791,6 +3421,24 @@
                             }
                           ]
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "description": {
                           "type": [
                             "string",
@@ -2805,6 +3453,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "map_image": {
                           "anyOf": [
@@ -2868,6 +3522,18 @@
                             "null"
                           ]
                         },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "updated_last": {
                           "type": [
                             "string",
@@ -2884,9 +3550,13 @@
                         "creator",
                         "creator_contact",
                         "data_container",
+                        "data_record_version",
+                        "data_source_agency",
+                        "data_source_system",
                         "description",
                         "extent",
                         "id",
+                        "last_updated",
                         "map_image",
                         "notes",
                         "other",
@@ -2896,6 +3566,8 @@
                         "parent_engagement_id",
                         "parent_process_id",
                         "parent_project_id",
+                        "record_owner_agency",
+                        "retrieved_timestamp",
                         "updated_last"
                       ],
                       "type": "object"
@@ -2960,6 +3632,24 @@
                             }
                           ]
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "description": {
                           "type": [
                             "string",
@@ -2974,6 +3664,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "map_image": {
                           "anyOf": [
@@ -3034,6 +3730,18 @@
                         "parent_project_id": {
                           "type": [
                             "number",
+                            "null"
+                          ]
+                        },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
+                          "type": [
+                            "string",
                             "null"
                           ]
                         },
@@ -3110,6 +3818,24 @@
                             "null"
                           ]
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "format": {
                           "type": [
                             "string",
@@ -3118,6 +3844,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "other": {
                           "anyOf": [
@@ -3136,6 +3868,18 @@
                           ]
                         },
                         "purpose": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
                           "type": [
                             "string",
                             "null"
@@ -3256,6 +4000,24 @@
                             "null"
                           ]
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "format": {
                           "type": [
                             "string",
@@ -3264,6 +4026,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "other": {
                           "anyOf": [
@@ -3282,6 +4050,18 @@
                           ]
                         },
                         "purpose": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
                           "type": [
                             "string",
                             "null"
@@ -3309,11 +4089,17 @@
                         "coordinate_system",
                         "created_at",
                         "data_match",
+                        "data_record_version",
+                        "data_source_agency",
+                        "data_source_system",
                         "format",
                         "id",
+                        "last_updated",
                         "other",
                         "parent_gis",
                         "purpose",
+                        "record_owner_agency",
+                        "retrieved_timestamp",
                         "top_left_lat",
                         "top_left_lon"
                       ],
@@ -3371,6 +4157,24 @@
                             "null"
                           ]
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "format": {
                           "type": [
                             "string",
@@ -3379,6 +4183,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "other": {
                           "anyOf": [
@@ -3397,6 +4207,18 @@
                           ]
                         },
                         "purpose": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
                           "type": [
                             "string",
                             "null"
@@ -3457,6 +4279,24 @@
                         "created_at": {
                           "type": "string"
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "description": {
                           "type": [
                             "string",
@@ -3478,6 +4318,12 @@
                             "null"
                           ]
                         },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "other": {
                           "anyOf": [
                             {
@@ -3486,6 +4332,18 @@
                             {
                               "type": "null"
                             }
+                          ]
+                        },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
+                          "type": [
+                            "string",
+                            "null"
                           ]
                         },
                         "title": {
@@ -3536,6 +4394,24 @@
                         "created_at": {
                           "type": "string"
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "description": {
                           "type": [
                             "string",
@@ -3557,6 +4433,12 @@
                             "null"
                           ]
                         },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "other": {
                           "anyOf": [
                             {
@@ -3565,6 +4447,18 @@
                             {
                               "type": "null"
                             }
+                          ]
+                        },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
+                          "type": [
+                            "string",
+                            "null"
                           ]
                         },
                         "title": {
@@ -3585,11 +4479,17 @@
                         "compliance_data",
                         "context",
                         "created_at",
+                        "data_record_version",
+                        "data_source_agency",
+                        "data_source_system",
                         "description",
                         "effective_date",
                         "id",
                         "issuing_authority",
+                        "last_updated",
                         "other",
+                        "record_owner_agency",
+                        "retrieved_timestamp",
                         "title",
                         "url"
                       ],
@@ -3623,6 +4523,24 @@
                         "created_at": {
                           "type": "string"
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "description": {
                           "type": [
                             "string",
@@ -3644,6 +4562,12 @@
                             "null"
                           ]
                         },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "other": {
                           "anyOf": [
                             {
@@ -3652,6 +4576,18 @@
                             {
                               "type": "null"
                             }
+                          ]
+                        },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
+                          "type": [
+                            "string",
+                            "null"
                           ]
                         },
                         "title": {
@@ -3699,6 +4635,24 @@
                             "null"
                           ]
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "evaluation_data": {
                           "anyOf": [
                             {
@@ -3721,6 +4675,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "other": {
                           "anyOf": [
@@ -3753,6 +4713,12 @@
                         "project": {
                           "type": [
                             "number",
+                            "null"
+                          ]
+                        },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
                             "null"
                           ]
                         },
@@ -3791,6 +4757,12 @@
                           ]
                         },
                         "result_source": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
                           "type": [
                             "string",
                             "null"
@@ -3953,6 +4925,24 @@
                             "null"
                           ]
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "evaluation_data": {
                           "anyOf": [
                             {
@@ -3975,6 +4965,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "other": {
                           "anyOf": [
@@ -4007,6 +5003,12 @@
                         "project": {
                           "type": [
                             "number",
+                            "null"
+                          ]
+                        },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
                             "null"
                           ]
                         },
@@ -4049,26 +5051,38 @@
                             "string",
                             "null"
                           ]
+                        },
+                        "retrieved_timestamp": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         }
                       },
                       "required": [
                         "created_at",
                         "data_annotation",
                         "data_description",
+                        "data_record_version",
+                        "data_source_agency",
+                        "data_source_system",
                         "evaluation_data",
                         "evaluation_data_annotation",
                         "id",
+                        "last_updated",
                         "other",
                         "parent_payload",
                         "process",
                         "process_decision_element",
                         "project",
+                        "record_owner_agency",
                         "response",
                         "result",
                         "result_bool",
                         "result_data",
                         "result_notes",
-                        "result_source"
+                        "result_source",
+                        "retrieved_timestamp"
                       ],
                       "type": "object"
                     },
@@ -4090,6 +5104,24 @@
                             "null"
                           ]
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "evaluation_data": {
                           "anyOf": [
                             {
@@ -4112,6 +5144,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "other": {
                           "anyOf": [
@@ -4144,6 +5182,12 @@
                         "project": {
                           "type": [
                             "number",
+                            "null"
+                          ]
+                        },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
                             "null"
                           ]
                         },
@@ -4182,6 +5226,12 @@
                           ]
                         },
                         "result_source": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
                           "type": [
                             "string",
                             "null"
@@ -4238,6 +5288,24 @@
                         "created_at": {
                           "type": "string"
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "description": {
                           "type": [
                             "string",
@@ -4254,6 +5322,12 @@
                           "type": "number"
                         },
                         "joint_lead_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "last_updated": {
                           "type": [
                             "string",
                             "null"
@@ -4305,6 +5379,12 @@
                             "null"
                           ]
                         },
+                        "process_code": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "process_model": {
                           "type": [
                             "number",
@@ -4312,6 +5392,18 @@
                           ]
                         },
                         "purpose_need": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
                           "type": [
                             "string",
                             "null"
@@ -4473,6 +5565,24 @@
                         "created_at": {
                           "type": "string"
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "description": {
                           "type": [
                             "string",
@@ -4489,6 +5599,12 @@
                           "type": "number"
                         },
                         "joint_lead_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "last_updated": {
                           "type": [
                             "string",
                             "null"
@@ -4540,6 +5656,12 @@
                             "null"
                           ]
                         },
+                        "process_code": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "process_model": {
                           "type": [
                             "number",
@@ -4547,6 +5669,18 @@
                           ]
                         },
                         "purpose_need": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
                           "type": [
                             "string",
                             "null"
@@ -4584,10 +5718,14 @@
                         "complete_date",
                         "cooperating_agencies",
                         "created_at",
+                        "data_record_version",
+                        "data_source_agency",
+                        "data_source_system",
                         "description",
                         "federal_id",
                         "id",
                         "joint_lead_agency",
+                        "last_updated",
                         "lead_agency",
                         "notes",
                         "other",
@@ -4595,8 +5733,11 @@
                         "parent_process_id",
                         "parent_project_id",
                         "participating_agencies",
+                        "process_code",
                         "process_model",
                         "purpose_need",
+                        "record_owner_agency",
+                        "retrieved_timestamp",
                         "stage",
                         "start_date",
                         "status",
@@ -4640,6 +5781,24 @@
                         "created_at": {
                           "type": "string"
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "description": {
                           "type": [
                             "string",
@@ -4656,6 +5815,12 @@
                           "type": "number"
                         },
                         "joint_lead_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "last_updated": {
                           "type": [
                             "string",
                             "null"
@@ -4707,6 +5872,12 @@
                             "null"
                           ]
                         },
+                        "process_code": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "process_model": {
                           "type": [
                             "number",
@@ -4714,6 +5885,18 @@
                           ]
                         },
                         "purpose_need": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
                           "type": [
                             "string",
                             "null"
@@ -4790,6 +5973,24 @@
                         "created_at": {
                           "type": "string"
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "description": {
                           "type": [
                             "string",
@@ -4798,6 +5999,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "legal_structure_id": {
                           "type": [
@@ -4830,6 +6037,18 @@
                         "parent_model": {
                           "type": [
                             "number",
+                            "null"
+                          ]
+                        },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
+                          "type": [
+                            "string",
                             "null"
                           ]
                         },
@@ -4938,6 +6157,24 @@
                         "created_at": {
                           "type": "string"
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "description": {
                           "type": [
                             "string",
@@ -4946,6 +6183,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "legal_structure_id": {
                           "type": [
@@ -4981,6 +6224,18 @@
                             "null"
                           ]
                         },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "screening_desc_json": {
                           "anyOf": [
                             {
@@ -5008,14 +6263,20 @@
                         "agency",
                         "bpmn_model",
                         "created_at",
+                        "data_record_version",
+                        "data_source_agency",
+                        "data_source_system",
                         "description",
                         "DMN_model",
                         "id",
+                        "last_updated",
                         "legal_structure_id",
                         "legal_structure_text",
                         "notes",
                         "other",
                         "parent_model",
+                        "record_owner_agency",
+                        "retrieved_timestamp",
                         "screening_desc_json",
                         "screening_description",
                         "title"
@@ -5054,6 +6315,24 @@
                         "created_at": {
                           "type": "string"
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "description": {
                           "type": [
                             "string",
@@ -5062,6 +6341,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "legal_structure_id": {
                           "type": [
@@ -5094,6 +6379,18 @@
                         "parent_model": {
                           "type": [
                             "number",
+                            "null"
+                          ]
+                        },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
+                          "type": [
+                            "string",
                             "null"
                           ]
                         },
@@ -5146,6 +6443,24 @@
                             "null"
                           ]
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "description": {
                           "type": [
                             "string",
@@ -5160,6 +6475,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "lead_agency": {
                           "type": [
@@ -5212,6 +6533,18 @@
                           ]
                         },
                         "participating_agencies": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
                           "type": [
                             "string",
                             "null"
@@ -5277,6 +6610,24 @@
                             "null"
                           ]
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "description": {
                           "type": [
                             "string",
@@ -5291,6 +6642,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "lead_agency": {
                           "type": [
@@ -5343,6 +6700,18 @@
                           ]
                         },
                         "participating_agencies": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
                           "type": [
                             "string",
                             "null"
@@ -5392,9 +6761,13 @@
                       "required": [
                         "created_at",
                         "current_status",
+                        "data_record_version",
+                        "data_source_agency",
+                        "data_source_system",
                         "description",
                         "funding",
                         "id",
+                        "last_updated",
                         "lead_agency",
                         "location_lat",
                         "location_lon",
@@ -5403,6 +6776,8 @@
                         "other",
                         "parent_project_id",
                         "participating_agencies",
+                        "record_owner_agency",
+                        "retrieved_timestamp",
                         "sector",
                         "sponsor",
                         "sponsor_contact",
@@ -5424,6 +6799,24 @@
                             "null"
                           ]
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "description": {
                           "type": [
                             "string",
@@ -5438,6 +6831,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "lead_agency": {
                           "type": [
@@ -5490,6 +6889,18 @@
                           ]
                         },
                         "participating_agencies": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
                           "type": [
                             "string",
                             "null"
@@ -5566,6 +6977,24 @@
                         "created_at": {
                           "type": "string"
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "description": {
                           "type": [
                             "string",
@@ -5574,6 +7003,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "name": {
                           "type": [
@@ -5600,6 +7035,18 @@
                         "public": {
                           "type": [
                             "boolean",
+                            "null"
+                          ]
+                        },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
+                          "type": [
+                            "string",
                             "null"
                           ]
                         }
@@ -5627,6 +7074,24 @@
                         "created_at": {
                           "type": "string"
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "description": {
                           "type": [
                             "string",
@@ -5635,6 +7100,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "name": {
                           "type": [
@@ -5663,17 +7134,35 @@
                             "boolean",
                             "null"
                           ]
+                        },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         }
                       },
                       "required": [
                         "access_policy",
                         "created_at",
+                        "data_record_version",
+                        "data_source_agency",
+                        "data_source_system",
                         "description",
                         "id",
+                        "last_updated",
                         "name",
                         "other",
                         "permission_descriptions",
-                        "public"
+                        "public",
+                        "record_owner_agency",
+                        "retrieved_timestamp"
                       ],
                       "type": "object"
                     },
@@ -5693,6 +7182,24 @@
                         "created_at": {
                           "type": "string"
                         },
+                        "data_record_version": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "data_source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "description": {
                           "type": [
                             "string",
@@ -5701,6 +7208,12 @@
                         },
                         "id": {
                           "type": "number"
+                        },
+                        "last_updated": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "name": {
                           "type": [
@@ -5727,6 +7240,18 @@
                         "public": {
                           "type": [
                             "boolean",
+                            "null"
+                          ]
+                        },
+                        "record_owner_agency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "retrieved_timestamp": {
+                          "type": [
+                            "string",
                             "null"
                           ]
                         }
@@ -5776,7 +7301,7 @@
         }
       },
       "required": [
-        "graphql_public",
+        "__InternalSupabase",
         "public"
       ],
       "type": "object"
@@ -5818,3 +7343,4 @@
     }
   }
 }
+

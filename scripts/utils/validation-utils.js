@@ -1,27 +1,15 @@
 const fs = require('fs');
 const path = require('path');
-const Ajv = require('ajv');
-const addFormats = require('ajv-formats');
+const { getAjv } = require('./ajv-factory');
 const yaml = require('js-yaml');
 const { 
   mapStatus, 
   mapDocumentType, 
   mapEngagementType, 
-  mapEventStatus,
-  mapEntityId 
+  mapEventStatus
 } = require('./mapping-utils');
+const colors = require('./colors');
 
-// Colors for console output
-const colors = {
-  reset: '\x1b[0m',
-  bold: '\x1b[1m',
-  red: '\x1b[31m',
-  green: '\x1b[32m',
-  yellow: '\x1b[33m',
-  blue: '\x1b[34m',
-  magenta: '\x1b[35m',
-  cyan: '\x1b[36m'
-};
 
 /**
  * Shared validation utilities
@@ -29,12 +17,7 @@ const colors = {
 class ValidationUtils {
   constructor(options = {}) {
     this.isVerbose = options.verbose || process.argv.includes('--verbose');
-    this.ajv = new Ajv({
-      allErrors: true,
-      verbose: true,
-      strict: options.strict !== false
-    });
-    addFormats(this.ajv);
+  this.ajv = getAjv();
   }
 
   log(message, level = 'info') {
@@ -53,31 +36,8 @@ class ValidationUtils {
   }
 
   findFiles(searchDirs, extensions, excludePatterns = []) {
-    const files = [];
-    
-    const findInDir = (dir) => {
-      if (!fs.existsSync(dir)) return;
-      
-      const items = fs.readdirSync(dir);
-      for (const item of items) {
-        const fullPath = path.join(dir, item);
-        const stat = fs.statSync(fullPath);
-        
-        if (stat.isDirectory()) {
-          findInDir(fullPath);
-        } else {
-          const hasValidExtension = extensions.some(ext => item.endsWith(ext));
-          const isExcluded = excludePatterns.some(pattern => item.includes(pattern));
-          
-          if (hasValidExtension && !isExcluded && !item.startsWith('.')) {
-            files.push(fullPath);
-          }
-        }
-      }
-    };
-
-    searchDirs.forEach(dir => findInDir(dir));
-    return files;
+    const { findFiles } = require('./file-utils');
+    return findFiles(searchDirs, extensions, excludePatterns);
   }
 
   parseFile(filePath) {
@@ -133,7 +93,7 @@ class ValidationUtils {
 
         if (this.isVerbose) {
           this.log(`  ${type}: ${count} records`); // Removed "📊" symbol
-          data[type].forEach((record, index) => {
+          data[type].forEach((record) => {
             // const identifier = this.getRecordIdentifier(record, index); // Removed Record Identifier line
             // this.log(`    • Record Identifier: ${identifier}`); // Removed Record Identifier line
             Object.entries(record).forEach(([key, value]) => {
@@ -190,84 +150,7 @@ class ValidationUtils {
     return current;
   }
 
-  printSummary(results, totalRecords = 0, recordCounts = {}) {
-    const validFiles = results.filter(r => r.isValid).length;
-    const invalidFiles = results.length - validFiles;
-
-    this.log('\n📊 VALIDATION SUMMARY');
-    this.log('='.repeat(50));
-    this.log(`📁 Files processed: ${results.length}`);
-    this.log(`✅ Valid files: ${validFiles}`);
-    this.log(`❌ Invalid files: ${invalidFiles}`);
-    
-    if (totalRecords > 0) {
-      this.log(`📋 Total records: ${totalRecords}`);
-    }
-
-    if (Object.keys(recordCounts).length > 0) {
-      this.log('\n📊 Records by type:');
-      Object.entries(recordCounts).forEach(([type, count]) => {
-        this.log(`  ${type}: ${count}`);
-      });
-    }
-
-    // Print errors for invalid files
-    results.filter(r => !r.isValid).forEach(result => {
-      this.log(`\n❌ ${colors.red}File: ${result.filePath}${colors.reset}`, 'error');
-      if (result.errors && result.errors.length > 0) {
-        result.errors.forEach(error => {
-          const instancePath = error.instancePath || '';
-          const key = instancePath.split('/').pop() || (instancePath === '' ? 'root' : 'unknown');
-          
-          const actualValue = result.data !== null ? this._getValueByJsonPointer(result.data, instancePath) : error.data; // error.data can be a fallback
-          const actualType = typeof actualValue;
-
-          let expectedType = 'N/A';
-          if (error.keyword === 'type' && error.params && error.params.type) {
-            expectedType = Array.isArray(error.params.type) ? error.params.type.join('|') : error.params.type;
-          } else if (error.parentSchema && error.parentSchema.type) {
-            expectedType = Array.isArray(error.parentSchema.type) ? error.parentSchema.type.join('|') : error.parentSchema.type;
-          }
-
-          this.log(`  ${colors.yellow}Error at ${instancePath || '(root)'}:${colors.reset} ${error.message}`, 'error');
-          
-          if (error.keyword === 'required') {
-            this.log(`    ${colors.cyan}Missing Key:${colors.reset} "${error.params.missingProperty}"`, 'error');
-          } else if (error.keyword === 'additionalProperties') {
-            this.log(`    ${colors.cyan}Unexpected Key:${colors.reset} "${error.params.additionalProperty}"`, 'error');
-          } else {
-            this.log(`    ${colors.cyan}Field Key:${colors.reset} "${key}"`, 'error');
-            try {
-              const valueStr = JSON.stringify(actualValue, null, 2);
-              if (valueStr && valueStr.length > 100) { // Truncate long values
-                this.log(`    ${colors.cyan}Actual Value:${colors.reset} ${valueStr.substring(0, 100)}... (Type: ${actualType})`, 'error');
-              } else {
-                this.log(`    ${colors.cyan}Actual Value:${colors.reset} ${valueStr} (Type: ${actualType})`, 'error');
-              }
-            } catch (e) { // Handle circular structures or other stringify errors
-                 this.log(`    ${colors.cyan}Actual Value:${colors.reset} [Could not stringify] (Type: ${actualType})`, 'error');
-            }
-            this.log(`    ${colors.cyan}Expected Schema Type:${colors.reset} ${expectedType}`, 'error');
-          }
-          
-          if (this.isVerbose) {
-            this.log(`    ${colors.magenta}AJV Keyword:${colors.reset} ${error.keyword}`, 'error');
-            this.log(`    ${colors.magenta}AJV Params:${colors.reset} ${JSON.stringify(error.params)}`, 'error');
-            // this.log(`    AJV Schema Path: ${error.schemaPath}`, 'error'); // Can be very verbose
-          }
-          this.log('    ---', 'error'); // Separator for multiple errors
-        });
-      } else if (result.errors && result.errors.length === 0) {
-        // This case should ideally not happen if !isValid, but as a fallback:
-        this.log(`  ${colors.yellow}File is invalid, but no specific AJV errors were reported. General parsing or transformation error likely.`, 'error');
-      } else {
-         // If result.errors is not an array (e.g. a single error string from parseFile)
-         this.log(`  ${colors.red}Error:${colors.reset} ${result.errors.message || JSON.stringify(result.errors)}`, 'error');
-      }
-    });
-
-    return invalidFiles === 0;
-  }
+  // printSummary removed (migrated to error-reporting module)
 
   // Mapping utility functions (delegated to mapping-utils)
   mapStatus(status) {
@@ -287,78 +170,9 @@ class ValidationUtils {
   }
 }
 
-// Standalone utility functions for backward compatibility
-function createValidator() {
-  const ajv = new Ajv({
-    allErrors: true,
-    verbose: true,
-    strict: false
-  });
-  addFormats(ajv);
-  return ajv;
-}
+// Deprecated standalone functions removed (use ajv-factory and file-utils instead)
 
-function loadSchemaFile(filePath) {
-  try {
-    const content = fs.readFileSync(filePath, 'utf8');
-    return JSON.parse(content);
-  } catch (error) {
-    console.error(`${colors.red}Error loading schema from ${filePath}: ${error.message}${colors.reset}`);
-    return null;
-  }
-}
-
-function findJsonFiles(dir) {
-  const files = [];
-  
-  function findInDir(directory) {
-    if (!fs.existsSync(directory)) return;
-    
-    const items = fs.readdirSync(directory);
-    for (const item of items) {
-      const fullPath = path.join(directory, item);
-      const stat = fs.statSync(fullPath);
-      
-      if (stat.isDirectory()) {
-        findInDir(fullPath);
-      } else if (item.endsWith('.json') && !item.startsWith('.')) {
-        files.push(fullPath);
-      }
-    }
-  }
-  
-  findInDir(dir);
-  return files;
-}
-
-function validateJsonFile(filePath, validator) {
-  try {
-    const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    const isValid = validator(data);
-    
-    return {
-      isValid,
-      data,
-      errors: validator.errors || [],
-      filePath
-    };
-  } catch (error) {
-    return {
-      isValid: false,
-      data: null,
-      errors: [{ message: error.message }],
-      filePath
-    };
-  }
-}
-
-function printSummary(success, operation) {
-  if (success) {
-    console.log(`\n${colors.green}✅ ${operation} completed successfully${colors.reset}`);
-  } else {
-    console.log(`\n${colors.red}❌ ${operation} completed with errors${colors.reset}`);
-  }
-}
+// Deprecated standalone printSummary removed in favor of error-reporting.printOperationSummary
 
 /**
  * Ensure directory exists, creates it if not.
@@ -411,11 +225,42 @@ function shouldIgnoreField(fieldName) {
 
 module.exports = {
   ValidationUtils,
-  createValidator,
-  loadSchemaFile,
-  findJsonFiles,
-  validateJsonFile,
-  printSummary,
+  // Backwards-compatible helpers for legacy scripts/tests
+  createValidator: function createValidator() {
+    return getAjv();
+  },
+  loadSchemaFile: function loadSchemaFile(filePath) {
+    try {
+      const content = fs.readFileSync(filePath, 'utf8');
+      return JSON.parse(content);
+    } catch (error) {
+      console.error(`${colors.red}Error loading schema from ${filePath}: ${error.message}${colors.reset}`);
+      return null;
+    }
+  },
+  findJsonFiles: function findJsonFiles(dir) {
+    const { findFiles } = require('./file-utils');
+    return findFiles([dir], ['.json']);
+  },
+  validateJsonFile: function validateJsonFile(filePath, validator) {
+    try {
+      const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+      const isValid = validator(data);
+      return {
+        isValid,
+        data,
+        errors: validator.errors || [],
+        filePath
+      };
+    } catch (error) {
+      return {
+        isValid: false,
+        data: null,
+        errors: [{ message: error.message }],
+        filePath
+      };
+    }
+  },
   colors,
   ensureDirectory,
   shouldIgnoreField

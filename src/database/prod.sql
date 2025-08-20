@@ -1,6 +1,103 @@
 
 
 
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+
+CREATE EXTENSION IF NOT EXISTS "pgsodium";
+
+
+
+
+
+
+COMMENT ON SCHEMA "public" IS 'standard public schema';
+
+
+
+CREATE EXTENSION IF NOT EXISTS "pg_graphql" WITH SCHEMA "graphql";
+
+
+
+
+
+
+CREATE EXTENSION IF NOT EXISTS "pg_stat_statements" WITH SCHEMA "extensions";
+
+
+
+
+
+
+CREATE EXTENSION IF NOT EXISTS "pgcrypto" WITH SCHEMA "extensions";
+
+
+
+
+
+
+CREATE EXTENSION IF NOT EXISTS "pgjwt" WITH SCHEMA "extensions";
+
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA "extensions";
+
+
+
+
+
+
+CREATE OR REPLACE FUNCTION "public"."export_all_tables_as_jsonb"() RETURNS "jsonb"
+    LANGUAGE "plpgsql"
+    AS $$
+declare
+  tbl         record;
+  result      jsonb := '{}'::jsonb;
+  table_data  jsonb;
+begin
+  for tbl in
+    select table_name
+      from information_schema.tables
+     where table_schema = 'public'
+       and table_type   = 'BASE TABLE'
+  loop
+    execute format(
+      -- aggregate each row as JSONB, giving an array of objects
+      'select coalesce(jsonb_agg(to_jsonb(t)), ''[]''::jsonb)
+         from public.%I t',
+      tbl.table_name
+    ) into table_data;
+
+    -- concatenate the new key/value into the result
+    result := result || jsonb_build_object(tbl.table_name, table_data);
+  end loop;
+
+  return result;
+end;
+$$;
+
+
+ALTER FUNCTION "public"."export_all_tables_as_jsonb"() OWNER TO "postgres";
+
 SET default_tablespace = '';
 
 SET default_table_access_method = "heap";
@@ -29,7 +126,7 @@ CREATE TABLE IF NOT EXISTS "public"."project" (
 );
 
 
-
+ALTER TABLE "public"."project" OWNER TO "postgres";
 
 
 COMMENT ON TABLE "public"."project" IS 'A Project represents the activity or decision requiring a NEPA review process. A project generally has a relationship with a GIS object defining its location, which is not contained in the properties below but establishes the physical footprint of the action.';
@@ -145,6 +242,7 @@ CREATE TABLE IF NOT EXISTS "public"."case_event" (
 );
 
 
+ALTER TABLE "public"."case_event" OWNER TO "postgres";
 
 
 COMMENT ON TABLE "public"."case_event" IS 'Milestones or steps within the NEPA review, tracked in a case management system or other system, such as task management tools or reporting dashboards.';
@@ -251,6 +349,7 @@ CREATE TABLE IF NOT EXISTS "public"."comment" (
 );
 
 
+ALTER TABLE "public"."comment" OWNER TO "postgres";
 
 
 COMMENT ON TABLE "public"."comment" IS 'Feedback submitted by individuals or organizations.';
@@ -344,6 +443,7 @@ CREATE TABLE IF NOT EXISTS "public"."decision_element" (
 );
 
 
+ALTER TABLE "public"."decision_element" OWNER TO "postgres";
 
 
 COMMENT ON TABLE "public"."decision_element" IS 'Objects that describe conditions for starting a process or resolving a decision tree within a process, including GIS screening.';
@@ -438,8 +538,8 @@ CREATE TABLE IF NOT EXISTS "public"."document" (
     "title" "text",
     "volume_title" "text",
     "document_revision" "text",
-    "revision_number" bigint,
-    "supplement_number" bigint,
+    "revision_no" bigint,
+    "supplement_no" bigint,
     "publish_date" "date",
     "prepared_by" "text",
     "status" "text",
@@ -453,6 +553,7 @@ CREATE TABLE IF NOT EXISTS "public"."document" (
 );
 
 
+ALTER TABLE "public"."document" OWNER TO "postgres";
 
 
 COMMENT ON TABLE "public"."document" IS 'The document object includes both metadata identifying the document and its context (below) and a container for summary information that lays out, at a minimum, the table of contents (or heading structure) of the document. See Document Structure section below.  
@@ -488,11 +589,11 @@ COMMENT ON COLUMN "public"."document"."document_revision" IS 'Indicates which re
 
 
 
-COMMENT ON COLUMN "public"."document"."revision_number" IS 'Indicates which revision of the document (e.g., first revised Draft EIS) - numeric form';
+COMMENT ON COLUMN "public"."document"."revision_no" IS 'Indicates which revision of the document (e.g., first revised Draft EIS) - numeric form';
 
 
 
-COMMENT ON COLUMN "public"."document"."supplement_number" IS 'Indicates supplement number';
+COMMENT ON COLUMN "public"."document"."supplement_no" IS 'Indicates supplement number';
 
 
 
@@ -563,6 +664,7 @@ CREATE TABLE IF NOT EXISTS "public"."engagement" (
 );
 
 
+ALTER TABLE "public"."engagement" OWNER TO "postgres";
 
 
 COMMENT ON TABLE "public"."engagement" IS 'Opportunities for interaction in the NEPA process, including formal consultation.';
@@ -653,6 +755,7 @@ CREATE TABLE IF NOT EXISTS "public"."gis_data" (
 );
 
 
+ALTER TABLE "public"."gis_data" OWNER TO "postgres";
 
 
 COMMENT ON TABLE "public"."gis_data" IS 'A container for location-based information, ranging from simple points to complex polygons, as well as maps and “collapsed” geospatial information';
@@ -768,6 +871,7 @@ CREATE TABLE IF NOT EXISTS "public"."gis_data_element" (
 );
 
 
+ALTER TABLE "public"."gis_data_element" OWNER TO "postgres";
 
 
 COMMENT ON TABLE "public"."gis_data_element" IS 'Inventory description for individual gis data elements.';
@@ -874,6 +978,7 @@ CREATE TABLE IF NOT EXISTS "public"."legal_structure" (
 );
 
 
+ALTER TABLE "public"."legal_structure" OWNER TO "postgres";
 
 
 COMMENT ON TABLE "public"."legal_structure" IS 'Legal, policy, or process data guiding the NEPA process, including thresholds and conditions for level of reviews or other decision criteria.';
@@ -967,6 +1072,7 @@ CREATE TABLE IF NOT EXISTS "public"."process_decision_payload" (
 );
 
 
+ALTER TABLE "public"."process_decision_payload" OWNER TO "postgres";
 
 
 COMMENT ON TABLE "public"."process_decision_payload" IS 'Objects that deliver responses and/or results of the evaluation criteria in the process decision elements.';
@@ -1075,6 +1181,7 @@ CREATE TABLE IF NOT EXISTS "public"."process_instance" (
 );
 
 
+ALTER TABLE "public"."process_instance" OWNER TO "postgres";
 
 
 COMMENT ON TABLE "public"."process_instance" IS 'The Process refers to the specific type of environmental review, permit, or authorization. A process is associated with or nested beneath a project. A process will also have documents associated and nested beneath it.';
@@ -1194,6 +1301,7 @@ CREATE TABLE IF NOT EXISTS "public"."process_model" (
 );
 
 
+ALTER TABLE "public"."process_model" OWNER TO "postgres";
 
 
 COMMENT ON TABLE "public"."process_model" IS 'A process model is a coded representation of a generic process, ideally in business process model notation, and/or screening criteria that define when or if the process is relevant to a project';
@@ -1279,6 +1387,7 @@ CREATE TABLE IF NOT EXISTS "public"."user_role" (
 );
 
 
+ALTER TABLE "public"."user_role" OWNER TO "postgres";
 
 
 COMMENT ON TABLE "public"."user_role" IS 'Defines stakeholders interacting with the NEPA IT system.';
@@ -1503,6 +1612,7 @@ ALTER TABLE ONLY "public"."process_instance"
 
 
 
+ALTER TABLE "public"."engagement" ENABLE ROW LEVEL SECURITY;
 
 
 
@@ -1510,6 +1620,10 @@ ALTER TABLE ONLY "public"."process_instance"
 
 
 
+GRANT USAGE ON SCHEMA "public" TO "postgres";
+GRANT USAGE ON SCHEMA "public" TO "anon";
+GRANT USAGE ON SCHEMA "public" TO "authenticated";
+GRANT USAGE ON SCHEMA "public" TO "service_role";
 
 
 
@@ -1690,6 +1804,9 @@ ALTER TABLE ONLY "public"."process_instance"
 
 
 
+GRANT ALL ON FUNCTION "public"."export_all_tables_as_jsonb"() TO "anon";
+GRANT ALL ON FUNCTION "public"."export_all_tables_as_jsonb"() TO "authenticated";
+GRANT ALL ON FUNCTION "public"."export_all_tables_as_jsonb"() TO "service_role";
 
 
 
@@ -1705,6 +1822,189 @@ ALTER TABLE ONLY "public"."process_instance"
 
 
 
+
+
+
+GRANT ALL ON TABLE "public"."project" TO "anon";
+GRANT ALL ON TABLE "public"."project" TO "authenticated";
+GRANT ALL ON TABLE "public"."project" TO "service_role";
+
+
+
+GRANT ALL ON SEQUENCE "public"."Project_id_seq" TO "anon";
+GRANT ALL ON SEQUENCE "public"."Project_id_seq" TO "authenticated";
+GRANT ALL ON SEQUENCE "public"."Project_id_seq" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."case_event" TO "anon";
+GRANT ALL ON TABLE "public"."case_event" TO "authenticated";
+GRANT ALL ON TABLE "public"."case_event" TO "service_role";
+
+
+
+GRANT ALL ON SEQUENCE "public"."case_event_id_seq" TO "anon";
+GRANT ALL ON SEQUENCE "public"."case_event_id_seq" TO "authenticated";
+GRANT ALL ON SEQUENCE "public"."case_event_id_seq" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."comment" TO "anon";
+GRANT ALL ON TABLE "public"."comment" TO "authenticated";
+GRANT ALL ON TABLE "public"."comment" TO "service_role";
+
+
+
+GRANT ALL ON SEQUENCE "public"."comment_id_seq" TO "anon";
+GRANT ALL ON SEQUENCE "public"."comment_id_seq" TO "authenticated";
+GRANT ALL ON SEQUENCE "public"."comment_id_seq" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."decision_element" TO "anon";
+GRANT ALL ON TABLE "public"."decision_element" TO "authenticated";
+GRANT ALL ON TABLE "public"."decision_element" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."document" TO "anon";
+GRANT ALL ON TABLE "public"."document" TO "authenticated";
+GRANT ALL ON TABLE "public"."document" TO "service_role";
+
+
+
+GRANT ALL ON SEQUENCE "public"."document_id_seq" TO "anon";
+GRANT ALL ON SEQUENCE "public"."document_id_seq" TO "authenticated";
+GRANT ALL ON SEQUENCE "public"."document_id_seq" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."engagement" TO "anon";
+GRANT ALL ON TABLE "public"."engagement" TO "authenticated";
+GRANT ALL ON TABLE "public"."engagement" TO "service_role";
+
+
+
+GRANT ALL ON SEQUENCE "public"."engagement_id_seq" TO "anon";
+GRANT ALL ON SEQUENCE "public"."engagement_id_seq" TO "authenticated";
+GRANT ALL ON SEQUENCE "public"."engagement_id_seq" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."gis_data" TO "anon";
+GRANT ALL ON TABLE "public"."gis_data" TO "authenticated";
+GRANT ALL ON TABLE "public"."gis_data" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."gis_data_element" TO "anon";
+GRANT ALL ON TABLE "public"."gis_data_element" TO "authenticated";
+GRANT ALL ON TABLE "public"."gis_data_element" TO "service_role";
+
+
+
+GRANT ALL ON SEQUENCE "public"."gis_data_element_id_seq" TO "anon";
+GRANT ALL ON SEQUENCE "public"."gis_data_element_id_seq" TO "authenticated";
+GRANT ALL ON SEQUENCE "public"."gis_data_element_id_seq" TO "service_role";
+
+
+
+GRANT ALL ON SEQUENCE "public"."gis_data_id_seq" TO "anon";
+GRANT ALL ON SEQUENCE "public"."gis_data_id_seq" TO "authenticated";
+GRANT ALL ON SEQUENCE "public"."gis_data_id_seq" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."legal_structure" TO "anon";
+GRANT ALL ON TABLE "public"."legal_structure" TO "authenticated";
+GRANT ALL ON TABLE "public"."legal_structure" TO "service_role";
+
+
+
+GRANT ALL ON SEQUENCE "public"."legal_structure_id_seq" TO "anon";
+GRANT ALL ON SEQUENCE "public"."legal_structure_id_seq" TO "authenticated";
+GRANT ALL ON SEQUENCE "public"."legal_structure_id_seq" TO "service_role";
+
+
+
+GRANT ALL ON SEQUENCE "public"."process_decision_element_id_seq" TO "anon";
+GRANT ALL ON SEQUENCE "public"."process_decision_element_id_seq" TO "authenticated";
+GRANT ALL ON SEQUENCE "public"."process_decision_element_id_seq" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."process_decision_payload" TO "anon";
+GRANT ALL ON TABLE "public"."process_decision_payload" TO "authenticated";
+GRANT ALL ON TABLE "public"."process_decision_payload" TO "service_role";
+
+
+
+GRANT ALL ON SEQUENCE "public"."process_decision_payload_id_seq" TO "anon";
+GRANT ALL ON SEQUENCE "public"."process_decision_payload_id_seq" TO "authenticated";
+GRANT ALL ON SEQUENCE "public"."process_decision_payload_id_seq" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."process_instance" TO "anon";
+GRANT ALL ON TABLE "public"."process_instance" TO "authenticated";
+GRANT ALL ON TABLE "public"."process_instance" TO "service_role";
+
+
+
+GRANT ALL ON SEQUENCE "public"."process_id_seq" TO "anon";
+GRANT ALL ON SEQUENCE "public"."process_id_seq" TO "authenticated";
+GRANT ALL ON SEQUENCE "public"."process_id_seq" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."process_model" TO "anon";
+GRANT ALL ON TABLE "public"."process_model" TO "authenticated";
+GRANT ALL ON TABLE "public"."process_model" TO "service_role";
+
+
+
+GRANT ALL ON SEQUENCE "public"."process_model_id_seq" TO "anon";
+GRANT ALL ON SEQUENCE "public"."process_model_id_seq" TO "authenticated";
+GRANT ALL ON SEQUENCE "public"."process_model_id_seq" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."user_role" TO "anon";
+GRANT ALL ON TABLE "public"."user_role" TO "authenticated";
+GRANT ALL ON TABLE "public"."user_role" TO "service_role";
+
+
+
+GRANT ALL ON SEQUENCE "public"."user_role_id_seq" TO "anon";
+GRANT ALL ON SEQUENCE "public"."user_role_id_seq" TO "authenticated";
+GRANT ALL ON SEQUENCE "public"."user_role_id_seq" TO "service_role";
+
+
+
+ALTER DEFAULT PRIVILEGES FOR ROLE "postgres" IN SCHEMA "public" GRANT ALL ON SEQUENCES  TO "postgres";
+ALTER DEFAULT PRIVILEGES FOR ROLE "postgres" IN SCHEMA "public" GRANT ALL ON SEQUENCES  TO "anon";
+ALTER DEFAULT PRIVILEGES FOR ROLE "postgres" IN SCHEMA "public" GRANT ALL ON SEQUENCES  TO "authenticated";
+ALTER DEFAULT PRIVILEGES FOR ROLE "postgres" IN SCHEMA "public" GRANT ALL ON SEQUENCES  TO "service_role";
+
+
+
+
+
+
+ALTER DEFAULT PRIVILEGES FOR ROLE "postgres" IN SCHEMA "public" GRANT ALL ON FUNCTIONS  TO "postgres";
+ALTER DEFAULT PRIVILEGES FOR ROLE "postgres" IN SCHEMA "public" GRANT ALL ON FUNCTIONS  TO "anon";
+ALTER DEFAULT PRIVILEGES FOR ROLE "postgres" IN SCHEMA "public" GRANT ALL ON FUNCTIONS  TO "authenticated";
+ALTER DEFAULT PRIVILEGES FOR ROLE "postgres" IN SCHEMA "public" GRANT ALL ON FUNCTIONS  TO "service_role";
+
+
+
+
+
+
+ALTER DEFAULT PRIVILEGES FOR ROLE "postgres" IN SCHEMA "public" GRANT ALL ON TABLES  TO "postgres";
+ALTER DEFAULT PRIVILEGES FOR ROLE "postgres" IN SCHEMA "public" GRANT ALL ON TABLES  TO "anon";
+ALTER DEFAULT PRIVILEGES FOR ROLE "postgres" IN SCHEMA "public" GRANT ALL ON TABLES  TO "authenticated";
+ALTER DEFAULT PRIVILEGES FOR ROLE "postgres" IN SCHEMA "public" GRANT ALL ON TABLES  TO "service_role";
 
 
 
